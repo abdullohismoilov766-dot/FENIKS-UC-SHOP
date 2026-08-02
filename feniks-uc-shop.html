@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FENIKS UC SHOP</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg-elevated:#14131c;
+    --bg-card:#181722;
+    --ember:#ff5a36;
+    --ember-dim:#7a2e17;
+    --violet:#8b5cf6;
+    --violet-dim:#3d2f6b;
+    --silver:#c9c6d0;
+    --text:#f1eee7;
+    --muted:#8d8a99;
+    --success:#4ade80;
+    --line:rgba(201,198,208,0.14);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 600px 300px at 50% -10%, rgba(139,92,246,0.18), transparent 60%),
+      radial-gradient(ellipse 500px 260px at 90% 10%, rgba(255,90,54,0.10), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    padding-bottom:120px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:36px 20px 22px;
+    text-align:center;
+    position:relative;
+  }
+  .sigil{
+    width:56px;height:56px;margin:0 auto 14px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:linear-gradient(155deg, var(--ember), var(--ember-dim));
+    box-shadow:0 0 0 1px rgba(255,255,255,0.08), 0 8px 24px rgba(255,90,54,0.35);
+    font-size:26px;
+    animation:flicker 3.2s ease-in-out infinite;
+  }
+  @keyframes flicker{
+    0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,0.08), 0 8px 24px rgba(255,90,54,0.35);}
+    50%{box-shadow:0 0 0 1px rgba(255,255,255,0.12), 0 10px 34px rgba(255,90,54,0.55);}
+  }
+  .eyebrow{
+    font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--violet); font-weight:600; margin-bottom:8px;
+  }
+  h1.brand{
+    font-family:'Cinzel',serif;
+    font-size:30px; font-weight:800; letter-spacing:0.03em;
+    margin:0 0 6px;
+    background:linear-gradient(180deg, #fdfbf7 10%, var(--silver) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .tagline{
+    font-size:13.5px; color:var(--muted); max-width:280px; margin:0 auto;
+    line-height:1.5;
+  }
+
+  /* ---------- SECTION LABEL ---------- */
+  .section-label{
+    display:flex; align-items:center; gap:10px;
+    padding:0 20px; margin:26px 0 12px;
+    font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.08em;
+    color:var(--silver); text-transform:uppercase; font-weight:600;
+  }
+  .section-label::after{
+    content:''; flex:1; height:1px;
+    background:linear-gradient(90deg, var(--line), transparent);
+  }
+
+  /* ---------- PACKAGE BANNERS ---------- */
+  .packs{ padding:0 16px; display:flex; flex-direction:column; gap:12px;}
+  .pack{
+    position:relative;
+    background:linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
+    border:1px solid var(--line);
+    border-radius:10px 10px 4px 4px;
+    padding:14px 16px 18px;
+    clip-path:polygon(0 0,100% 0,100% 88%,50% 100%,0 88%);
+    padding-bottom:26px;
+    cursor:pointer;
+    transition:border-color .18s ease, transform .12s ease, background .18s ease;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .pack:active{ transform:scale(0.985); }
+  .pack .left{ display:flex; align-items:center; gap:12px; }
+  .pack .uc-badge{
+    font-family:'Cinzel',serif; font-weight:700; font-size:15px;
+    color:var(--text); white-space:nowrap;
+  }
+  .pack .uc-badge span{ color:var(--ember); }
+  .pack .markup{
+    font-size:10.5px; color:var(--muted); margin-top:2px;
+  }
+  .pack .price{
+    font-size:15px; font-weight:700; color:var(--silver); white-space:nowrap;
+  }
+  .pack.selected{
+    border-color:var(--ember);
+    background:linear-gradient(180deg, rgba(255,90,54,0.14), var(--bg-elevated));
+    box-shadow:0 0 0 1px rgba(255,90,54,0.25), 0 6px 20px rgba(255,90,54,0.18);
+  }
+  .pack.selected .price{ color:var(--ember); }
+  .check{
+    width:20px;height:20px;border-radius:50%;
+    border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0; margin-left:10px;
+    transition:all .18s ease;
+  }
+  .pack.selected .check{
+    background:var(--ember); border-color:var(--ember);
+  }
+  .check svg{ width:11px;height:11px; opacity:0; transition:opacity .15s ease;}
+  .pack.selected .check svg{ opacity:1; }
+
+  /* ---------- ORDER BAR ---------- */
+  .orderbar{
+    position:fixed; left:0; right:0; bottom:0;
+    background:rgba(10,10,15,0.92);
+    backdrop-filter:blur(14px);
+    border-top:1px solid var(--line);
+    padding:14px 16px calc(14px + env(safe-area-inset-bottom));
+    transform:translateY(110%);
+    transition:transform .28s cubic-bezier(.2,.8,.2,1);
+  }
+  .orderbar.show{ transform:translateY(0); }
+  .orderbar .row{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .orderbar .row .label{ font-size:12px; color:var(--muted); }
+  .orderbar .row .val{ font-family:'Cinzel',serif; font-weight:700; font-size:15px; }
+  .orderbar .val.price{ color:var(--ember); }
+  .pubg-input{
+    width:100%; background:var(--bg-card); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px; color:var(--text); font-size:14px;
+    font-family:'Inter',sans-serif; margin-bottom:10px; outline:none;
+    transition:border-color .15s ease;
+  }
+  .pubg-input:focus{ border-color:var(--violet); }
+  .pubg-input::placeholder{ color:var(--muted); }
+  .confirm-btn{
+    width:100%; border:none; border-radius:10px; padding:14px;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:14.5px;
+    background:linear-gradient(135deg, var(--ember), #d8451f);
+    color:#fff; cursor:pointer; letter-spacing:0.01em;
+    transition:opacity .15s ease, transform .1s ease;
+  }
+  .confirm-btn:disabled{ opacity:0.4; cursor:not-allowed; }
+  .confirm-btn:active:not(:disabled){ transform:scale(0.98); }
+
+  /* ---------- SUCCESS OVERLAY ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(6,6,10,0.94);
+    backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+    padding:24px; z-index:50;
+  }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .success-card{
+    background:var(--bg-card); border:1px solid var(--line);
+    border-radius:16px; padding:28px 24px; text-align:center; max-width:320px;
+    animation:pop .3s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes pop{ from{ transform:scale(0.9); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .success-icon{
+    width:52px; height:52px; border-radius:50%; margin:0 auto 16px;
+    background:linear-gradient(155deg, var(--success), #22a35e);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .success-card h2{
+    font-family:'Cinzel',serif; font-size:18px; margin:0 0 8px; color:var(--text);
+  }
+  .success-card .detail{ font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:18px; }
+  .success-card .detail b{ color:var(--silver); }
+  .success-close{
+    background:none; border:1px solid var(--line); color:var(--silver);
+    border-radius:8px; padding:10px 20px; font-size:13px; cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="sigil">🔥</div>
+  <div class="eyebrow">Telegram Web App</div>
+  <h1 class="brand">FENIKS UC SHOP</h1>
+  <p class="tagline">PUBG Mobile UC — eng maqbul narxda, tezkor yetkazib berish</p>
+</div>
+
+<div class="section-label">Paket tanlang</div>
+<div class="packs" id="packs"></div>
+
+<div class="orderbar" id="orderbar">
+  <div class="row">
+    <span class="label" id="ob-uc">—</span>
+    <span class="val price" id="ob-price">—</span>
+  </div>
+  <input type="text" class="pubg-input" id="pubgId" placeholder="PUBG ID raqamingizni kiriting" inputmode="numeric">
+  <button class="confirm-btn" id="confirmBtn" disabled>Buyurtma berish</button>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="success-card">
+    <div class="success-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12L9 17L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2>Buyurtma qabul qilindi</h2>
+    <div class="detail" id="ov-detail"></div>
+    <button class="success-close" id="closeBtn">Yopish</button>
+  </div>
+</div>
+
+<script>
+const tg = window.Telegram ? window.Telegram.WebApp : null;
+if (tg) { tg.ready(); tg.expand(); }
+
+// UC packages with markup pricing
+const packages = [
+  {uc:30,    price:6000,     markup:4.35},
+  {uc:60,    price:12200,    markup:6.09},
+  {uc:325,   price:60000,    markup:4.35},
+  {uc:660,   price:122000,   markup:6.09},
+  {uc:1800,  price:303000,   markup:5.39},
+  {uc:3850,  price:610000,   markup:6.09},
+  {uc:8100,  price:1220000,  markup:6.09},
+  {uc:16200, price:2420000,  markup:5.22},
+  {uc:24300, price:3600000,  markup:4.35},
+  {uc:32400, price:4990000,  markup:8.48},
+  {uc:40500, price:6150000,  markup:6.96},
+  {uc:48600, price:7330000,  markup:6.23},
+  {uc:81000, price:12110000, markup:5.30},
+];
+
+function fmt(n){ return n.toLocaleString('ru-RU').replace(/,/g,' '); }
+
+const packsEl = document.getElementById('packs');
+let selected = null;
+
+packages.forEach((p, i) => {
+  const el = document.createElement('div');
+  el.className = 'pack';
+  el.innerHTML = `
+    <div class="left">
+      <div>
+        <div class="uc-badge"><span>${fmt(p.uc)}</span> UC</div>
+        <div class="markup">bozor narxidan +${p.markup}%</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;">
+      <div class="price">${fmt(p.price)} so'm</div>
+      <div class="check">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12L9 17L20 6" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  `;
+  el.addEventListener('click', () => selectPack(i, el));
+  packsEl.appendChild(el);
+});
+
+function selectPack(i, el){
+  document.querySelectorAll('.pack').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  selected = packages[i];
+  document.getElementById('ob-uc').textContent = fmt(selected.uc) + ' UC';
+  document.getElementById('ob-price').textContent = fmt(selected.price) + " so'm";
+  document.getElementById('orderbar').classList.add('show');
+  validate();
+  if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
+}
+
+const pubgInput = document.getElementById('pubgId');
+const confirmBtn = document.getElementById('confirmBtn');
+pubgInput.addEventListener('input', validate);
+
+function validate(){
+  const idOk = pubgInput.value.trim().length >= 6;
+  confirmBtn.disabled = !(selected && idOk);
+}
+
+confirmBtn.addEventListener('click', () => {
+  const order = {
+    package_uc: selected.uc,
+    price_uzs: selected.price,
+    pubg_id: pubgInput.value.trim(),
+    ts: new Date().toISOString()
+  };
+
+  document.getElementById('ov-detail').innerHTML =
+    `<b>${fmt(order.package_uc)} UC</b> — ${fmt(order.price_uzs)} so'm<br>PUBG ID: <b>${order.pubg_id}</b><br><br>Admin buyurtmangizni ko'rib chiqadi va tez orada UC hisobingizga tushadi.`;
+  document.getElementById('overlay').classList.add('show');
+
+  if (tg) {
+    if (tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+    if (tg.sendData) {
+      try { tg.sendData(JSON.stringify(order)); } catch(e) {}
+    }
+  }
+});
+
+document.getElementById('closeBtn').addEventListener('click', () => {
+  if (tg && tg.close) { tg.close(); }
+  else { document.getElementById('overlay').classList.remove('show'); }
+});
+</script>
+</body>
+</html>
