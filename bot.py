@@ -147,13 +147,14 @@ def handle_webapp_data(message):
     )
 
     admin_text = (
-        "🆕 *Yangi buyurtma!*\n\n"
+        "🆕 *Yangi buyurtma!*
         f"Mijoz: @{data['username']} (ID: {data['user_id']})\n"
         f"Paket: {fmt(data['package_uc'])} UC\n"
         f"Narx: {fmt(data['price_uzs'])} so'm\n"
         f"PUBG ID: `{data['pubg_id']}`"
     )
-    bot.send_message(ADMIN_ID, admin_text, parse_mode="Markdown")
+    
+bot.send_message(ADMIN_ID, admin_text,)
 
 
 print("Bot ishga tushdi...")
