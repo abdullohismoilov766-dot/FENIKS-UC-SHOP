@@ -154,7 +154,7 @@ def handle_webapp_data(message):
         f"PUBG ID: `{data['pubg_id']}`"
     )
     
-bot.send_message(ADMIN_ID, admin_text,)
+   bot.send_message(ADMIN_ID, admin_text,)
 
 
 print("Bot ishga tushdi...")
