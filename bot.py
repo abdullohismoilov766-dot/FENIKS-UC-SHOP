@@ -157,7 +157,41 @@ def handle_webapp_data(message):
     )
     bot.send_message(ADMIN_ID, admin_text)
 
+   @bot.message_handler(commands=["reply"])
+def cmd_reply(message):
+    if message.from_user.id != ADMIN_ID:
+        return
 
-print("Bot ishga tushdi...")
-bot.remove_webhook()
-bot.infinity_polling()
+    parts = message.text.split(" ", 2)
+    if len(parts) < 3:
+        bot.send_message(message.chat.id, "Foydalanish: /reply <ID> <xabar matni>")
+        return
+
+    target_id = parts[1]
+    text = parts[2]
+
+    try:
+        bot.send_message(target_id, text)
+        bot.send_message(message.chat.id, f"✅ Yuborildi ({target_id}): {text}")
+    except Exception as e:
+        bot.send_message(message.chat.id, f"❌ Xatolik: {e}")
+
+
+@bot.message_handler(content_types=["photo", "document"])
+def handle_receipt(message):
+    if message.from_user.id == ADMIN_ID:
+        return
+
+    caption = (
+        f"🧾 To'lov cheki keldi!\n\n"
+        f"Mijoz: @{message.from_user.username or message.from_user.first_name} "
+        f"(ID: {message.from_user.id})\n\n"
+        f"Javob yozish uchun: /reply {message.from_user.id} <matn>"
+    )
+    bot.forward_message(ADMIN_ID, message.chat.id, message.message_id)
+    bot.send_message(ADMIN_ID, caption)
+    bot.send_message(message.chat.id, "✅ Chekingiz qabul qilindi, tez orada tekshiriladi.") 
+
+   print("Bot ishga tushdi...")
+   bot.remove_webhook()
+   bot.infinity_polling()
