@@ -145,9 +145,7 @@ def handle_webapp_data(message):
         f"PUBG ID: {data['pubg_id']}\n"
         f"Nickname: {data.get('nickname', '-')}\n\n"
         "Tez orada tasdiqlanadi.",
-    )
-
-    admin_text = (
+  )admin_text = (
         "🆕 Yangi buyurtma!\n\n"
         f"Mijoz: @{data['username']} (ID: {data['user_id']})\n"
         f"Paket: {fmt(data['package_uc'])} UC\n"
@@ -156,8 +154,7 @@ def handle_webapp_data(message):
         f"Nickname: {data.get('nickname', '-')}"
     )
     bot.send_message(ADMIN_ID, admin_text)
-
-   @bot.message_handler(commands=["reply"])
+@bot.message_handler(commands=["reply"])
 def cmd_reply(message):
     if message.from_user.id != ADMIN_ID:
         return
