@@ -708,14 +708,30 @@ async def _set_commands(bot: Bot) -> None:
     )
 
 
+def _startup_report() -> str:
+    """Ishga tushganda qaysi imkoniyatlar yoqilganini ko'rsatadi (kalitlarsiz)."""
+    rows = [
+        ("Kundalik rejalar, eslatmalar, statistika", True),
+        ("Erkin matnni tushunish (Claude)", claude_enabled()),
+        ("Notion kalendar", notion_enabled()),
+        ("Ovozli xabarlar", stt_enabled()),
+    ]
+    lines = ["", "  FENIKS PLANNER ishga tushdi", "  " + "-" * 40]
+    for label, enabled in rows:
+        lines.append(f"  {'[+]' if enabled else '[ ]'} {label}")
+    lines.append("  " + "-" * 40)
+    return "\n".join(lines)
+
+
 async def main() -> None:
     if not BOT_TOKEN:
         raise RuntimeError(
-            "PLANNER_BOT_TOKEN topilmadi. planner_bot/.env faylini yarating "
-            "(namuna: planner_bot/.env.example)."
+            "PLANNER_BOT_TOKEN topilmadi.\n"
+            "Sozlash uchun ishga tushiring:  python -m planner_bot.setup"
         )
 
     db.init_db()
+    logger.info(_startup_report())
 
     bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     await _set_commands(bot)

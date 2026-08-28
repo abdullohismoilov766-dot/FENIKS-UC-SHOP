@@ -96,10 +96,14 @@ pip install -r planner_bot/requirements.txt
 ## Sozlash
 
 ```bash
-cp planner_bot/.env.example planner_bot/.env
+python -m planner_bot.setup
 ```
 
-`.env` ni oching va to'ldiring. **Faqat bitta narsa majburiy:**
+Skript kerakli kalitlarni navbat bilan so'raydi, to'g'riligini tekshiradi va
+`planner_bot/.env` fayliga yozadi. (Qo'lda qilishni xohlasangiz:
+`cp planner_bot/.env.example planner_bot/.env` va tahrirlang.)
+
+**Faqat bitta narsa majburiy:**
 
 | O'zgaruvchi | Nima uchun |
 |---|---|
@@ -124,6 +128,9 @@ Qolganlari ixtiyoriy — har biri bitta imkoniyatni yoqadi:
    `notion.so/<workspace>/`**`a1b2c3d4e5f6...`**`?v=...` → `NOTION_DATABASE_ID`.
 4. Bazada **title** (matn) va **date** (sana) ustunlari bo'lsin. Nomlari
    boshqacha bo'lsa, `NOTION_TITLE_PROP` / `NOTION_DATE_PROP` ni moslang.
+
+> 📘 Kalitlarni qayerdan olish va botni doimiy ishlatish (Railway / VPS)
+> bo'yicha to'liq qo'llanma: **[DEPLOY.md](DEPLOY.md)**
 
 ## Ishga tushirish
 
@@ -189,6 +196,7 @@ sudo systemctl enable --now feniks-planner
 ```
 planner_bot/
 ├── bot.py           # Telegram handler'lari va ishga tushirish
+├── setup.py         # .env ni interaktiv to'ldirish
 ├── scheduler.py     # Eslatma va "bajardingizmi?" savoli sikli
 ├── db.py            # SQLite: users / tasks / task_logs
 ├── stats.py         # Statistika hisob-kitobi va matni
@@ -202,6 +210,7 @@ planner_bot/
 ├── config.py        # .env dan sozlamalar
 ├── requirements.txt
 ├── .env.example
+├── DEPLOY.md        # kalitlar va hosting qo'llanmasi
 └── planner.db       # birinchi ishga tushganda avtomatik yaraladi
 ```
 
