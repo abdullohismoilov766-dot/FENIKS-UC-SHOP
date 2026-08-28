@@ -1,3 +1,17 @@
+# FENIKS — Telegram botlar
+
+Bu repozitoriyda ikkita mustaqil bot bor:
+
+| Bot | Papka | Nima qiladi |
+|---|---|---|
+| **FENIKS UC SERVICE** | repozitoriy ildizi | PUBG Mobile uchun UC sotib olish (quyida) |
+| **FENIKS PLANNER** | [`planner_bot/`](planner_bot/README.md) | Kundalik rejalar, eslatmalar, «bajardingizmi?» savoli, statistika, Notion kalendar va bo'sh vaqt hisobi |
+
+Har birining o'z tokeni, o'z `.env` fayli va o'z bazasi bor — ikkalasini bir
+vaqtda ishlatsa bo'ladi.
+
+---
+
 # FENIKS UC SERVICE — Telegram bot
 
 PUBG Mobile uchun UC sotib olish botining boshlang'ich (MVP) versiyasi.
