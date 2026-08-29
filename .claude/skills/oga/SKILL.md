@@ -95,7 +95,7 @@ So'rov: "schet-faktura", "faktura", "didox", "EHF", "ЭСФ", "MXIK/IKPU".
 | `references/04-schet-faktura.md` | EHF/ЭСФ: rekvizitlar, 14 punktli tekshiruv, xatolarni tuzatish |
 | `references/05-soliqlar.md` | Soliq turlari, stavkalar, bazalar, muddatlar, provodkalar |
 | `references/06-1c-bazalar.md` | 1C 7.7 (eski) va 1C 8.3 (yangi) bazalar, ko'chirish, muammolar |
-| `references/07-venkon-baza.md` | Venkon (1C:Korxona 8 konfiguratsiyasi), Didox/EDO, eski↔yangi baza |
+| `references/07-venkon-baza.md` | Venkon (1C:Korxona 8 konfiguratsiyasi), clobus.uz bulutli kirish, Didox/EDO |
 | `memory/XOTIRA.md` | Korxonaning o'z doimiy ma'lumotlari (o'zgaradi) |
 | `memory/QARORLAR-JURNALI.md` | Ilgari qabul qilingan qarorlar — bir xil holat takrorlanmasin |
 

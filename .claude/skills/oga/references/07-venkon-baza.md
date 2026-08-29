@@ -18,6 +18,7 @@
 | Nima uchun | Buxgalteriya va soliq hisobini avtomatlashtirish, O'zbekiston qonunchiligiga muvofiq majburiy (reglament) hisobotlarni tayyorlash |
 | Qamrovi | Bir nechta tashkilot, turli soliq rejimlari, ombor, savdo operatsiyalari, xodimlar va ish haqi |
 | Yetkazib berish | **Bulutli** (onlayn obuna) yoki **"quti"** (lokal o'rnatiladigan) versiya |
+| **Bulutli kirish** | **clobus.uz** — VENKON GROUP ning bulutli xizmati (1С:Фреш texnologiyasi). Bazaga dastur o'rnatmasdan, brauzer orqali kiriladi |
 | Qo'llab-quvvatlash | VENKON GROUP, Toshkent — `its@venkon.uz`, tel. +998 78 140-00-77 / 148-77-00 / 140-77-00 |
 
 **Manbalar:**
@@ -29,6 +30,54 @@
 ⚠️ Mahsulot tahrirlari (redaktsiya) va imkoniyatlari yangilanib turadi. Aniq versiya va
 funksiyalarni VENKON GROUP qo'llab-quvvatlash xizmatidan yoki bazaning
 `Справка → О программе` bo'limidan tasdiqlang.
+
+---
+
+## 1a. Clobus.uz — bulutli kirish
+
+> ✅ **Tasdiqlangan (2026-08-29):** korxonada Venkon bazasiga **clobus.uz** sayti orqali
+> ham kirish mumkin.
+
+| Nima | Ma'lumot |
+|------|----------|
+| Nomi | **Clobus.uz** — VENKON GROUP ishga tushirgan bulutli xizmat (2019 yildan) |
+| Texnologiya | **1С:Фреш** ("1С:Предприятие 8 через Интернет") — bulutda ishlaydigan 1C |
+| Kirish | Brauzer orqali, dastur o'rnatmasdan. Kompyuter yoki smartfon + internet (TAS-IX ham yetarli) |
+| Muqobil manzil | `clobus.venkon.uz` |
+| Mavjud yechimlar | **1С:Бухгалтерия 3.0**, **1С:Розница 3.0**, **1С:Управление компанией 3.0** — O'zbekiston uchun |
+| To'lov | Oylik obuna |
+| Yangilanishlar | **Avtomatik** — qonunchilik o'zgarganda konfiguratsiyani qo'lda yangilash shart emas |
+| Ma'lumot xavfsizligi | Ma'lumotlar markazida (data-center) saqlanadi, uzatishda shifrlanadi |
+
+**Manbalar:** [clobus.uz](https://clobus.uz/) · [gazeta.uz — Venkon clobus.uz ni ishga tushirdi](https://www.gazeta.uz/ru/2019/07/05/clobus/) · [venkon.uz — Clobus](https://venkon.uz/ru/products/clobus) · [kun.uz](https://kun.uz/68741864)
+
+### Bulutli ish lokal versiyadan nimasi bilan farq qiladi
+
+| Mavzu | Lokal ("quti") | Bulutli (clobus.uz) |
+|-------|----------------|---------------------|
+| Kirish | Kompyuterga o'rnatilgan dastur | Brauzer, istalgan joydan |
+| Yangilanish | Qo'lda yoki mutaxassis orqali | **Avtomatik** |
+| **Arxiv** | `Выгрузить информационную базу` → `.dt` | Provayder zaxira nusxa oladi, lekin **o'zingiz ham davriy ravishda ma'lumotni yuklab oling** ⚠️ |
+| **ERI bilan imzolash** | Kalit shu kompyuterda | ⚠️ Bulutda ishlash uchun ish stantsiyasiga **qo'shimcha komponent/kengaytma** o'rnatish talab qilinadi — tartibni VENKON GROUP dan tasdiqlang |
+| Foydalanuvchilar | Lokal ro'yxat | Obuna bo'yicha, har xodimga alohida login |
+| Internet uzilsa | Ishlash davom etadi | **Ish to'xtaydi** — muddat kunlarida (15 va 20-sanalar) zaxira internet kanalini o'ylab qo'ying |
+| Litsenziya | Bir martalik sotib olinadi | Oylik obuna — **to'lanmasa bazaga kirish yopiladi** ⚠️ |
+
+### Bulutda ishlashda 6 ta amaliy qoida
+
+1. **Obuna muddatini kuzating.** To'lov kechiksa hisobot muddati arafasida bazaga kira
+   olmay qolish xavfi bor.
+2. **O'z zaxirangizni oling.** Provayder nusxasi bor, lekin muhim davr yopilgach
+   ma'lumotni o'zingizga ham yuklab qo'ying.
+3. **Har xodimga alohida login.** Umumiy parol ishlatilmasin — kim nima o'zgartirganini
+   jurnaldan (`Журнал регистрации`) topib bo'lmay qoladi.
+4. **Avtomatik yangilanishdan keyin tekshiring.** Yangilanish qonunchilik o'zgarishini
+   olib keladi; yangilanish kunidan keyin hisobot shakllari va soliq stavkalari
+   to'g'ri kelayotganini bir marta tekshiring.
+5. **ERI kaliti va komponenti ishlayotganini muddatdan oldin sinab ko'ring** — EHF ni
+   20-sana kuni birinchi marta yuborishga urinmang.
+6. **Yopilgan davrga taqiq** (`Дата запрета изменения`) bulutda ham qo'yiladi — bir necha
+   xodim kirgani uchun bu yanada muhimroq.
 
 ---
 
@@ -109,7 +158,7 @@ OGA quyidagilarni foydalanuvchidan so'raydi va javoblarni `memory/XOTIRA.md` ga 
 
 - [ ] Qaysi mahsulot ishlatiladi: `VENKON:Buxgalteriya. Xo'jalik hisobi` / `1С:Бухгалтерия 8 для Узбекистана ред. 3.0` / `1С:Розница` / bir nechtasi?
 - [ ] Tahriri (redaktsiya) va platforma versiyasi (`Справка → О программе`):
-- [ ] Bulutli (onlayn) yoki lokal ("quti") versiya:
+- [x] Bulutli (onlayn) yoki lokal ("quti") versiya: **bulutli — clobus.uz orqali kiriladi** (2026-08-29 tasdiqlandi)
 - [ ] Nechta tashkilot yuritiladi:
 - [ ] Soliq rejimi bazada qanday sozlangan (QQS to'lovchi / aylanmadan soliq):
 - [ ] EHF qayerdan yuboriladi: Venkon bazasidan / Didox saytidan / my.soliq.uz dan:

@@ -78,11 +78,13 @@
 | **Eski baza** (versiya, qachongacha ishlatilgan) | _to'ldirilmagan_ |
 | Eski bazadan o'tish sanasi | _to'ldirilmagan_ |
 | Arxiv tartibi (qachon, qayerga) | _to'ldirilmagan_ |
-| **Venkon mahsuloti** (Buxgalteriya. Xo'jalik hisobi / 1С:Бухгалтерия 8 для Узбекистана ред.3.0 / Розница) | _to'ldirilmagan_ |
+| **Venkon — 1C bilan hamkorlikda ishlaydi** | ✅ **tasdiqlangan (2026-08-29)** — Venkon alohida dastur emas, 1C:Korxona 8 platformasidagi konfiguratsiya. 1C bo'yicha barcha qoidalar Venkon ga ham tegishli |
+| **Bulutli kirish: clobus.uz** | ✅ **tasdiqlangan (2026-08-29)** — bazaga clobus.uz sayti orqali brauzerdan kirish mumkin (1С:Фреш texnologiyasi, avtomatik yangilanish, oylik obuna) |
+| Venkon mahsuloti (Buxgalteriya. Xo'jalik hisobi / 1С:Бухгалтерия 8 ред.3.0 / Розница) | _to'ldirilmagan_ |
 | Venkon tahriri va platforma versiyasi | _to'ldirilmagan_ |
-| Bulutli yoki lokal ("quti") versiya | _to'ldirilmagan_ |
 | EHF qayerdan yuboriladi (Venkon bazasidan / Didox sayti / my.soliq.uz) | _to'ldirilmagan_ |
-| EDO Java komponenti o'rnatilganmi | _to'ldirilmagan_ |
+| ERI kaliti va bulutda imzolash komponenti sozlanganmi | _to'ldirilmagan_ |
+| Clobus obunasi to'lov sanasi | _to'ldirilmagan_ |
 | Venkon qo'llab-quvvatlash (VENKON GROUP / ichki mutaxassis) | _to'ldirilmagan_ |
 | EHF operatori (Didox / Faktura.uz / boshqa) | _to'ldirilmagan_ |
 | ERI kaliti egasi va amal qilish muddati | _to'ldirilmagan_ |
@@ -111,4 +113,10 @@
 
 > OGA yangi doimiy qoidalarni shu yerga sana bilan qo'shadi.
 
-- _(hozircha bo'sh)_
+- **(2026-08-29)** Baza nomi — **Venkon** (avval "Vernon" deb yozilgan edi, xato).
+- **(2026-08-29)** Venkon 1C bilan **birgalikda/hamkorlikda** ishlaydi — u 1C:Korxona 8
+  platformasidagi konfiguratsiya. Demak Venkon bo'yicha savolda 1C mantig'i
+  (`references/06-1c-bazalar.md`) to'liq qo'llaniladi.
+- **(2026-08-29)** Bazaga **clobus.uz** sayti orqali ham kirish mumkin — bulutli
+  (1С:Фреш) versiya. Bulutda ishlashning o'ziga xosligi:
+  `references/07-venkon-baza.md → 1a-bo'lim`.
