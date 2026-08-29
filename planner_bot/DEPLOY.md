@@ -44,11 +44,11 @@ Bazada kamida ikkita ustun bo'lsin: **title** turidagi (odatda `Name`) va
 
 Bu botni qayerda ishlatishingizga bog'liq:
 
-**Bulutda (Railway / Render) — Variant A:** hech qanday fayl kerak emas.
-Kalitlarni hosting saytining **Variables** bo'limiga yozasiz, tamom.
+**Bulutda (Railway, Render, Koyeb) — Variant D/E:** hech qanday fayl kerak
+emas. Kalitlarni hosting saytining **Variables** bo'limiga yozasiz, tamom.
 Kompyuter ham, terminal ham shart emas.
 
-**Kompyuterda yoki VPS'da — Variant B/C:** shuni ishga tushiring:
+**Android, Oracle, kompyuter yoki VPS — Variant A/B/C:** shuni ishga tushiring:
 
 ```bash
 python -m planner_bot.setup
@@ -62,100 +62,99 @@ yuborsangiz — o'sha imkoniyat o'chiq qoladi, qolgani ishlayveradi.
 
 ## 2. Bot qayerda ishlaydi
 
-Bot doim ishlab turishi kerak — eslatma yuborish uchun. Telefonda Python
-ilovasi bu ish uchun yaramaydi (iOS orqa fonda ishlatmaydi). Variantlar:
+Bot doim ishlab turishi kerak — eslatma yuborish uchun. Telefondagi Python
+ilovasi bu ish uchun yaramaydi (iOS ilovani orqa fonda ishlatmaydi).
 
-### ⭐ Variant A — Railway (telefondan ham bo'ladi, doim ishlaydi)
+### Qaysi variantni tanlash
 
-Kompyuteringiz yo'q bo'lsa ham bo'ladi. iPhone'ga Python o'rnatish **kerak
-emas va foyda ham bermaydi** — iOS ilovani orqa fonda uzoq ishlatmaydi, ilova
-yopilishi bilan bot to'xtaydi. Buning o'rniga bot bulutda ishlaydi, siz esa
-uni brauzerdan boshqarasiz.
+| Variant | Narxi | Karta kerakmi | Ishonchliligi | Kimga |
+|---|---|---|---|---|
+| **A. Eski Android telefon** | butunlay tekin | ❌ yo'q | yaxshi | Uyda ishlatilmayotgan Android bo'lsa |
+| **B. Oracle Cloud Always Free** | doimiy tekin | ✅ tekshiruv uchun (pul yechilmaydi) | eng yaxshi | Kartasi bor, jiddiy yechim istaganlarga |
+| **C. O'z kompyuteringiz** | tekin | ❌ yo'q | kompyuter yoqiqligicha | Sinash va vaqtincha ishlatishga |
+| **D. Tekin "web service"** | tekin | ba'zan yo'q | ⚠️ past | Boshqa iloji bo'lmaganda |
+| **E. Railway / VPS** | oylik to'lov | ✅ ha | eng yaxshi | Sozlash bilan ovora bo'lmoqchi bo'lmaganlarga |
 
-Hammasi telefon brauzerida, ~10 daqiqa:
-
-**1-qadam. Token oling (Telegram ilovasida)**
-- [@BotFather](https://t.me/BotFather) ga kiring → `/newbot`
-- Botga nom bering (masalan: `Mening rejalarim`)
-- Username bering — `_bot` bilan tugashi shart (masalan: `abdulloh_reja_bot`)
-- BotFather tokenni beradi → uni **uzoq bosib nusxalang** va o'zingizga
-  Telegramda "Saved Messages" ga tashlab qo'ying
-
-**2-qadam. Railway'ga kiring**
-- Safari'da [railway.app](https://railway.app) → **Login** → **Login with GitHub**
-- GitHub akkauntingizga ruxsat bering
-
-**3-qadam. Loyihani ulang**
-- **New Project** → **Deploy from GitHub repo**
-- Ro'yxatdan `FENIKS-UC-SHOP` ni tanlang
-- Ochilgan servis → **Settings** → **Source** → **Branch** →
-  `claude/daily-plan-tracker-bot-069e57` ni tanlang
-
-**4-qadam. Kalitlarni kiriting**
-- **Variables** bo'limiga o'ting → **New Variable** → quyidagilarni birma-bir
-  qo'shing (`.env` faylini yuklamang, faqat shu yerga yozing):
-
-  | Nomi | Qiymati |
-  |---|---|
-  | `PLANNER_BOT_TOKEN` | BotFather bergan token |
-  | `TIMEZONE` | `Asia/Tashkent` |
-  | `DAY_START` | `09:00` |
-  | `DAY_END` | `22:00` |
-  | `PLANNER_DB_PATH` | `/data/planner.db` |
-
-  Claude, Notion va ovoz kalitlarini keyinroq ham qo'shsangiz bo'ladi —
-  ularsiz ham rejalar, eslatmalar va statistika to'liq ishlaydi.
-
-**5-qadam. Doimiy disk ulang (muhim!)**
-- **Settings** → **Volumes** → **New Volume**
-- Mount path: `/data`
-- Busiz har yangilanishda **butun statistikangiz o'chib ketadi**
-
-**6-qadam. Tekshiring**
-- **Deployments** → oxirgi deploy → **View Logs**
-- Logda `FENIKS PLANNER ishga tushdi` yozuvi chiqishi kerak
-- Telegramda botingizni oching → `/start`
-
-Shu bilan bot doim yoqiq turadi — telefoningiz o'chgan bo'lsa ham eslatmalar
-keladi.
-
-> 💡 **Narx haqida:** Railway'da boshlang'ich bepul kredit bor, u tugagach
-> oylik to'lov boshlanadi. Render.com'da ham shunga o'xshash (u yerda servis
-> turi **Background Worker** bo'lsin, "Web Service" emas). Tariflar tez-tez
-> o'zgaradi — ro'yxatdan o'tishdan oldin joriy narxni saytdan ko'ring.
-> Arzonroq variant — oddiy VPS (Variant C).
+> ⚠️ **Tekin tariflar tez-tez o'zgaradi.** Quyidagi shartlar ushbu qo'llanma
+> yozilgan paytdagi holat — ro'yxatdan o'tishdan oldin joriy shartlarni
+> xizmatning o'z saytidan tekshiring.
 
 ---
 
-### Variant B — o'z kompyuteringizda (faqat sinash uchun)
+### 🥇 Variant A — eski Android telefon (karta kerak emas)
+
+Eng oson chin tekin yo'l. Ishlatilmayotgan Android telefon **server** bo'la
+oladi: zaryadga ulab, javonga qo'yasiz — bot yillab ishlayveradi. Wi-Fi
+yetarli, ochiq IP kerak emas (bot o'zi Telegram'ga ulanadi).
+
+1. Android'ga **Termux** ni [F-Droid](https://f-droid.org/packages/com.termux/)
+   dan o'rnating (Play Market'dagi versiyasi eskirgan)
+2. Termux'da ketma-ket:
+
+```bash
+pkg update -y && pkg install -y python git
+git clone https://github.com/abdullohismoilov766-dot/FENIKS-UC-SHOP.git
+cd FENIKS-UC-SHOP
+git checkout claude/daily-plan-tracker-bot-069e57
+pip install -r planner_bot/requirements.txt
+python -m planner_bot.setup     # token va sozlamalarni kiritasiz
+```
+
+3. Telefon uxlab qolmasligi uchun:
+
+```bash
+termux-wake-lock
+```
+
+   Shuningdek Android sozlamalarida: **Battery → Termux → Unrestricted**
+   (batareya cheklovini o'chirish)
+
+4. Botni doimiy ishga tushirish:
+
+```bash
+nohup python -m planner_bot.bot > bot.log 2>&1 &
+```
+
+Termux'ni yopsangiz ham bot ishlayveradi. Loglarni ko'rish: `tail -f bot.log`.
+Telefonni qayta yoqsangiz, 3–4-qadamni takrorlaysiz.
+
+**Ustunligi:** karta kerak emas, hech kim tarifni o'zgartirmaydi, baza
+telefonning o'zida — statistika hech qachon yo'qolmaydi.
+
+---
+
+### 🥈 Variant B — Oracle Cloud Always Free (chin doimiy tekin server)
+
+Oracle "Always Free" tarifi — sinov muddati emas, **doimiy tekin** server.
+Ro'yxatdan o'tishda karta so'raydi, lekin bu faqat shaxsni tekshirish uchun;
+Always Free resurslardan pul yechilmaydi.
+
+1. [oracle.com/cloud/free](https://www.oracle.com/cloud/free/) → ro'yxatdan o'ting
+2. **Compute → Instances → Create Instance**
+3. Image: **Ubuntu**, Shape: **Always Free** belgisi turgan variantni tanlang
+4. SSH kalitini yarating va yuklab oling (telefonda **Termius** ilovasi orqali
+   ham bo'ladi — App Store'da tekin)
+5. Serverga ulanib, Variant C dagi buyruqlarni bajaring
+
+**Ustunligi:** doimiy tekin, to'liq server, hech narsa uxlamaydi, baza
+saqlanadi. **Kamchiligi:** ro'yxatdan o'tish biroz ovora, ba'zi hududlarda
+joy bo'lmasligi mumkin.
+
+---
+
+### 🥉 Variant C — o'z kompyuteringiz yoki VPS
 
 ```bash
 git clone https://github.com/abdullohismoilov766-dot/FENIKS-UC-SHOP.git
 cd FENIKS-UC-SHOP
-
-python3 -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-pip install -r planner_bot/requirements.txt
-
-python -m planner_bot.setup       # kalitlarni kiritasiz
-python -m planner_bot.bot         # bot ishga tushadi
-```
-
-Terminalni yopsangiz yoki kompyuter o'chsa — bot ham to'xtaydi. Sinash uchun
-yaxshi, kundalik ishlatish uchun emas.
-
-### Variant C — o'z serveringiz (VPS)
-
-```bash
-sudo apt update && sudo apt install -y python3-venv git
-git clone https://github.com/abdullohismoilov766-dot/FENIKS-UC-SHOP.git /opt/feniks
-cd /opt/feniks
 python3 -m venv venv
 ./venv/bin/pip install -r planner_bot/requirements.txt
 ./venv/bin/python -m planner_bot.setup
+./venv/bin/python -m planner_bot.bot
 ```
 
-Keyin systemd xizmati sifatida doimiy ishga tushiring:
+Kompyuterda — terminalni yopsangiz bot to'xtaydi, ya'ni faqat sinash uchun.
+Serverda esa systemd bilan doimiy ishga tushiring:
 
 ```ini
 # /etc/systemd/system/feniks-planner.service
@@ -177,9 +176,50 @@ WantedBy=multi-user.target
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now feniks-planner
-sudo systemctl status feniks-planner      # holatini ko'rish
 journalctl -u feniks-planner -f           # jonli loglar
 ```
+
+---
+
+### ⚠️ Variant D — tekin "web service" tariflari (Render, Koyeb)
+
+Bu tariflar odatda faqat **web service** ni tekin beradi. Bot polling bilan
+ishlagani uchun port ochmaydi — shuning uchun unga kichik health sahifasi
+qo'shilgan: hosting `PORT` o'zgaruvchisini qo'yishi bilan u avtomatik yonadi.
+
+1. Hosting'da yangi **Web Service** yarating, GitHub repozitoriyni ulang
+2. Branch: `claude/daily-plan-tracker-bot-069e57`
+3. Start command: `python -m planner_bot.bot`
+4. **Variables** ga kalitlarni yozing (`PORT` ni **qo'lda qo'ymang** —
+   hosting o'zi qo'yadi)
+5. Uxlab qolmasligi uchun [uptimerobot.com](https://uptimerobot.com) yoki
+   [cron-job.org](https://cron-job.org) da tekin hisob oching va servisingiz
+   manzilini har 5 daqiqada tekshirib turishga qo'ying
+
+> 🔴 **Jiddiy kamchilik:** tekin tariflarda disk vaqtinchalik. Servis qayta
+> ishga tushganda (bu tez-tez bo'ladi) **`planner.db` o'chib ketadi — butun
+> statistikangiz bilan birga.** Rejalaringizni qaytadan kiritishga to'g'ri
+> keladi. Shuning uchun bu variantni faqat sinash uchun tavsiya qilaman;
+> uzoq muddatga A yoki B ni tanlang.
+
+---
+
+### Variant E — Railway / pullik VPS
+
+Eng kam ovora, lekin oylik to'lovli. Railway'da: **New Project → Deploy from
+GitHub repo** → branch tanlang → **Variables** ga kalitlarni yozing →
+**Settings → Volumes** da `/data` volume qo'shing va `PLANNER_DB_PATH` ni
+`/data/planner.db` qiling.
+
+Kalitlar jadvali:
+
+| Nomi | Qiymati |
+|---|---|
+| `PLANNER_BOT_TOKEN` | BotFather bergan token |
+| `TIMEZONE` | `Asia/Tashkent` |
+| `DAY_START` | `09:00` |
+| `DAY_END` | `22:00` |
+| `PLANNER_DB_PATH` | `/data/planner.db` |
 
 ---
 
@@ -214,12 +254,14 @@ Keyin Telegramda:
 | Belgi | Sababi va yechimi |
 |---|---|
 | `PLANNER_BOT_TOKEN topilmadi` | `.env` yaratilmagan → `python -m planner_bot.setup`, bulutda esa **Variables** bo'limiga yozilmagan |
-| Telefonda Python ilovasida ishlamadi | iOS ilovani orqa fonda ishlatmaydi — bot 24/7 turolmaydi. Variant A (Railway) dan foydalaning |
+| iPhone'dagi Python ilovasida ishlamadi | iOS ilovani orqa fonda ishlatmaydi — bot 24/7 turolmaydi. Variant A–E dan birini tanlang |
+| Termux'da bot tunda to'xtab qoladi | `termux-wake-lock` bajarilmagan yoki Android batareya cheklovi yoqiq → Sozlamalar → Battery → Termux → **Unrestricted** |
+| Tekin hostingda servis uxlab qoladi | UptimeRobot / cron-job.org bilan har 5 daqiqada `/health` manzilini tekshirib turing |
 | `Unauthorized` xatosi | Token noto'g'ri yoki BotFather'da bekor qilingan → `/revoke` bilan yangisini oling |
 | Eslatmalar noto'g'ri vaqtda keladi | Vaqt mintaqasi xato → botda `/settings` → 🌍 Vaqt mintaqasi |
 | Notion: `Could not find database` | Bazani integratsiyaga ulamagansiz → baza → `•••` → **Connections** |
 | Notion: `property does not exist` | Ustun nomlari boshqacha → `NOTION_TITLE_PROP` / `NOTION_DATE_PROP` ni moslang |
-| Qayta ishga tushgach statistika yo'q | Doimiy disk (volume) ulanmagan → `PLANNER_DB_PATH` va volume'ni tekshiring |
+| Qayta ishga tushgach statistika yo'q | Disk vaqtinchalik → pullik tarifda volume ulang, tekin tarifda esa Variant A yoki B ga o'ting (u yerda baza yo'qolmaydi) |
 | Ovozli xabar ishlamayapti | `STT_API_KEY` qo'yilmagan yoki balans tugagan |
 
 **Agar token boshqa birovga ko'rinib qolsa:** darhol @BotFather → `/revoke` →

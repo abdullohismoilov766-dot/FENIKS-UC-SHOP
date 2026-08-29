@@ -32,6 +32,13 @@ AUTO_MISS_HOURS = int(os.getenv("AUTO_MISS_HOURS", "6"))
 # Scheduler necha soniyada bir marta tekshirsin.
 TICK_SECONDS = int(os.getenv("TICK_SECONDS", "60"))
 
+# Tekin hosting tariflari (Render, Koyeb) dasturdan port ochishni talab qiladi.
+# Ular PORT o'zgaruvchisini o'zi qo'yadi; qo'yilmagan bo'lsa sahifa ochilmaydi.
+try:
+    PORT = int(os.getenv("PORT", "") or 0)
+except ValueError:
+    PORT = 0
+
 DB_PATH = os.getenv(
     "PLANNER_DB_PATH",
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "planner.db"),

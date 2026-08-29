@@ -31,6 +31,7 @@ from planner_bot import db, notion, stats
 from planner_bot.config import (
     BOT_TOKEN,
     DEFAULT_TZ,
+    PORT,
     claude_enabled,
     notion_enabled,
     stt_enabled,
@@ -738,11 +739,20 @@ async def main() -> None:
 
     from planner_bot.scheduler import run_forever
 
+    # Tekin hosting tariflari port ochishni talab qiladi (pastdagi izohga qarang).
+    health_runner = None
+    if PORT:
+        from planner_bot.health import start_health_server
+
+        health_runner = await start_health_server(PORT)
+
     reminder_task = asyncio.create_task(run_forever(bot))
     try:
         await dp.start_polling(bot)
     finally:
         reminder_task.cancel()
+        if health_runner is not None:
+            await health_runner.cleanup()
         await bot.session.close()
 
 
