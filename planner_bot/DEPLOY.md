@@ -84,42 +84,52 @@ ilovasi bu ish uchun yaramaydi (iOS ilovani orqa fonda ishlatmaydi).
 ### 🥇 Variant A — eski Android telefon (karta kerak emas)
 
 Eng oson chin tekin yo'l. Ishlatilmayotgan Android telefon **server** bo'la
-oladi: zaryadga ulab, javonga qo'yasiz — bot yillab ishlayveradi. Wi-Fi
+oladi: zaryadga ulab javonga qo'yasiz — bot yillab ishlayveradi. Wi-Fi
 yetarli, ochiq IP kerak emas (bot o'zi Telegram'ga ulanadi).
 
-1. Android'ga **Termux** ni [F-Droid](https://f-droid.org/packages/com.termux/)
-   dan o'rnating (Play Market'dagi versiyasi eskirgan)
-2. Termux'da ketma-ket:
+**1. Ikkita ilova o'rnating** — ikkalasi ham [F-Droid](https://f-droid.org)
+dan (Play Market'dagi versiyalari eskirgan va ishlamaydi):
+
+- **Termux** — Android ichidagi Linux
+- **Termux:Boot** — telefon qayta yonganda botni o'zi ishga tushiradi.
+  O'rnatgach uni **bir marta ochib qo'ying**, aks holda ishlamaydi.
+
+**2. Termux'ni oching va shu uchta qatorni qo'ying** (nusxalab, uzoq bosib
+qo'yasiz):
 
 ```bash
-pkg update -y && pkg install -y python git
+pkg install -y git
 git clone https://github.com/abdullohismoilov766-dot/FENIKS-UC-SHOP.git
-cd FENIKS-UC-SHOP
-git checkout claude/daily-plan-tracker-bot-069e57
-pip install -r planner_bot/requirements.txt
-python -m planner_bot.setup     # token va sozlamalarni kiritasiz
+bash FENIKS-UC-SHOP/scripts/termux-install.sh
 ```
 
-3. Telefon uxlab qolmasligi uchun:
+Skript hamma narsani o'zi qiladi: Python o'rnatadi, kutubxonalarni yuklaydi,
+avtomatik ishga tushishni sozlaydi va oxirida token so'raydi.
+
+**3. Botni ishga tushiring:**
 
 ```bash
-termux-wake-lock
+cd ~/FENIKS-UC-SHOP
+bash scripts/termux-start.sh
 ```
 
-   Shuningdek Android sozlamalarida: **Battery → Termux → Unrestricted**
-   (batareya cheklovini o'chirish)
+Termux'ni yopsangiz ham bot ishlayveradi.
 
-4. Botni doimiy ishga tushirish:
+**4. Android sozlamalarida batareya cheklovini o'chiring:**
+**Settings → Apps → Termux → Battery → Unrestricted**. Busiz tizim botni
+tunda uxlatib qo'yishi mumkin.
+
+**Boshqarish buyruqlari:**
 
 ```bash
-nohup python -m planner_bot.bot > bot.log 2>&1 &
+bash scripts/termux-start.sh    # ishga tushirish
+bash scripts/termux-stop.sh     # to'xtatish
+tail -f ~/feniks-planner.log    # loglarni ko'rish
 ```
-
-Termux'ni yopsangiz ham bot ishlayveradi. Loglarni ko'rish: `tail -f bot.log`.
-Telefonni qayta yoqsangiz, 3–4-qadamni takrorlaysiz.
 
 **Ustunligi:** karta kerak emas, hech kim tarifni o'zgartirmaydi, baza
 telefonning o'zida — statistika hech qachon yo'qolmaydi.
+**Kamchiligi:** telefon uyda, zaryadda va Wi-Fi'da turishi kerak.
 
 ---
 
@@ -129,20 +139,41 @@ Oracle "Always Free" tarifi — sinov muddati emas, **doimiy tekin** server.
 Ro'yxatdan o'tishda karta so'raydi, lekin bu faqat shaxsni tekshirish uchun;
 Always Free resurslardan pul yechilmaydi.
 
-1. [oracle.com/cloud/free](https://www.oracle.com/cloud/free/) → ro'yxatdan o'ting
-2. **Compute → Instances → Create Instance**
-3. Image: **Ubuntu**, Shape: **Always Free** belgisi turgan variantni tanlang
-4. SSH kalitini yarating va yuklab oling (telefonda **Termius** ilovasi orqali
-   ham bo'ladi — App Store'da tekin)
-5. Serverga ulanib, Variant C dagi buyruqlarni bajaring
+**1. Server yarating:**
+- [oracle.com/cloud/free](https://www.oracle.com/cloud/free/) → ro'yxatdan o'ting
+- **Compute → Instances → Create Instance**
+- Image: **Ubuntu**, Shape: **Always Free** belgisi turgan variantni tanlang
+- SSH kalitini yarating va yuklab oling
 
-**Ustunligi:** doimiy tekin, to'liq server, hech narsa uxlamaydi, baza
-saqlanadi. **Kamchiligi:** ro'yxatdan o'tish biroz ovora, ba'zi hududlarda
+**2. Serverga ulaning.** Telefondan qilsangiz — App Store'dan **Termius**
+(tekin) ilovasini o'rnating, SSH kalitini unga qo'shing va serverga ulaning.
+
+**3. Bitta buyruq bilan o'rnating:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/abdullohismoilov766-dot/FENIKS-UC-SHOP/claude/daily-plan-tracker-bot-069e57/scripts/server-install.sh -o install.sh
+sudo bash install.sh
+```
+
+Skript Python'ni o'rnatadi, kodni yuklaydi, token so'raydi va botni **systemd
+xizmati** sifatida doimiy ishga tushiradi — server qayta yonsa ham o'zi
+tiklanadi.
+
+**Boshqarish buyruqlari:**
+
+```bash
+sudo systemctl status feniks-planner      # holati
+sudo journalctl -u feniks-planner -f      # jonli loglar
+sudo systemctl restart feniks-planner     # qayta ishga tushirish
+```
+
+**Ustunligi:** doimiy tekin, hech narsa uxlamaydi, baza saqlanadi, o'zi
+tiklanadi. **Kamchiligi:** ro'yxatdan o'tish biroz ovora, ba'zi hududlarda
 joy bo'lmasligi mumkin.
 
 ---
 
-### 🥉 Variant C — o'z kompyuteringiz yoki VPS
+### 🥉 Variant C — o'z kompyuteringiz (sinash uchun) yoki qo'lda o'rnatish
 
 ```bash
 git clone https://github.com/abdullohismoilov766-dot/FENIKS-UC-SHOP.git
@@ -255,7 +286,8 @@ Keyin Telegramda:
 |---|---|
 | `PLANNER_BOT_TOKEN topilmadi` | `.env` yaratilmagan → `python -m planner_bot.setup`, bulutda esa **Variables** bo'limiga yozilmagan |
 | iPhone'dagi Python ilovasida ishlamadi | iOS ilovani orqa fonda ishlatmaydi — bot 24/7 turolmaydi. Variant A–E dan birini tanlang |
-| Termux'da bot tunda to'xtab qoladi | `termux-wake-lock` bajarilmagan yoki Android batareya cheklovi yoqiq → Sozlamalar → Battery → Termux → **Unrestricted** |
+| Termux'da bot tunda to'xtab qoladi | Android batareya cheklovi yoqiq → **Settings → Apps → Termux → Battery → Unrestricted** |
+| Telefon qayta yongach bot ishlamadi | **Termux:Boot** ilovasi o'rnatilmagan yoki bir marta ham ochilmagan → F-Droid'dan o'rnating va ochib qo'ying |
 | Tekin hostingda servis uxlab qoladi | UptimeRobot / cron-job.org bilan har 5 daqiqada `/health` manzilini tekshirib turing |
 | `Unauthorized` xatosi | Token noto'g'ri yoki BotFather'da bekor qilingan → `/revoke` bilan yangisini oling |
 | Eslatmalar noto'g'ri vaqtda keladi | Vaqt mintaqasi xato → botda `/settings` → 🌍 Vaqt mintaqasi |

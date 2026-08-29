@@ -210,8 +210,16 @@ planner_bot/
 ├── config.py        # .env dan sozlamalar
 ├── requirements.txt
 ├── .env.example
+├── health.py        # tekin hosting tariflari uchun HTTP sahifa
 ├── DEPLOY.md        # kalitlar va hosting qo'llanmasi
 └── planner.db       # birinchi ishga tushganda avtomatik yaraladi
+
+scripts/
+├── termux-install.sh   # Android'ga o'rnatish
+├── termux-start.sh     # Android'da ishga tushirish
+├── termux-stop.sh      # Android'da to'xtatish
+├── termux-boot.sh      # telefon yonganda avtomatik ishga tushirish
+└── server-install.sh   # Linux serverga (Oracle/VPS) o'rnatish
 ```
 
 ### Ma'lumotlar bazasi
