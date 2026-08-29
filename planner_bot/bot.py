@@ -22,7 +22,11 @@ from zoneinfo import ZoneInfo
 from aiogram import Bot, Dispatcher, F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.exceptions import TelegramBadRequest
+from aiogram.exceptions import (
+    TelegramBadRequest,
+    TelegramNetworkError,
+    TelegramUnauthorizedError,
+)
 from aiogram.filters import Command, CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.types import BotCommand, CallbackQuery, Message
@@ -735,6 +739,31 @@ async def main() -> None:
     logger.info(_startup_report())
 
     bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+
+    # Tokenni darhol tekshiramiz — xato bo'lsa uzun traceback o'rniga
+    # tushunarli xabar chiqsin.
+    try:
+        me = await bot.get_me()
+    except TelegramUnauthorizedError:
+        logger.error(
+            "Telegram tokenni qabul qilmadi (401 Unauthorized).\n"
+            "  Tekshiring:\n"
+            "   1. Token to'liq nusxalanganmi (bo'sh joy yoki yetishmayotgan belgisiz)\n"
+            "   2. @BotFather -> /mybots -> botingiz -> API Token orqali qayta oling\n"
+            "   3. Sozlashni qayta bajaring:  python -m planner_bot.setup"
+        )
+        await bot.session.close()
+        return
+    except TelegramNetworkError as exc:
+        logger.error(
+            "Telegram serveriga ulanib bo'lmadi: %s\n"
+            "  Internet aloqasini tekshiring va qaytadan urinib ko'ring.",
+            exc,
+        )
+        await bot.session.close()
+        return
+
+    logger.info("Ulandi: @%s", me.username)
     await _set_commands(bot)
 
     from planner_bot.scheduler import run_forever

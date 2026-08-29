@@ -277,7 +277,9 @@ def main() -> int:
             mark = "✅" if values.get(field.key) else "⬜"
             print(f"  {mark} {field.enables.capitalize()}")
 
-    print("\nEndi botni ishga tushiring:\n\n    python -m planner_bot.bot\n")
+    # O'rnatish skripti chaqirganda botni u o'zi ishga tushiradi.
+    if not os.getenv("PLANNER_SETUP_EMBEDDED"):
+        print("\nEndi botni ishga tushiring:\n\n    python -m planner_bot.bot\n")
     return 0
 
 

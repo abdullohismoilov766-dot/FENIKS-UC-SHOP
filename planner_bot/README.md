@@ -219,7 +219,8 @@ scripts/
 ├── termux-start.sh     # Android'da ishga tushirish
 ├── termux-stop.sh      # Android'da to'xtatish
 ├── termux-boot.sh      # telefon yonganda avtomatik ishga tushirish
-└── server-install.sh   # Linux serverga (Oracle/VPS) o'rnatish
+├── server-install.sh   # Linux serverga (Oracle/VPS) o'rnatish
+└── server-update.sh    # serverdagi botni yangilash
 ```
 
 ### Ma'lumotlar bazasi

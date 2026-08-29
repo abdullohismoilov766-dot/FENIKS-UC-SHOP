@@ -19,13 +19,28 @@ SERVICE="feniks-planner"
 say() { printf '\n\033[1m%s\033[0m\n' "$*"; }
 die() { printf '\n\033[31m✖ %s\033[0m\n' "$*" >&2; exit 1; }
 
+# Yangi serverda birinchi daqiqalarda avtomatik yangilanish ishlab turadi va
+# apt'ni band qiladi. Shuning uchun qayta urinib ko'ramiz.
+apt_retry() {
+    local n=0
+    until DEBIAN_FRONTEND=noninteractive apt-get "$@"; do
+        n=$((n + 1))
+        if [ "$n" -ge 20 ]; then
+            die "apt 5 daqiqa davomida band bo'ldi. Bir necha daqiqadan keyin qayta urinib ko'ring."
+        fi
+        echo "  apt band (tizim yangilanmoqda) — 15 soniyadan keyin qayta urinamiz ($n/20)…"
+        sleep 15
+    done
+}
+
 [ "$(id -u)" -eq 0 ] || die "Bu skript root huquqi bilan ishlashi kerak: sudo bash $0"
 command -v apt-get >/dev/null || die "Bu skript Ubuntu/Debian uchun. Boshqa tizimda qadamlarni DEPLOY.md dan qo'lda bajaring."
 
 say "1/6  Kerakli dasturlar o'rnatilmoqda…"
+echo "  Tizim: $(. /etc/os-release && echo "$PRETTY_NAME")  ($(uname -m))"
 export DEBIAN_FRONTEND=noninteractive
-apt-get update -qq
-apt-get install -y -qq python3 python3-venv python3-pip git tzdata >/dev/null
+apt_retry update -qq
+apt_retry install -y -qq python3 python3-venv python3-pip git tzdata
 
 say "2/6  Xizmat foydalanuvchisi tayyorlanmoqda…"
 if ! id -u "$APP_USER" >/dev/null 2>&1; then
@@ -49,7 +64,13 @@ chown -R "$APP_USER:$APP_USER" "$APP_DIR"
 say "4/6  Kutubxonalar o'rnatilmoqda…"
 [ -d "$APP_DIR/venv" ] || python3 -m venv "$APP_DIR/venv"
 "$APP_DIR/venv/bin/pip" install --quiet --upgrade pip
-"$APP_DIR/venv/bin/pip" install --quiet -r "$APP_DIR/planner_bot/requirements.txt"
+
+if ! "$APP_DIR/venv/bin/pip" install --quiet -r "$APP_DIR/planner_bot/requirements.txt"; then
+    echo "  Tayyor paket topilmadi — kompilyatsiya vositalari o'rnatilmoqda…"
+    apt_retry install -y -qq build-essential python3-dev
+    "$APP_DIR/venv/bin/pip" install -r "$APP_DIR/planner_bot/requirements.txt" \
+        || die "Kutubxonalarni o'rnatib bo'lmadi. Yuqoridagi xato matnini yuboring."
+fi
 chown -R "$APP_USER:$APP_USER" "$APP_DIR"
 
 say "5/6  Endi kalitlarni kiritamiz."
@@ -61,9 +82,9 @@ echo
 cd "$APP_DIR"
 # runuser util-linux tarkibida — sudo o'rnatilmagan tizimlarda ham ishlaydi
 if command -v runuser >/dev/null; then
-    runuser -u "$APP_USER" -- "$APP_DIR/venv/bin/python" -m planner_bot.setup
+    PLANNER_SETUP_EMBEDDED=1 runuser -u "$APP_USER" -- "$APP_DIR/venv/bin/python" -m planner_bot.setup
 else
-    sudo -u "$APP_USER" "$APP_DIR/venv/bin/python" -m planner_bot.setup
+    PLANNER_SETUP_EMBEDDED=1 sudo -u "$APP_USER" "$APP_DIR/venv/bin/python" -m planner_bot.setup
 fi
 chmod 600 "$APP_DIR/planner_bot/.env"
 chown "$APP_USER:$APP_USER" "$APP_DIR/planner_bot/.env"

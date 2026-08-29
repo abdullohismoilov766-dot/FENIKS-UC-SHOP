@@ -46,7 +46,7 @@ echo "  va uni bir marta ochib qo'ying."
 say "5/5  Endi kalitlarni kiritamiz."
 echo "BotFather bergan tokenni tayyorlab qo'ying."
 echo
-python -m planner_bot.setup
+PLANNER_SETUP_EMBEDDED=1 python -m planner_bot.setup
 
 say "✅ Tayyor!"
 cat <<'MSG'

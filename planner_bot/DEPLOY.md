@@ -162,9 +162,10 @@ tiklanadi.
 **Boshqarish buyruqlari:**
 
 ```bash
-sudo systemctl status feniks-planner      # holati
-sudo journalctl -u feniks-planner -f      # jonli loglar
-sudo systemctl restart feniks-planner     # qayta ishga tushirish
+sudo systemctl status feniks-planner        # holati
+sudo journalctl -u feniks-planner -f        # jonli loglar
+sudo systemctl restart feniks-planner       # qayta ishga tushirish
+sudo bash /opt/feniks/scripts/server-update.sh   # botni yangilash
 ```
 
 **Ustunligi:** doimiy tekin, hech narsa uxlamaydi, baza saqlanadi, o'zi
