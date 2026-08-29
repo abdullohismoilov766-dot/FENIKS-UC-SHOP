@@ -94,5 +94,5 @@ nohup python3 bot.py > bot.log 2>&1 &
 
 Shu repoda buxgalteriya ishlari bo'yicha yordamchi (OGA) ham sozlangan: bank
 vipiskalarini schyotlarga taqsimlash, schet-faktura (EHF) ni xatosiz yuborish,
-soliq stavkalari va muddatlari, 1C hamda Vernon bazalari bo'yicha savollar.
+soliq stavkalari va muddatlari, 1C hamda Venkon bazalari bo'yicha savollar.
 Batafsil: [OGA.md](OGA.md)

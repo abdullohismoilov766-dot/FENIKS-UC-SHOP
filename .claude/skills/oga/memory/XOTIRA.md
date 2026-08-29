@@ -78,8 +78,12 @@
 | **Eski baza** (versiya, qachongacha ishlatilgan) | _to'ldirilmagan_ |
 | Eski bazadan o'tish sanasi | _to'ldirilmagan_ |
 | Arxiv tartibi (qachon, qayerga) | _to'ldirilmagan_ |
-| **Vernon bazasi** | `references/07-vernon-baza.md` anketasiga qarang — _to'ldirilmagan_ |
-| Vernon ↔ 1C almashinuvi | _to'ldirilmagan_ |
+| **Venkon mahsuloti** (Buxgalteriya. Xo'jalik hisobi / 1С:Бухгалтерия 8 для Узбекистана ред.3.0 / Розница) | _to'ldirilmagan_ |
+| Venkon tahriri va platforma versiyasi | _to'ldirilmagan_ |
+| Bulutli yoki lokal ("quti") versiya | _to'ldirilmagan_ |
+| EHF qayerdan yuboriladi (Venkon bazasidan / Didox sayti / my.soliq.uz) | _to'ldirilmagan_ |
+| EDO Java komponenti o'rnatilganmi | _to'ldirilmagan_ |
+| Venkon qo'llab-quvvatlash (VENKON GROUP / ichki mutaxassis) | _to'ldirilmagan_ |
 | EHF operatori (Didox / Faktura.uz / boshqa) | _to'ldirilmagan_ |
 | ERI kaliti egasi va amal qilish muddati | _to'ldirilmagan_ |
 

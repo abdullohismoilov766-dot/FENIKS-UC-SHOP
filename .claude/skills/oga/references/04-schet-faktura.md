@@ -149,5 +149,5 @@ Qaytarish / kamaytirish:
 | Bekor qilingan EHF | Deklaratsiyadan chiqarilishi kerak |
 
 **Oylik nazorat:** my.soliq.uz dagi "Reestr" bo'limidan chiqarilgan va kirilgan EHF
-ro'yxatini yuklab oling va 1C/Vernon bazasidagi hujjatlar bilan solishtiring.
+ro'yxatini yuklab oling va 1C/Venkon bazasidagi hujjatlar bilan solishtiring.
 Bazada bor, reestrda yo'q — hujjat yuborilmagan. Reestrda bor, bazada yo'q — kiritilmagan.

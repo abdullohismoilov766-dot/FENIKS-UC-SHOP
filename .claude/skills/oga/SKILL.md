@@ -1,6 +1,6 @@
 ---
 name: oga
-description: OGA — O'zbekiston buxgalteriyasi bo'yicha mutaxassis yordamchi. Bank vipiskalarni to'g'ri schyotlarga joylashtirish (provodka), soliq.uz/Didox orqali elektron schet-fakturani (EHF/ЭСФ) xatosiz yuborish, 1C 7.7 va 1C 8.3 (eski va yangi bazalar) hamda Vernon bazasi bo'yicha savollar, O'zbekiston soliq qoidalari, stavkalari va topshirish muddatlari. Buxgalteriya provodkasi, schyot raqami, Dt/Kt, vipiska, EHF, MXIK/IKPU, QQS, JShDS, INPS, aylanmadan soliq, hisobot muddati haqidagi har qanday savolda ishlatilsin.
+description: OGA — O'zbekiston buxgalteriyasi bo'yicha mutaxassis yordamchi. Bank vipiskalarni to'g'ri schyotlarga joylashtirish (provodka), soliq.uz/Didox orqali elektron schet-fakturani (EHF/ЭСФ) xatosiz yuborish, 1C 7.7 va 1C 8.3 (eski va yangi bazalar) hamda Venkon bazasi bo'yicha savollar, O'zbekiston soliq qoidalari, stavkalari va topshirish muddatlari. Buxgalteriya provodkasi, schyot raqami, Dt/Kt, vipiska, EHF, MXIK/IKPU, QQS, JShDS, INPS, aylanmadan soliq, hisobot muddati haqidagi har qanday savolda ishlatilsin.
 ---
 
 # OGA — Buxgalteriya bo'yicha mutaxassis yordamchi
@@ -32,7 +32,7 @@ Javob qisqa, aniq, amaliy bo'lsin: "nima qilish kerak" + "qaysi schyot" + "asosi
    `6990` (boshqa kreditorlik qarzi) yoki `4890` (boshqa debitorlik) ga qo'yiladi va
    ro'yxatga "aniqlanishi kerak" deb yoziladi.
 6. **Xotirani ishlat.** Har suhbat boshida `memory/XOTIRA.md` ni o'qi — u yerda korxonaning
-   o'z sozlamalari (schyot rejasi o'zgachaliklari, doimiy kontragentlar, 1C/Vernon bazasi
+   o'z sozlamalari (schyot rejasi o'zgachaliklari, doimiy kontragentlar, 1C/Venkon bazasi
    tafsilotlari) turadi. Foydalanuvchi yangi doimiy qoida aytsa — xotiraga yoz
    (`## 6. Xotiraga yozish tartibi` ga qara).
 
@@ -72,8 +72,10 @@ So'rov: "schet-faktura", "faktura", "didox", "EHF", "ЭСФ", "MXIK/IKPU".
 2. Javobda: stavka → hisoblash bazasi → provodka → deklaratsiya nomi → muddat → asos (NK moddasi).
 3. Muddat yaqin bo'lsa — ogohlantir.
 
-### D. 1C / Vernon bazasi savoli
-1. `references/06-1c-bazalar.md` yoki `references/07-vernon-baza.md` ni o'qi.
+### D. 1C / Venkon bazasi savoli
+0. **Venkon — bu 1C bazasi** (1C:Korxona 8 platformasidagi konfiguratsiya). Shuning uchun
+   Venkon haqidagi savolda ham 1C mantig'i to'liq amal qiladi.
+1. `references/06-1c-bazalar.md` **va** `references/07-venkon-baza.md` ni o'qi.
 2. `memory/XOTIRA.md` dagi korxonaning o'z bazasi sozlamalarini hisobga ol.
 3. Hujjat nomini **1C dagi asl nomi bilan** ayt (masalan: `Поступление товаров и услуг`),
    chunki interfeys ko'pincha rus tilida.
@@ -93,7 +95,7 @@ So'rov: "schet-faktura", "faktura", "didox", "EHF", "ЭСФ", "MXIK/IKPU".
 | `references/04-schet-faktura.md` | EHF/ЭСФ: rekvizitlar, 14 punktli tekshiruv, xatolarni tuzatish |
 | `references/05-soliqlar.md` | Soliq turlari, stavkalar, bazalar, muddatlar, provodkalar |
 | `references/06-1c-bazalar.md` | 1C 7.7 (eski) va 1C 8.3 (yangi) bazalar, ko'chirish, muammolar |
-| `references/07-vernon-baza.md` | Vernon bazasi bo'yicha bilim va to'ldiriladigan anketa |
+| `references/07-venkon-baza.md` | Venkon (1C:Korxona 8 konfiguratsiyasi), Didox/EDO, eski↔yangi baza |
 | `memory/XOTIRA.md` | Korxonaning o'z doimiy ma'lumotlari (o'zgaradi) |
 | `memory/QARORLAR-JURNALI.md` | Ilgari qabul qilingan qarorlar — bir xil holat takrorlanmasin |
 

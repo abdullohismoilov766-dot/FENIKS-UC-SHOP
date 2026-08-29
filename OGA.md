@@ -8,7 +8,8 @@ yordamchi. U quyidagilarda yordam beradi:
   14 punktli tekshiruv, MXIK (IKPU) kodlari, xatoni tuzatish tartibi
 - **Soliqlar** — stavkalar, hisoblash bazasi, provodkalar, deklaratsiya muddatlari
 - **1C bazalari** — eski (7.7) va yangi (8.x), qoldiqlarni ko'chirish, oy yopilishi
-- **Vernon bazasi** — anketa to'ldirilgach, 1C bilan almashinuv qoidalari
+- **Venkon bazasi** — Venkon 1C:Korxona 8 platformasidagi konfiguratsiya; EHF ni
+  bazadan Didox orqali yuborish, EDO nosozliklari, eski↔yangi baza
 
 ## Qanday ishlatiladi
 
@@ -41,7 +42,7 @@ Alohida agent sifatida ham chaqirish mumkin: `oga` (`.claude/agents/oga.md`).
 │   ├── 04-schet-faktura.md                — EHF: rekvizitlar, tekshiruv, tuzatish
 │   ├── 05-soliqlar.md                     — soliqlar, stavkalar, muddatlar
 │   ├── 06-1c-bazalar.md                   — 1C 7.7 va 8.x, ko'chirish, muammolar
-│   └── 07-vernon-baza.md                  — Vernon bazasi (anketa)
+│   └── 07-venkon-baza.md                  — Venkon (1C konfiguratsiyasi), EDO/Didox
 └── memory/
     ├── XOTIRA.md                          — korxonaning doimiy ma'lumotlari
     └── QARORLAR-JURNALI.md                — qabul qilingan qarorlar tarixi
@@ -56,9 +57,9 @@ OGA to'liq kuchga kirishi uchun **ikkita fayl to'ldirilishi kerak**:
    komissiyasi schyoti), doimiy kontragentlar, 1C versiyasi.
    Buni qo'lda to'ldirsangiz ham bo'ladi, OGA ga aytib bersangiz ham — u o'zi yozadi.
 
-2. **`.claude/skills/oga/references/07-vernon-baza.md`** — Vernon bazasi anketasi.
-   OGA bu baza haqida tasdiqlangan ma'lumotga ega emas va **taxmin qilmaydi**.
-   Anketaga javob bersangiz, u bilimni yozib oladi va keyin aniq javob beradi.
+2. **`.claude/skills/oga/references/07-venkon-baza.md`** — Venkon bo'limining oxiridagi
+   ro'yxat: qaysi mahsulot va tahrir, bulutli yoki lokal, EHF qayerdan yuboriladi,
+   eski baza qaysi edi. Javob bersangiz OGA aniq javob beradi.
 
 ## Muhim ogohlantirish
 

@@ -1,6 +1,6 @@
 ---
 name: oga
-description: OGA — O'zbekiston buxgalteriyasi bo'yicha mutaxassis yordamchi. Bank vipiskasini schyotlarga taqsimlash, EHF (schet-faktura) ni soliq.uz/Didox orqali xatosiz yuborish, 1C (eski va yangi baza) hamda Vernon bazasi savollari, soliq stavkalari, provodkalar va hisobot muddatlari. Buxgalteriya provodkasi, Dt/Kt, vipiska, QQS, JShDS, INPS, MXIK/IKPU, deklaratsiya muddati haqidagi savollarda ishlatilsin.
+description: OGA — O'zbekiston buxgalteriyasi bo'yicha mutaxassis yordamchi. Bank vipiskasini schyotlarga taqsimlash, EHF (schet-faktura) ni soliq.uz/Didox orqali xatosiz yuborish, 1C (eski va yangi baza) hamda Venkon bazasi savollari, soliq stavkalari, provodkalar va hisobot muddatlari. Buxgalteriya provodkasi, Dt/Kt, vipiska, QQS, JShDS, INPS, MXIK/IKPU, deklaratsiya muddati haqidagi savollarda ishlatilsin.
 tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
@@ -25,7 +25,7 @@ So'ngra savol turiga qarab tegishli ma'lumot faylini o'qi:
 | Schet-faktura, EHF, Didox, MXIK | `references/04-schet-faktura.md` |
 | Soliq, stavka, deklaratsiya, muddat | `references/05-soliqlar.md` |
 | 1C, eski/yangi baza, ko'chirish | `references/06-1c-bazalar.md` |
-| Vernon bazasi | `references/07-vernon-baza.md` |
+| Venkon bazasi (1C konfiguratsiyasi), Didox/EDO | `references/07-venkon-baza.md` + `06-1c-bazalar.md` |
 
 ## Asosiy tamoyillar
 
