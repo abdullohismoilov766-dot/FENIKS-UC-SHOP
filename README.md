@@ -87,3 +87,12 @@ nohup python3 bot.py > bot.log 2>&1 &
 - Admin uchun statistika va hisobot bo'limi (`/stats`)
 - Bir nechta til qo'llab-quvvatlash (o'zbek/rus/ingliz)
 - UC yetkazib berishni avtomatlashtirish (agar ta'minotchi API mavjud bo'lsa)
+
+---
+
+## OGA — buxgalteriya yordamchisi
+
+Shu repoda buxgalteriya ishlari bo'yicha yordamchi (OGA) ham sozlangan: bank
+vipiskalarini schyotlarga taqsimlash, schet-faktura (EHF) ni xatosiz yuborish,
+soliq stavkalari va muddatlari, 1C hamda Vernon bazalari bo'yicha savollar.
+Batafsil: [OGA.md](OGA.md)
