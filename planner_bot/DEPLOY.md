@@ -42,7 +42,13 @@ Bazada kamida ikkita ustun bo'lsin: **title** turidagi (odatda `Name`) va
 
 ### Kalitlarni joylash
 
-Hech qanday faylni qo'lda tahrirlash shart emas — shuni ishga tushiring:
+Bu botni qayerda ishlatishingizga bog'liq:
+
+**Bulutda (Railway / Render) — Variant A:** hech qanday fayl kerak emas.
+Kalitlarni hosting saytining **Variables** bo'limiga yozasiz, tamom.
+Kompyuter ham, terminal ham shart emas.
+
+**Kompyuterda yoki VPS'da — Variant B/C:** shuni ishga tushiring:
 
 ```bash
 python -m planner_bot.setup
@@ -56,9 +62,72 @@ yuborsangiz — o'sha imkoniyat o'chiq qoladi, qolgani ishlayveradi.
 
 ## 2. Bot qayerda ishlaydi
 
-Bot doim ishlab turishi kerak — eslatma yuborish uchun. Uch variant:
+Bot doim ishlab turishi kerak — eslatma yuborish uchun. Telefonda Python
+ilovasi bu ish uchun yaramaydi (iOS orqa fonda ishlatmaydi). Variantlar:
 
-### Variant A — o'z kompyuteringizda (sinash uchun)
+### ⭐ Variant A — Railway (telefondan ham bo'ladi, doim ishlaydi)
+
+Kompyuteringiz yo'q bo'lsa ham bo'ladi. iPhone'ga Python o'rnatish **kerak
+emas va foyda ham bermaydi** — iOS ilovani orqa fonda uzoq ishlatmaydi, ilova
+yopilishi bilan bot to'xtaydi. Buning o'rniga bot bulutda ishlaydi, siz esa
+uni brauzerdan boshqarasiz.
+
+Hammasi telefon brauzerida, ~10 daqiqa:
+
+**1-qadam. Token oling (Telegram ilovasida)**
+- [@BotFather](https://t.me/BotFather) ga kiring → `/newbot`
+- Botga nom bering (masalan: `Mening rejalarim`)
+- Username bering — `_bot` bilan tugashi shart (masalan: `abdulloh_reja_bot`)
+- BotFather tokenni beradi → uni **uzoq bosib nusxalang** va o'zingizga
+  Telegramda "Saved Messages" ga tashlab qo'ying
+
+**2-qadam. Railway'ga kiring**
+- Safari'da [railway.app](https://railway.app) → **Login** → **Login with GitHub**
+- GitHub akkauntingizga ruxsat bering
+
+**3-qadam. Loyihani ulang**
+- **New Project** → **Deploy from GitHub repo**
+- Ro'yxatdan `FENIKS-UC-SHOP` ni tanlang
+- Ochilgan servis → **Settings** → **Source** → **Branch** →
+  `claude/daily-plan-tracker-bot-069e57` ni tanlang
+
+**4-qadam. Kalitlarni kiriting**
+- **Variables** bo'limiga o'ting → **New Variable** → quyidagilarni birma-bir
+  qo'shing (`.env` faylini yuklamang, faqat shu yerga yozing):
+
+  | Nomi | Qiymati |
+  |---|---|
+  | `PLANNER_BOT_TOKEN` | BotFather bergan token |
+  | `TIMEZONE` | `Asia/Tashkent` |
+  | `DAY_START` | `09:00` |
+  | `DAY_END` | `22:00` |
+  | `PLANNER_DB_PATH` | `/data/planner.db` |
+
+  Claude, Notion va ovoz kalitlarini keyinroq ham qo'shsangiz bo'ladi —
+  ularsiz ham rejalar, eslatmalar va statistika to'liq ishlaydi.
+
+**5-qadam. Doimiy disk ulang (muhim!)**
+- **Settings** → **Volumes** → **New Volume**
+- Mount path: `/data`
+- Busiz har yangilanishda **butun statistikangiz o'chib ketadi**
+
+**6-qadam. Tekshiring**
+- **Deployments** → oxirgi deploy → **View Logs**
+- Logda `FENIKS PLANNER ishga tushdi` yozuvi chiqishi kerak
+- Telegramda botingizni oching → `/start`
+
+Shu bilan bot doim yoqiq turadi — telefoningiz o'chgan bo'lsa ham eslatmalar
+keladi.
+
+> 💡 **Narx haqida:** Railway'da boshlang'ich bepul kredit bor, u tugagach
+> oylik to'lov boshlanadi. Render.com'da ham shunga o'xshash (u yerda servis
+> turi **Background Worker** bo'lsin, "Web Service" emas). Tariflar tez-tez
+> o'zgaradi — ro'yxatdan o'tishdan oldin joriy narxni saytdan ko'ring.
+> Arzonroq variant — oddiy VPS (Variant C).
+
+---
+
+### Variant B — o'z kompyuteringizda (faqat sinash uchun)
 
 ```bash
 git clone https://github.com/abdullohismoilov766-dot/FENIKS-UC-SHOP.git
@@ -74,34 +143,6 @@ python -m planner_bot.bot         # bot ishga tushadi
 
 Terminalni yopsangiz yoki kompyuter o'chsa — bot ham to'xtaydi. Sinash uchun
 yaxshi, kundalik ishlatish uchun emas.
-
-### Variant B — Railway (eng oson, doim ishlaydi) ⭐
-
-1. [railway.app](https://railway.app) ga GitHub akkauntingiz bilan kiring
-2. **New Project** → **Deploy from GitHub repo** → shu repozitoriyni tanlang
-3. Branch sifatida `claude/daily-plan-tracker-bot-069e57` ni ko'rsating
-   (yoki avval uni `main` ga qo'shib oling)
-4. **Variables** bo'limiga o'ting va kalitlarni **shu yerga** yozing —
-   `.env` faylini yuklamang:
-
-   | Nomi | Qiymati |
-   |---|---|
-   | `PLANNER_BOT_TOKEN` | BotFather bergan token |
-   | `TIMEZONE` | `Asia/Tashkent` |
-   | `DAY_START` | `09:00` |
-   | `DAY_END` | `22:00` |
-   | `PLANNER_DB_PATH` | `/data/planner.db` |
-   | `ANTHROPIC_API_KEY` | (ixtiyoriy) |
-   | `NOTION_TOKEN` | (ixtiyoriy) |
-   | `NOTION_DATABASE_ID` | (ixtiyoriy) |
-   | `STT_API_KEY` | (ixtiyoriy) |
-
-5. **Settings** → **Volumes** → yangi volume qo'shing, mount yo'li: `/data`
-   — busiz har qayta ishga tushganda **statistikangiz o'chib ketadi**
-6. Deploy tugagach, Telegramda botingizga `/start` yuboring
-
-> Render.com'da ham xuddi shunday, faqat servis turi **Background Worker**
-> bo'lsin ("Web Service" emas — bu bot port ochmaydi, polling bilan ishlaydi).
 
 ### Variant C — o'z serveringiz (VPS)
 
@@ -172,7 +213,8 @@ Keyin Telegramda:
 
 | Belgi | Sababi va yechimi |
 |---|---|
-| `PLANNER_BOT_TOKEN topilmadi` | `.env` yaratilmagan → `python -m planner_bot.setup` |
+| `PLANNER_BOT_TOKEN topilmadi` | `.env` yaratilmagan → `python -m planner_bot.setup`, bulutda esa **Variables** bo'limiga yozilmagan |
+| Telefonda Python ilovasida ishlamadi | iOS ilovani orqa fonda ishlatmaydi — bot 24/7 turolmaydi. Variant A (Railway) dan foydalaning |
 | `Unauthorized` xatosi | Token noto'g'ri yoki BotFather'da bekor qilingan → `/revoke` bilan yangisini oling |
 | Eslatmalar noto'g'ri vaqtda keladi | Vaqt mintaqasi xato → botda `/settings` → 🌍 Vaqt mintaqasi |
 | Notion: `Could not find database` | Bazani integratsiyaga ulamagansiz → baza → `•••` → **Connections** |
