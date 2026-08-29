@@ -7,12 +7,14 @@
 | # | Operatsiya | Dt | Kt | Hujjat |
 |---|-----------|----|----|--------|
 | 1 | Tovar omborga qabul qilindi (QQSsiz qiymat) | 2910 | 6010 | EHF, nakladnoy |
-| 2 | Kirim QQS ajratildi (12%) | 4410⚠️ / 6410/1⚠️ | 6010 | EHF |
+| 2 | Kirim (hisobga olinadigan) QQS ajratildi — 12% | **4410** | 6010 | EHF |
 | 3 | Ta'minotchiga to'landi | 6010 | 5110 | vipiska |
 
-⚠️ **Kirim QQS schyoti:** amaliyotda `6410/1` ni qarama-qarshi (kontr) yozuv bilan yuritish
-yoki alohida `4410`/`4410-QQS` subschyot ochish uchraydi. Korxonangizdagi variantni
-`memory/XOTIRA.md` ga yozib qo'ying va doim bir xil ishlating.
+✅ **Kirim QQS schyoti — `4410`** («Byudjetga soliqlar va boshqa majburiy to'lovlar
+bo'yicha avans to'lovlar»). Chiqim (hisoblangan) QQS esa `6410` da. Kirim QQSini
+turlarga ajratish uchun `4410` ga subschyot oching (masalan: qurilish bo'yicha QQS,
+davr xarajatlari bo'yicha QQS, asosiy vositalar bo'yicha QQS) — QQSdan ozod va soliq
+solinadigan aylanma birga bo'lsa **alohida hisob majburiy**.
 
 ## 2. Tovar sotish (QQS to'lovchi)
 
@@ -57,14 +59,24 @@ aralashtirish eng ko'p uchraydigan xato.
 
 ## 5. Hisobdor shaxs (podotchyot / avans hisoboti)
 
+**Xodimga berilgan avans maqsadiga qarab schyot tanlanadi** (NSBU № 21, 4200-guruh):
+
+| Schyot | Nima uchun berilgan |
+|--------|--------------------|
+| **4210** | Ish haqi bo'yicha avans |
+| **4220** | Xizmat safari (komandirovka) |
+| **4230** | Umumxo'jalik xarajatlari — mayda inventar, materiallar; **naqd pulga yoki korporativ bank kartasi orqali** |
+| **4290** | Yuqoridagilarga kirmagan boshqa avanslar |
+
 | Operatsiya | Dt | Kt |
 |-----------|----|----|
-| Kartaga / kassadan pul berildi | 4410 | 5110 / 5010 |
-| Avans hisoboti: material sotib olindi | 1010 / 1090 | 4410 |
-| Avans hisoboti: xo'jalik xarajati | 9420 | 4410 |
-| Avans hisoboti: safar xarajati | 9420 | 4410 |
-| Sarflanmagan qoldiq qaytarildi | 5010 / 5110 | 4410 |
-| Ortiqcha sarflangan summa xodimga qaytarildi | 4410 | 5010 / 5110 |
+| Xo'jalik xarajatlariga pul berildi (karta / kassa) | 4230 | 5110 / 5010 |
+| Xizmat safariga pul berildi | 4220 | 5110 / 5010 |
+| Avans hisoboti: material sotib olindi | 1010 / 1090 | 4230 |
+| Avans hisoboti: xo'jalik xarajati | 9420 | 4230 |
+| Avans hisoboti: safar xarajati | 9420 | 4220 |
+| Sarflanmagan qoldiq qaytarildi | 5010 / 5110 | 4230 / 4220 |
+| Ortiqcha sarflangan summa xodimga qaytarildi | 4230 / 4220 | 5010 / 5110 |
 
 ⚠️ Hisobdor shaxs chek/EHFsiz xarajat qilsa — xarajat soliq maqsadida chegirilmaydi va
 jismoniy shaxs daromadi deb qaralishi mumkin. Har xarajatga birlamchi hujjat talab qiling.
@@ -74,7 +86,7 @@ jismoniy shaxs daromadi deb qaralishi mumkin. Har xarajatga birlamchi hujjat tal
 | Operatsiya | Dt | Kt |
 |-----------|----|----|
 | Sotib olindi (QQSsiz qiymat) | 0820 | 6010 |
-| Kirim QQS | 4410⚠️ | 6010 |
+| Kirim QQS | 4410 | 6010 |
 | Yetkazish / o'rnatish xarajati qiymatga qo'shildi | 0820 | 6010 |
 | Foydalanishga topshirildi | 0100 | 0820 |
 | Oylik amortizatsiya hisoblandi | 2010 / 9410 / 9420 | 0200 |
@@ -87,9 +99,9 @@ jismoniy shaxs daromadi deb qaralishi mumkin. Har xarajatga birlamchi hujjat tal
 | Operatsiya | Dt | Kt |
 |-----------|----|----|
 | Oylik ijara hisoblandi (akt bo'yicha) | 9420 | 6010 |
-| Ijara QQSi | 4410⚠️ | 6010 |
+| Ijara QQSi | 4410 | 6010 |
 | To'landi | 6010 | 5110 |
-| Bir yilga oldindan to'landi | 4510 → 3100 | 5110 |
+| Bir yilga oldindan to'landi | 4310 → 3100 | 5110 |
 | Kelgusi davr xarajatidan oylik hissa | 9420 | 3100 |
 
 ## 8. Kredit
@@ -130,3 +142,28 @@ jismoniy shaxs daromadi deb qaralishi mumkin. Har xarajatga birlamchi hujjat tal
 | Inventarizatsiyada kamomad | 4610 / 9430 | 1010 / 2910 |
 | Dividend hisoblandi | 8710 | 6610 |
 | Dividenddan soliq ushlandi | 6610 | 6410⚠️ |
+
+
+## 11. Ta'minotchiga berilgan avans (4310)
+
+| Operatsiya | Dt | Kt |
+|-----------|----|----|
+| Ta'minotchiga oldindan to'lov o'tkazildi | **4310** | 5110 |
+| Tovar/xizmat qabul qilindi | 2910 / 1010 / 9420 | 6010 |
+| Kirim QQS | 4410 | 6010 |
+| Avans qarz bilan hisobga olindi (zachyot) | **6010** | **4310** |
+| Ishlatilmagan avans qaytarildi | 5110 | 4310 |
+
+⚠️ **Zachyot provodkasi tushib qolsa** — `4310` da ham, `6010` da ham qoldiq osilib
+qoladi va akt-sverka farq qiladi. Bu 1C/Venkon bazasida eng ko'p uchraydigan xatolardan biri.
+
+## 12. Ta'sischi va ustav kapitali
+
+| Operatsiya | Dt | Kt |
+|-----------|----|----|
+| Ustav kapitali e'lon qilindi | **4600** | 8310 |
+| Ta'sischi pul kiritdi | 5110 / 5010 | **4600** |
+| Ta'sischi mulk kiritdi | 0100 / 1010 / 2910 | **4600** |
+| Dividend hisoblandi | 8710 | 6610 |
+| Dividenddan soliq ushlandi | 6610 | 6410 |
+| Dividend to'landi | 6610 | 5110 |

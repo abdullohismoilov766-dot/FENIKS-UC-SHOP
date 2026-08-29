@@ -42,7 +42,8 @@ Alohida agent sifatida ham chaqirish mumkin: `oga` (`.claude/agents/oga.md`).
 │   ├── 04-schet-faktura.md                — EHF: rekvizitlar, tekshiruv, tuzatish
 │   ├── 05-soliqlar.md                     — soliqlar, stavkalar, muddatlar
 │   ├── 06-1c-bazalar.md                   — 1C 7.7 va 8.x, ko'chirish, muammolar
-│   └── 07-venkon-baza.md                  — Venkon + clobus.uz bulut, EDO/Didox
+│   ├── 07-venkon-baza.md                  — Venkon + clobus.uz bulut, EDO/Didox
+│   └── 08-manbalar.md                     — rus tilidagi manbalar, atamalar lug'ati
 └── memory/
     ├── XOTIRA.md                          — korxonaning doimiy ma'lumotlari
     └── QARORLAR-JURNALI.md                — qabul qilingan qarorlar tarixi
@@ -60,6 +61,18 @@ OGA to'liq kuchga kirishi uchun **ikkita fayl to'ldirilishi kerak**:
 2. **`.claude/skills/oga/references/07-venkon-baza.md`** — Venkon bo'limining oxiridagi
    ro'yxat: qaysi mahsulot va tahrir, bulutli yoki lokal, EHF qayerdan yuboriladi,
    eski baza qaysi edi. Javob bersangiz OGA aniq javob beradi.
+
+## Bilim bazasi qayerdan yig'ilgan
+
+Ma'lumotlar asosan **rus tilidagi** O'zbekiston manbalaridan (lex.uz, buxgalter.uz,
+bss.uz, norma.uz, legalise.uz, spot.uz) olinib, **o'zbek tiliga o'girilgan**. Manbalar
+ro'yxati va o'zbekcha↔ruscha atamalar lug'ati — `references/08-manbalar.md`.
+
+Tasdiqlangan ma'lumot `✅`, tekshirilishi kerak bo'lgani `⚠️` bilan belgilangan.
+
+> 🔴 **2025-yil 1-yanvardan yangi NSBU № 21 schyotlar rejasi amal qiladi**
+> (191-son buyruq 14.11.2024, AV 3593-son 27.12.2024). Eski reja (1181-son, 23.10.2002)
+> kuchini yo'qotgan — eski va yangi bazadagi schyotlar farq qilishi mumkin.
 
 ## Muhim ogohlantirish
 

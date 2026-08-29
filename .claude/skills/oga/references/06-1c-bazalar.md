@@ -1,5 +1,9 @@
 # 1C bazalari — eski (7.7) va yangi (8.x)
 
+> **Eslatma:** korxonaning **Venkon** bazasi ham 1C:Korxona 8 platformasidagi
+> konfiguratsiya, **clobus.uz** orqali bulutda ishlaydi. Shuning uchun bu faylning
+> hammasi Venkon ga ham tegishli — `references/07-venkon-baza.md` ga qarang.
+
 > Interfeys ko'pincha rus tilida, shuning uchun hujjat va ma'lumotnoma nomlari
 > asl nomi bilan berilgan.
 
@@ -76,7 +80,7 @@ faylni tanlash → kontragentlarni solishtirish → `Загрузить`.
 **Yuklashdan keyin har qatorni tekshiring:**
 1. Kontragent to'g'ri topilganmi (STIR bo'yicha)? Topilmasa — 1C yangi dublikat yaratishi mumkin;
 2. Shartnoma tanlanganmi;
-3. Hisob-kitob schyoti (`Счет расчетов`) to'g'rimi — 6010 yoki 4510;
+3. Hisob-kitob schyoti (`Счет расчетов`) to'g'rimi — 6010 (qarz) yoki 4310 (avans);
 4. Avans schyoti (`Счет авансов`) to'g'ri ko'rsatilganmi;
 5. Xarajat moddasi to'ldirilganmi (bank komissiyasi uchun);
 6. Hujjat **o'tkazilganmi** (`Проведен`) — o'tkazilmagan hujjat provodka bermaydi.
@@ -123,7 +127,7 @@ taxmin qiladi. Har oy 5–10 qator noto'g'ri schyotga tushadi.
 | 7 | Sinov davri (1–2 oy parallel yuritish) | Farqlar chiqsa — o'sha yerda tuzatiladi |
 
 **Kirish qoldiqlarida eng ko'p xato bo'ladigan schyotlar:**
-`4010`, `6010` (kontragent va shartnoma kesimida bo'linmasa), `4410` (hisobdor shaxslar),
+`4010`, `6010` (kontragent va shartnoma kesimida bo'linmasa), `4210`–`4290` (hisobdor shaxslar),
 `6410` (soliq subschyotlari), `0100/0200` (amortizatsiya bilan birga ko'chirilmasa),
 `2910` (nomenklatura va ombor kesimida miqdor bilan).
 

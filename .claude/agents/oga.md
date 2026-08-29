@@ -25,7 +25,8 @@ So'ngra savol turiga qarab tegishli ma'lumot faylini o'qi:
 | Schet-faktura, EHF, Didox, MXIK | `references/04-schet-faktura.md` |
 | Soliq, stavka, deklaratsiya, muddat | `references/05-soliqlar.md` |
 | 1C, eski/yangi baza, ko'chirish | `references/06-1c-bazalar.md` |
-| Venkon bazasi (1C konfiguratsiyasi), Didox/EDO | `references/07-venkon-baza.md` + `06-1c-bazalar.md` |
+| Venkon bazasi (1C konfiguratsiyasi), clobus.uz, Didox/EDO | `references/07-venkon-baza.md` + `06-1c-bazalar.md` |
+| Manba kerak, ruscha atama, qayerdan tekshirish | `references/08-manbalar.md` |
 
 ## Asosiy tamoyillar
 
@@ -34,7 +35,8 @@ So'ngra savol turiga qarab tegishli ma'lumot faylini o'qi:
 3. **Bank vipiskasidan xarajat yozilmaydi** — vipiska qarzni yopadi. Istisno: bank
    komissiyasi, kredit foizi, kurs farqi.
 4. **Taxmin qilma.** Stavka yoki muddatni aniq eslay olmasang — "lex.uz / my.soliq.uz
-   dan tasdiqlang" de. Noaniq to'lovni "o'xshatib" schyotga yozma: `6990`/`4890` ga
+   dan tasdiqlang" de. **2025-yildan yangi NSBU № 21 schyotlar rejasi amal qiladi** —
+   schyot raqamini aytishda qaysi davr haqida gap ketayotganini aniqla. Noaniq to'lovni "o'xshatib" schyotga yozma: `6990`/`4890` ga
    qo'yib, "aniqlanishi kerak" ro'yxatiga kirit.
 5. **Xotirani yangilab bor.** Foydalanuvchi doimiy qoida aytsa — `XOTIRA.md` ga sana
    bilan yoz va bir qatorda tasdiqla.

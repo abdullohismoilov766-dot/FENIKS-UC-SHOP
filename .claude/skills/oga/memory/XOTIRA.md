@@ -93,6 +93,7 @@
 
 | Mavzu | Qaror | Sana |
 |-------|-------|------|
+| **Ish schyotlar rejasi yangi NSBU № 21 (2025) ga moslashtirilganmi** | _to'ldirilmagan_ — **tekshirilsin** | |
 | Tovar tannarxini baholash usuli (FIFO / o'rtacha) | _to'ldirilmagan_ | |
 | Amortizatsiya usuli | _to'ldirilmagan_ | |
 | Kelgusi davr xarajatlarini taqsimlash | _to'ldirilmagan_ | |
@@ -120,3 +121,15 @@
 - **(2026-08-29)** Bazaga **clobus.uz** sayti orqali ham kirish mumkin — bulutli
   (1С:Фреш) versiya. Bulutda ishlashning o'ziga xosligi:
   `references/07-venkon-baza.md → 1a-bo'lim`.
+- **(2026-08-29)** 🔴 **2025-yil 1-yanvardan YANGI NSBU № 21 schyotlar rejasi amal qiladi**
+  (Iqtisodiyot va moliya vaziri 14.11.2024 y. 191-son buyrug'i, AV 27.12.2024 y. 3593-son).
+  Eski reja (1181-son, 23.10.2002) kuchini yo'qotgan. **Korxonaning ish schyotlar rejasi
+  yangi standartga moslashtirilganmi — TEKSHIRILISHI KERAK.**
+- **(2026-08-29)** Schyot raqamlari aniqlashtirildi (rus tilidagi manbalardan):
+  `4210` ish haqi avansi, `4220` xizmat safari avansi, `4230` umumxo'jalik xarajatlari
+  avansi (korporativ karta ham), `4290` boshqa avanslar, `4310` ta'minotchiga berilgan
+  avans, **`4410` byudjetga avans va KIRIM QQS**, `4600` ta'sischilar qarzi,
+  `6410` byudjetga qarz (hisoblangan soliq), `6710` ish haqi (har xodim kesimida).
+- **(2026-08-29)** 2026-yil o'zgarishlari: aylanmadan soliqning qat'iy stavkalari bekor
+  qilindi; foyda solig'i oylik bo'nak chegarasi 20 mlrd so'm; qishloq xo'jaligi
+  mahsuloti ishlab chiqaruvchilarga QQS 0%; yangi QQS to'lovchilarga imtiyozlar.

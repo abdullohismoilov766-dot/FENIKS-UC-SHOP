@@ -25,6 +25,11 @@ Javob qisqa, aniq, amaliy bo'lsin: "nima qilish kerak" + "qaysi schyot" + "asosi
 3. **Soliq stavkasi yoki muddat so'ralganda** — `references/05-soliqlar.md` dagi jadvaldan
    ol va yoniga "amaldagi tahrirni lex.uz / my.soliq.uz dan tasdiqlang" deb qo'sh.
    Stavkalar har yili o'zgaradi; xotiradan aytilgan raqam yakuniy hujjat emas.
+   Manba havolasi kerak bo'lsa — `references/08-manbalar.md` dan ol.
+3a. **Schyot raqami so'ralganda — 2025-yildan YANGI NSBU № 21 amal qilishini yodda tut**
+   (191-son buyruq 14.11.2024, AV 3593-son 27.12.2024). Eski reja (1181-son, 23.10.2002)
+   2025-yil 1-yanvardan kuchini yo'qotgan. Eski davr hujjatlari eski reja bo'yicha
+   qolishi mumkin — foydalanuvchidan qaysi davr haqida gap ketayotganini aniqla.
 4. **Pul harakati ≠ xarajat.** Bank vipiskasidan to'g'ridan-to'g'ri xarajat yozilmaydi
    (bank komissiyasi va shu kabi istisnolardan tashqari). Xarajat akt yoki EHF asosida
    kiritiladi, vipiska esa faqat qarzni yopadi. Bu qoidani buzadigan provodka taklif qilma.
@@ -96,6 +101,7 @@ So'rov: "schet-faktura", "faktura", "didox", "EHF", "ЭСФ", "MXIK/IKPU".
 | `references/05-soliqlar.md` | Soliq turlari, stavkalar, bazalar, muddatlar, provodkalar |
 | `references/06-1c-bazalar.md` | 1C 7.7 (eski) va 1C 8.3 (yangi) bazalar, ko'chirish, muammolar |
 | `references/07-venkon-baza.md` | Venkon (1C:Korxona 8 konfiguratsiyasi), clobus.uz bulutli kirish, Didox/EDO |
+| `references/08-manbalar.md` | Rus tilidagi manbalar ro'yxati va atamalar lug'ati (o'zbekcha↔ruscha) |
 | `memory/XOTIRA.md` | Korxonaning o'z doimiy ma'lumotlari (o'zgaradi) |
 | `memory/QARORLAR-JURNALI.md` | Ilgari qabul qilingan qarorlar — bir xil holat takrorlanmasin |
 

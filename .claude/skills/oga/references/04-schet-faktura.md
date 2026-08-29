@@ -49,6 +49,27 @@ operatorning amaldagi qo'llanmasiga qarang, mantiq esa quyidagicha qoladi.
 
 ---
 
+## 2a. EHF ni rasmiylashtirish MUDDATI va javobgarlik ✅
+
+| Holat | Qoida |
+|-------|-------|
+| **Umumiy qoida** | Schet-faktura **tovar jo'natilgan (topshirilgan) yoki xizmat ko'rsatilgan kalendar sanasida** rasmiylashtiriladi |
+| **Uzluksiz (davomiy) yetkazib berish** ⚠️ | Sotish oyining **oxirgi sanasi** bilan yoziladi va sotish oyidan keyingi oyning **10-sanasigacha** taqdim etiladi *(kommunal, aloqa, ijara kabi doimiy xizmatlar — o'z holatingizga tegishliligini tasdiqlang)* |
+| **Xaridor tomonidan imzolash** | Belgilangan muddat ichida qabul qilinadi yoki rad etiladi ⚠️ |
+
+### 🔴 Javobgarlik — Soliq kodeksi 223-moddasi
+
+> **Schet-faktura rasmiylashtirmasdan tovar (xizmat) sotish**, uni **o'z vaqtida
+> rasmiylashtirmaslik**, shuningdek **schet-fakturasiz tovar (xizmat) sotib olish** —
+> soliq bazasini **yashirish (kamaytirish)** deb tan olinadi va
+> **yashirilgan bazaning 20% miqdorida jarima** solinadi.
+
+Bu qoida ikki tomonga ham tegishli: **sotuvchiga ham, xaridorga ham**. Shuning uchun
+"EHF keyinroq yuboraman" yoki "EHFsiz olaqolaylik" degan kelishuv — to'g'ridan-to'g'ri
+soliq xavfi.
+
+---
+
 ## 3. YUBORISHDAN OLDINGI 14 PUNKTLI TEKSHIRUV
 
 > Har punktga ✅ / ❌ / ❓ qo'ying. **Bitta ❌ bo'lsa — yubormang.**
@@ -98,15 +119,19 @@ operatorning amaldagi qo'llanmasiga qarang, mantiq esa quyidagicha qoladi.
 
 ## 5. Xatoni tuzatish — qaysi turdagi EHF kerak
 
-| Vaziyat | Kerakli hujjat |
-|---------|----------------|
-| Rekvizitda xato (STIR, nom, shartnoma, MXIK), summa o'zgarmaydi | **Tuzatilgan EHF** (исправленный) — asl EHF ga havola bilan |
-| Narx yoki miqdor o'zgardi (chegirma, qo'shimcha jo'natma) | **Qo'shimcha EHF** (дополнительный) — farq summasiga |
-| Tovar qaytarildi | **Qaytarish EHFsi** yoki manfiy qo'shimcha EHF ⚠️ |
-| EHF butunlay keraksiz (operatsiya bo'lmagan) | **Bekor qilish** — xaridor qabul qilmagan bo'lsa; qabul qilingan bo'lsa tuzatilgan EHF |
-| Xaridor allaqachon rad etgan | Yangi EHF yuboriladi, tuzatish shart emas |
+| Vaziyat | Kerakli hujjat | Muddat ✅ |
+|---------|----------------|-----------|
+| Narx yoki miqdor o'zgardi (chegirma, qo'shimcha jo'natma, qaytarish) | **Qo'shimcha EHF** (дополнительный) | **Bir yil ichida**; kafolat muddati belgilangan tovar/xizmat bo'yicha — **kafolat muddati ichida** |
+| Rekvizitda xato (STIR, nom, shartnoma, **MXIK**), soliq bazasi xato hisoblangan | **Tuzatilgan EHF** (исправленный) | **Da'vo muddati (исковая давность) tugagunga qadar** |
+| Ilgari yozilgan EHF ga o'zgartirish yoki qo'shimcha kiritish zarur | **Tuzatilgan EHF** | Shu muddat |
+| EHF butunlay keraksiz (operatsiya bo'lmagan) | Bekor qilish — xaridor qabul qilmagan bo'lsa; qabul qilingan bo'lsa tuzatilgan EHF | — |
+| Xaridor allaqachon rad etgan | Yangi EHF yuboriladi, tuzatish shart emas | — |
 
-⚠️ **Muddat:** tuzatish o'sha soliq davri ichida qilinsa — deklaratsiya o'zgarmaydi.
+**Farqni eslab qoling:**
+- **Qo'shimcha EHF** — *summa/miqdor o'zgardi* (savdo sharti o'zgardi).
+- **Tuzatilgan EHF** — *xato bo'ldi* (ma'lumot noto'g'ri yozilgan).
+
+⚠️ **Soliq davri:** tuzatish o'sha soliq davri ichida qilinsa — deklaratsiya o'zgarmaydi.
 Keyingi davrda tuzatilsa — **aniqlashtirilgan (уточнённая) deklaratsiya** topshiriladi.
 
 **Provodkada aks etishi:**
@@ -119,7 +144,22 @@ Qaytarish / kamaytirish:
 
 ---
 
-## 6. MXIK (IKPU) kodi bilan ishlash
+## 6. MXIK (IKPU) kodi bilan ishlash — ✅ tasdiqlangan qoidalar
+
+> **MXIK — EHF dagi eng xavfli maydon.** Quyidagilar rasmiy manbalardan tasdiqlangan:
+>
+> | Fakt | Ma'nosi |
+> |------|---------|
+> | EHF tizimi **MXIK maydoni to'ldirilmagan hujjatni o'tkazmaydi** | Maydon majburiy |
+> | Kodlar **PKM № 249** bilan tasdiqlangan **Yagona elektron milliy mahsulot katalogi** ga muvofiq bo'lishi kerak | Katalog tahriri yangilanadi |
+> | Kodlarning **taxminan 8 foizi soliq imtiyozlari bilan bog'liq** | Noto'g'ri kod → **imtiyoz huquqi yo'qoladi** |
+> | Noto'g'ri MXIK **soxta yoki niqoblangan (shubhali) bitim** belgisi sifatida baholanishi mumkin | Eng jiddiy xavf |
+> | Noto'g'ri MXIK ko'rsatilgan bo'lsa — **tuzatilgan EHF** yoziladi | Tuzatish yo'li |
+> | MXIK mos kelmasa — EDO operatori shaxsiy kabinetidagi sozlamalarni **katalogning amaldagi tahririga** keltiring | Sozlama muammosi |
+>
+> 🔴 **Qoida: MXIK to'g'riligiga ishonch hosil qilmaguningizcha EHF ni IMZOLAMANG.**
+> Imzolangandan keyin tuzatish — qo'shimcha hujjat, qo'shimcha vaqt va xaridor bilan
+> muzokara demakdir.
 
 1. Kod **tovarning haqiqiy tavsifiga** mos bo'lishi kerak, "o'xshash" emas.
 2. Kodni tanlash: my.soliq.uz yoki Didox dagi MXIK katalogidan qidiruv orqali.
@@ -151,3 +191,18 @@ Qaytarish / kamaytirish:
 **Oylik nazorat:** my.soliq.uz dagi "Reestr" bo'limidan chiqarilgan va kirilgan EHF
 ro'yxatini yuklab oling va 1C/Venkon bazasidagi hujjatlar bilan solishtiring.
 Bazada bor, reestrda yo'q — hujjat yuborilmagan. Reestrda bor, bazada yo'q — kiritilmagan.
+
+
+---
+
+## 8. Manbalar (rus tilida)
+
+- [buxgalter.uz — EHF bo'yicha to'liq qo'llanma](https://buxgalter.uz/publish/group5039_esf)
+- [buxgalter.uz — CHEK-LIST: EHF va cheklarda MXIK xatolarini qanday yo'qotish](https://buxgalter.uz/publish/doc/text190674_chek-list_kak_isklyuchit_oshibki_ikpu_v_schetah-fakturah_i_chekah)
+- [buxgalter.uz — Qaysi MXIK ni ko'rsatish kerak: eskisimi yoki yangisi?](https://buxgalter.uz/publish/doc/text170229_kakoy_ikpu_ukazyvat_v_schete-fakture_staryy_ili_novyy)
+- [buxgalter.uz — Tuzatilgan schet-fakturani qanday rasmiylashtirish](https://buxgalter.uz/publish/doc/text161589_kak_oformit_ispravlennyy_schet-fakturu_v_sisteme_esf)
+- [buxgalter.uz — EHF ga o'tish bo'yicha 27 dolzarb savol](https://buxgalter.uz/publish/doc/text155441_27_aktualnyh_voprosov_po_perehodu_na_esf)
+- [bss.uz — EHF ni yuborish, imzolash muddatlari va sanksiyalar](https://www.bss.uz/article/563-vystavlenie-elektronnyh-schetov-faktur-sroki-vystavleniya-podpisaniya-i-vozmojnye-sanktsii)
+- [bss.uz — Noto'g'ri MXIK: jarima sanksiyalari](https://www.bss.uz/article/1733-nevernyy-ikpu-shtrafnye-sanktsii)
+- [gazeta.norma.uz — Agar MXIK noto'g'ri ko'rsatilsa…](https://gazeta.norma.uz/publish/doc/text170334_esli_nepravilno_ukazat_ikpu)
+- [tax-legal.uz — Schet-faktura yozish tartibi](https://tax-legal.uz/invoices/)
