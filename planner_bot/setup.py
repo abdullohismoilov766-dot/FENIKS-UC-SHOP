@@ -109,7 +109,9 @@ FIELDS: list[Field] = [
         help_text=(
             "console.anthropic.com -> Settings -> API Keys -> Create Key.\n"
             "  Bu 'ertaga soat 3 da stomatolog' kabi erkin gaplarni tushunish uchun.\n"
-            "  Bo'sh qoldirsangiz bot oddiy rejimda ishlaydi (kamroq tushunadi)."
+            "  Bo'sh qoldirsangiz bot oddiy rejimda ishlaydi (kamroq tushunadi).\n"
+            "  Kalit qo'ysangiz, qo'shimcha paket ham kerak bo'ladi:\n"
+            "    pip install -r planner_bot/requirements-ai.txt"
         ),
         secret=True,
         enables="erkin matnni tushunish",

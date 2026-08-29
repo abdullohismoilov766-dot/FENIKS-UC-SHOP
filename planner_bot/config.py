@@ -5,6 +5,7 @@ Barcha maxfiy qiymatlar (tokenlar, kalitlar) .env faylidan o'qiladi —
 namuna uchun planner_bot/.env.example ga qarang.
 """
 
+import importlib.util
 import os
 
 from dotenv import load_dotenv
@@ -67,7 +68,10 @@ STT_LANGUAGE = os.getenv("STT_LANGUAGE", "uz")
 
 
 def claude_enabled() -> bool:
-    return bool(ANTHROPIC_API_KEY)
+    """Kalit ham, kutubxona ham bor bo'lsagina Claude ishlatiladi."""
+    if not ANTHROPIC_API_KEY:
+        return False
+    return importlib.util.find_spec("anthropic") is not None
 
 
 def notion_enabled() -> bool:

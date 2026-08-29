@@ -113,7 +113,7 @@ Qolganlari ixtiyoriy — har biri bitta imkoniyatni yoqadi:
 
 | O'zgaruvchi | Yoqadigan imkoniyat | Bo'sh bo'lsa |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | Erkin matnni tushunish («ertaga soat 3 da…») | Oddiy regex rejimi — kamroq tushunadi, tugmalar ishlayveradi |
+| `ANTHROPIC_API_KEY` + `pip install -r planner_bot/requirements-ai.txt` | Erkin matnni tushunish («ertaga soat 3 da…») | Oddiy regex rejimi — kamroq tushunadi, tugmalar ishlayveradi |
 | `NOTION_TOKEN` + `NOTION_DATABASE_ID` | Kalendarga yozish va o'qish | Kalendar bo'limi o'chiq, bo'sh vaqt faqat bot rejalaridan hisoblanadi |
 | `STT_API_KEY` | Ovozli xabarlar | Bot matn yozishni so'raydi |
 
@@ -208,7 +208,8 @@ planner_bot/
 ├── keyboards.py     # Tugmalar
 ├── states.py        # FSM holatlari
 ├── config.py        # .env dan sozlamalar
-├── requirements.txt
+├── requirements.txt      # asosiy kutubxonalar
+├── requirements-ai.txt   # ixtiyoriy: erkin matnni tushunish
 ├── .env.example
 ├── health.py        # tekin hosting tariflari uchun HTTP sahifa
 ├── DEPLOY.md        # kalitlar va hosting qo'llanmasi

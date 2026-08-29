@@ -71,6 +71,10 @@ if ! "$APP_DIR/venv/bin/pip" install --quiet -r "$APP_DIR/planner_bot/requiremen
     "$APP_DIR/venv/bin/pip" install -r "$APP_DIR/planner_bot/requirements.txt" \
         || die "Kutubxonalarni o'rnatib bo'lmadi. Yuqoridagi xato matnini yuboring."
 fi
+
+# Erkin matnni tushunish uchun ixtiyoriy paket — serverda muammosiz o'rnatiladi
+"$APP_DIR/venv/bin/pip" install --quiet -r "$APP_DIR/planner_bot/requirements-ai.txt" \
+    || echo "  (ixtiyoriy AI paketi o'rnatilmadi — bot busiz ham ishlaydi)"
 chown -R "$APP_USER:$APP_USER" "$APP_DIR"
 
 say "5/6  Endi kalitlarni kiritamiz."

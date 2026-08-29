@@ -106,6 +106,12 @@ bash FENIKS-UC-SHOP/scripts/termux-install.sh
 Skript hamma narsani o'zi qiladi: Python o'rnatadi, kutubxonalarni yuklaydi,
 avtomatik ishga tushishni sozlaydi va oxirida token so'raydi.
 
+> ⏳ **Kutubxonalar bosqichi haqida.** Android uchun tayyor paketlar har doim
+> ham topilmaydi — u holda skript ularni telefonning o'zida kompilyatsiya
+> qiladi va bu **15–40 daqiqa** davom etishi mumkin. Skript buni oldindan
+> ogohlantiradi. Shu paytda telefonni **zaryadda qoldiring** va Termux'ni
+> yopmang (ekran o'chsa ham davom etadi). Bu faqat bir marta bo'ladi.
+
 **3. Botni ishga tushiring:**
 
 ```bash
@@ -129,7 +135,21 @@ tail -f ~/feniks-planner.log    # loglarni ko'rish
 
 **Ustunligi:** karta kerak emas, hech kim tarifni o'zgartirmaydi, baza
 telefonning o'zida — statistika hech qachon yo'qolmaydi.
-**Kamchiligi:** telefon uyda, zaryadda va Wi-Fi'da turishi kerak.
+**Kamchiligi:** telefon uyda, zaryadda va Wi-Fi'da turishi kerak; birinchi
+o'rnatish uzoq davom etishi mumkin.
+
+**Erkin matnni tushunish (ixtiyoriy).** «Ertaga soat 3 da stomatolog» kabi
+gaplarni tushunish uchun qo'shimcha paket kerak. U Rust'da yozilgan qismlarga
+ega, shuning uchun telefonda uzoq o'rnatiladi — keyinroq, xohlaganingizda:
+
+```bash
+cd ~/FENIKS-UC-SHOP
+pip install -r planner_bot/requirements-ai.txt
+bash scripts/termux-stop.sh && bash scripts/termux-start.sh
+```
+
+Usiz ham bot to'liq ishlaydi: rejalar, eslatmalar, Ha/Yo'q savoli va
+statistika — hammasi joyida.
 
 ---
 

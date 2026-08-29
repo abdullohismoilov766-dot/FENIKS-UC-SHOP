@@ -7,8 +7,9 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-COPY planner_bot/requirements.txt ./planner_bot/requirements.txt
-RUN pip install --no-cache-dir -r planner_bot/requirements.txt
+COPY planner_bot/requirements.txt planner_bot/requirements-ai.txt ./planner_bot/
+RUN pip install --no-cache-dir -r planner_bot/requirements.txt \
+    && pip install --no-cache-dir -r planner_bot/requirements-ai.txt
 
 COPY planner_bot ./planner_bot
 
