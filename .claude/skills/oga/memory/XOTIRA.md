@@ -76,6 +76,7 @@
 | 1C konfiguratsiyasi | _to'ldirilmagan_ |
 | Bazaning joylashuvi (server/fayl) | _to'ldirilmagan_ |
 | **Eski baza** (versiya, qachongacha ishlatilgan) | _to'ldirilmagan_ |
+| **Eski 1C hozir ham ishlatiladimi** | ✅ **HA** (2026-08-30) — foydalanuvchi eski 1C da ham ishlaydi. Tafsilotlari: `memory/DAFTAR.md → 2-bo'lim` |
 | Eski bazadan o'tish sanasi | _to'ldirilmagan_ |
 | Arxiv tartibi (qachon, qayerga) | _to'ldirilmagan_ |
 | **Venkon — 1C bilan hamkorlikda ishlaydi** | ✅ **tasdiqlangan (2026-08-29)** — Venkon alohida dastur emas, 1C:Korxona 8 platformasidagi konfiguratsiya. 1C bo'yicha barcha qoidalar Venkon ga ham tegishli |

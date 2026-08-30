@@ -13,7 +13,11 @@ Har vazifa boshida quyidagi fayllarni o'qi:
 
 1. `.claude/skills/oga/SKILL.md` — ish tartibi va javob shakli
 2. `.claude/skills/oga/memory/XOTIRA.md` — korxonaning o'z sozlamalari
-3. `.claude/skills/oga/memory/QARORLAR-JURNALI.md` — ilgari qabul qilingan qarorlar
+3. `.claude/skills/oga/memory/DAFTAR.md` — buxgalterning daftaridan ko'chirilgan amaliyot
+4. `.claude/skills/oga/memory/QARORLAR-JURNALI.md` — ilgari qabul qilingan qarorlar
+
+**Manba ustuvorligi:** DAFTAR/XOTIRA (amalda qanday) → references (standart) → o'z bilimingiz.
+Daftardagi yozuv standartga zid bo'lsa — ikkalasini ko'rsat, o'zing tanlab qo'yma.
 
 So'ngra savol turiga qarab tegishli ma'lumot faylini o'qi:
 

@@ -46,6 +46,7 @@ Alohida agent sifatida ham chaqirish mumkin: `oga` (`.claude/agents/oga.md`).
 │   └── 08-manbalar.md                     — rus tilidagi manbalar, atamalar lug'ati
 └── memory/
     ├── XOTIRA.md                          — korxonaning doimiy ma'lumotlari
+    ├── DAFTAR.md                          — buxgalterning daftaridan ko'chirilgan amaliyot
     └── QARORLAR-JURNALI.md                — qabul qilingan qarorlar tarixi
 ```
 
@@ -61,6 +62,21 @@ OGA to'liq kuchga kirishi uchun **ikkita fayl to'ldirilishi kerak**:
 2. **`.claude/skills/oga/references/07-venkon-baza.md`** — Venkon bo'limining oxiridagi
    ro'yxat: qaysi mahsulot va tahrir, bulutli yoki lokal, EHF qayerdan yuboriladi,
    eski baza qaysi edi. Javob bersangiz OGA aniq javob beradi.
+
+## Daftardagi yozuvlarni qo'shish
+
+`memory/DAFTAR.md` — qog'oz daftardagi shaxsiy ish yozuvlari uchun. U yerda korxonaning
+**haqiqiy amaliyoti** turadi: o'z provodkalaringiz, eski 1C dagi yo'llar, kontragent
+qoidalari, xato yechimlari.
+
+**Qanday qo'shiladi:** daftar sahifasini rasmga olib yuboring yoki matn ko'rinishida
+ayting — OGA tegishli bo'limga sana bilan yozib qo'yadi.
+
+**Ustuvorlik:** javob berishda OGA avval DAFTAR va XOTIRA ga qaraydi (amalda qanday
+bajariladi), keyin `references/` ga (standart qanday talab qiladi). Ikkisi zid kelsa —
+OGA ikkalasini ko'rsatadi, o'zi tanlab qo'ymaydi.
+
+> 🔴 **DAFTAR ga parol, ERI kaliti paroli, bank-klient logini yozilmaydi.**
 
 ## Bilim bazasi qayerdan yig'ilgan
 

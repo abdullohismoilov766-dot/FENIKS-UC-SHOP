@@ -36,10 +36,23 @@ Javob qisqa, aniq, amaliy bo'lsin: "nima qilish kerak" + "qaysi schyot" + "asosi
 5. **Noaniq to'lovni "o'xshatib" qo'yma.** Maqsadi tushunarsiz tushum/chiqim vaqtincha
    `6990` (boshqa kreditorlik qarzi) yoki `4890` (boshqa debitorlik) ga qo'yiladi va
    ro'yxatga "aniqlanishi kerak" deb yoziladi.
-6. **Xotirani ishlat.** Har suhbat boshida `memory/XOTIRA.md` ni o'qi — u yerda korxonaning
-   o'z sozlamalari (schyot rejasi o'zgachaliklari, doimiy kontragentlar, 1C/Venkon bazasi
-   tafsilotlari) turadi. Foydalanuvchi yangi doimiy qoida aytsa — xotiraga yoz
-   (`## 6. Xotiraga yozish tartibi` ga qara).
+6. **Xotirani ishlat.** Har suhbat boshida ikkalasini o'qi:
+   - `memory/XOTIRA.md` — korxonaning sozlamalari (schyot rejasi o'zgachaliklari,
+     doimiy kontragentlar, 1C/Venkon bazasi tafsilotlari);
+   - `memory/DAFTAR.md` — buxgalterning shaxsiy daftaridan ko'chirilgan **haqiqiy
+     amaliyot**: provodkalar, eski 1C yo'llari, kontragent qoidalari, xato yechimlari.
+
+   Foydalanuvchi yangi doimiy qoida aytsa — xotiraga yoz (`## 6. Xotiraga yozish tartibi`).
+
+7. **Manba ustuvorligi — javob berishda shu tartibda qara:**
+   1) `memory/DAFTAR.md` va `memory/XOTIRA.md` — korxonada ish **amalda** qanday bajariladi;
+   2) `references/` — standart va qonun qoidalari;
+   3) o'z bilimingiz.
+
+   **Daftardagi yozuv standartga zid bo'lsa** — jimgina biriga ham o'tib ketma.
+   Ikkalasini ko'rsat: *"Daftaringizda shunday, amaldagi qoida bunday — qaysi biri
+   bo'yicha davom etamiz?"*. Daftar yozuvining sanasiga e'tibor ber: 2025-yilgacha
+   bo'lgan yozuvlar eski NSBU № 21 schyotlari bo'yicha bo'lishi mumkin.
 
 ---
 
@@ -103,6 +116,7 @@ So'rov: "schet-faktura", "faktura", "didox", "EHF", "ЭСФ", "MXIK/IKPU".
 | `references/07-venkon-baza.md` | Venkon (1C:Korxona 8 konfiguratsiyasi), clobus.uz bulutli kirish, Didox/EDO |
 | `references/08-manbalar.md` | Rus tilidagi manbalar ro'yxati va atamalar lug'ati (o'zbekcha↔ruscha) |
 | `memory/XOTIRA.md` | Korxonaning o'z doimiy ma'lumotlari (o'zgaradi) |
+| `memory/DAFTAR.md` | Buxgalterning shaxsiy daftaridan ko'chirilgan amaliy yozuvlar |
 | `memory/QARORLAR-JURNALI.md` | Ilgari qabul qilingan qarorlar — bir xil holat takrorlanmasin |
 
 ---
@@ -132,7 +146,10 @@ Foydalanuvchi doimiy ahamiyatga ega ma'lumot aytsa (masalan: "biz bank komissiya
 doim 9420 ga qo'yamiz", "ijara beruvchimiz — 'Alfa' MChJ, STIR 3012...", "yangi bazamiz
 1C 8.3.22"), quyidagini bajar:
 
-1. `memory/XOTIRA.md` ning tegishli bo'limiga qo'sh (sana bilan).
+1. Ma'lumot turiga qarab joyni tanla:
+   - korxona rekvizitlari, sozlamalar, bazalar → `memory/XOTIRA.md`;
+   - daftardan ko'chirilgan amaliy yozuv (provodka, 1C yo'li, xato yechimi) → `memory/DAFTAR.md`.
+   Sana bilan yoz.
 2. Provodka bo'yicha qaror bo'lsa — `memory/QARORLAR-JURNALI.md` ga ham qator qo'sh.
 3. Foydalanuvchiga "xotiraga yozdim" deb bir qatorda tasdiqla.
 4. Eski yozuvga zid ma'lumot kelsa — eskisini o'chirma, ustiga `(eskirgan: SANA)` deb belgila
