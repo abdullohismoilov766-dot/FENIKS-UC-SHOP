@@ -43,8 +43,10 @@
 | 6410/4 | JShDS | _to'ldirilmagan_ |
 | 6410/9 | Jarima va penya | _to'ldirilmagan_ |
 | Kirim QQS schyoti (4410 yoki boshqa) | _to'ldirilmagan_ | |
-| Bank komissiyasi (9430 yoki 9420) | _to'ldirilmagan_ | |
-| Korporativ karta (5530 yoki boshqa) | _to'ldirilmagan_ | |
+| **Bank komissiyasi → `9430`** | ✅ **TASDIQLANGAN (2026-08-31)** — daftar: "9430 asosan bank xizmat haqlariga" | 11.03.2025 |
+| **Karta schyotlari** | ✅ `5531` asosiy ishchilar · `5532` ishchilar · `5540` ish haqi · `5550` karta orqali to'lov (Smart Vista) · `5530` переброска | 2026-08-31 |
+| **Asosiy faoliyat xarajati → `2010`** | ✅ Universitet: asosiy faoliyat o'qitish bo'lgani uchun barcha tegishli rasxodlar `2010` ga | 23.03.2026 |
+| **Asosiy vosita chegarasi** | ✅ **50 BHM** dan ko'p → `0100`; kam → `1000`/`1090`; sotuv uchun → `2900` | 15.03.2026 |
 
 ## 4. Doimiy kontragentlar
 
@@ -111,6 +113,20 @@
 | **1 mart** | Yillik foyda solig'i deklaratsiyasi ⚠️ |
 | Oy oxiri | Bazani yopish, arxiv, sverka |
 
+## 9a. Daftardan ko'chirilgan bilim
+
+✅ **2026-08-31 da buxgalterning qog'oz daftaridan 79 sahifa ko'chirildi** →
+`memory/DAFTAR.md` (14 bo'lim, ~35 KB).
+
+Ichida: to'liq schyotlar rejasi subschyotlari (0100–0199, 0200–0299, 0400–0590,
+1000–1090, 8300–8910, 9000–9150), korxonaning o'z provodkalari, oylik maosh metodikasi
+va misollari, oylik 6 qadamli ish tartibi, balans nazariyasi va to'liq sikl misoli,
+**1C menyu xaritasi**, bank schyotlari va real qoldiqlar, GTD grafalari, moddiy
+javobgarlik, ruscha–o'zbekcha lug'at.
+
+⏳ **13 ta ochiq savol** — `DAFTAR.md → 13-bo'lim`. Ular hal qilinmaguncha OGA
+o'sha mavzularda ikkala variantni ko'rsatadi.
+
 ## 10. Suhbatlardan yozib olingan qo'shimcha qoidalar
 
 > OGA yangi doimiy qoidalarni shu yerga sana bilan qo'shadi.
@@ -131,6 +147,11 @@
   avansi (korporativ karta ham), `4290` boshqa avanslar, `4310` ta'minotchiga berilgan
   avans, **`4410` byudjetga avans va KIRIM QQS**, `4600` ta'sischilar qarzi,
   `6410` byudjetga qarz (hisoblangan soliq), `6710` ish haqi (har xodim kesimida).
+- **(2026-08-31)** Buxgalter **eski 1C da ham ishlaydi**; daftardagi 1C menyu yo'llari
+  `DAFTAR.md → 7-bo'lim` da.
+- **(2026-08-31)** Korxona ta'lim tashkiloti bo'lishi mumkin — daftarda "universitet"
+  ko'p uchraydi, `0195 kutubxona jamg'armasi` schyoti ishlatiladi, asosiy faoliyat
+  xarajatlari `2010` ga boradi.
 - **(2026-08-29)** 2026-yil o'zgarishlari: aylanmadan soliqning qat'iy stavkalari bekor
   qilindi; foyda solig'i oylik bo'nak chegarasi 20 mlrd so'm; qishloq xo'jaligi
   mahsuloti ishlab chiqaruvchilarga QQS 0%; yangi QQS to'lovchilarga imtiyozlar.

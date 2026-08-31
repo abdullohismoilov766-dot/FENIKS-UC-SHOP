@@ -61,6 +61,12 @@ qoldig'i ikkiga bo'linadi va akt-sverka farq qiladi. Yangi kontragent kiritishda
 | `Начисление зарплаты` | Ish haqi hisoblash | `Dt 2010/9420 — Kt 6710` |
 | `Операция (бухгалтерская)` | Qo'lda operatsiya | Ixtiyoriy provodka — **eng oxirgi chora** |
 
+### 🔴 To'liq menyu xaritasi
+Korxonaning bazasidagi **haqiqiy menyu tuzilmasi** (bo'lim-bo'lim, barcha hujjatlar bilan)
+`memory/DAFTAR.md → 7-bo'lim` da. OGA 1C yo'li so'ralganda **avval o'sha faylga qaraydi**.
+Qisqacha bo'limlar: `БАНК` · `КАССА` · `ПОКУПКА` · `ПРОДАЖА` · `СКЛАД` · `ОС` · `НМА` ·
+`ПРОИЗВОДСТВО` · `ЗАРПЛАТА` · `КАДРЫ` · `МОНИТОР БУХГАЛТЕРА`.
+
 ⚠️ **`Платежное поручение` provodka bermaydi.** Ko'p yangi buxgalterlar shu yerda
 adashadi: to'lov faqat `Списание с расчетного счета` hujjati bilan hisobga tushadi.
 
@@ -87,6 +93,22 @@ faylni tanlash → kontragentlarni solishtirish → `Загрузить`.
 
 ⚠️ **Avtomatik "Подбор" ga to'liq ishonmang.** U to'lov maqsadidagi matn bo'yicha
 taxmin qiladi. Har oy 5–10 qator noto'g'ri schyotga tushadi.
+
+---
+
+## 4a. Korxonaning oylik ish tartibi (daftardan) ✅
+
+| № | Qadam | Muddat |
+|---|-------|--------|
+| 1 | **SKLAD** — kiruvchi va chiquvchini kiritish | |
+| 2 | **Omborxonada qoldiqni jo'natish**, inventarizatsiya, tekshirish va hisoblash | **5-sanagacha** |
+| 3 | **Bankni kiritish** (vipiska) | |
+| 4 | **Oylikni hisoblash va kiritish** | **5-sanagacha** |
+| 5 | **Soliqqa hisobot jo'natish** | my.soliq.uz |
+| 6 | **Import qilingan tovarni kiritish** (`Приход`) | GTD asosida |
+
+**Oylik nazorat:** har oy `Анализ счёта` chiqariladi, **1C Excel bilan solishtiriladi**,
+mos kelmagan joyga izoh yoziladi va tenglashtiriladi.
 
 ---
 

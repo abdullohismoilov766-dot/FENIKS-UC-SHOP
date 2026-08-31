@@ -40,31 +40,83 @@
 
 ## 0 — Uzoq muddatli aktivlar
 
+> ✅ Quyidagi subschyotlar korxona buxgalterining ish daftaridan tasdiqlangan
+> (`memory/DAFTAR.md → 1.2–1.5`).
+
+### `0100` — Asosiy vositalar
+
 | Schyot | Nomi |
 |--------|------|
-| 0100 | Asosiy vositalar (0110 binolar va inshootlar, 0130 mashina va uskunalar, 0140 mebel va ofis jihozlari, 0150 kompyuter texnikasi ⚠️, 0160 transport vositalari) |
-| 0200 | Asosiy vositalar amortizatsiyasi — **kontr-aktiv (passiv)** |
-| 0300 | Nomoddiy aktivlar (dasturiy ta'minot, litsenziya, tovar belgisi) |
-| 0400 | Nomoddiy aktivlar amortizatsiyasi — **kontr-aktiv** |
-| 0500 | Uzoq muddatli investitsiyalar |
-| 0800 | Kapital qo'yilmalar ⚠️ (0810 tugallanmagan qurilish, 0820 asosiy vositalarni sotib olish, 0830 NMA sotib olish, 0860 o'rnatiladigan uskunalar) |
-| 0900 | Uzoq muddatli debitorlik qarzi / kechiktirilgan xarajatlar ⚠️ |
+| **0110** | Yer |
+| **0111** | Yerni obodonlashtirish |
+| **0112** | Uzoq muddatli ijara shartnomasi bo'yicha olingan AVni obodonlashtirish |
+| **0120** | Binolar, inshootlar va uzatuvchi moslamalar |
+| **0130** | Mashina va uskunalar |
+| **0140** | Mebel va ofis jihozlari (inventar va xo'jalik jihozlari) |
+| **0150** | Kompyuter jihozlari va hisoblash texnikasi |
+| **0160** | Transport vositalari |
+| **0170** | Ishchi hayvonlar |
+| **0180** | Ko'p yillik o'simliklar |
+| **0190** | Boshqa asosiy vositalar va mahsuldor hayvonlar |
+| **0195** | **Kutubxona jamg'armasi** — kitoblar va elektron manbalar (ta'lim tashkilotlarida) |
+| **0199** | Konservatsiya qilingan asosiy vositalar |
 
-**Qoida:** sotib olingan asosiy vosita avval `0820` ga yig'iladi (qiymat + yetkazish +
-o'rnatish), foydalanishga topshirilgandagina `0100` ga o'tkaziladi.
+### 🔴 Asosiy vosita chegarasi — 50 BHM
+> Buyum `0100` da hisobga olinishi uchun qiymati **50 BHM dan ko'p** bo'lishi kerak.
+> **Kam bo'lsa** — material/inventar sifatida `1000` yoki `1090` da.
+> Sotuv uchun mo'ljallangan bo'lsa — `2900`.
+
+### `0200` — Amortizatsiya (eskirish), **kontr-aktiv**
+`0100` ga mutanosib: 0211 · 0212 · 0220 · 0230 · 0240 · 0250 · 0260 · 0270 · 0280 ·
+0290 · 0295 · **0299** (uzoq muddatli ijaraga olingan AV eskirishi).
+
+⚠️ Amortizatsiya normalari **Soliq kodeksida** belgilangan — amaldagi tahrirdan tekshiring.
+
+### `0400` — Nomoddiy aktivlar
+| Schyot | Nomi |
+|--------|------|
+| 0410 | Patentlar, litsenziyalar va nou-xau |
+| 0420 | Savdo belgilari, tovar belgilari va sanoat namunalari |
+| **0430** | **Dasturiy ta'minot** |
+| 0440 | Yer va tabiiy resurslardan foydalanish huquqi |
+| 0460 | Franshiza |
+| 0470 | Mualliflik huquqi |
+| 0490 | Boshqa nomoddiy aktivlar |
+
+### `0500` — NMA amortizatsiyasi, **kontr-aktiv**
+0510 · 0520 · 0530 · 0540 · 0560 · 0570 · 0590 — `0400` dagi juftiga mos.
+
+### Qolganlar
+| Schyot | Nomi |
+|--------|------|
+| 0600 / 0700 | O'rnatiladigan uskunalar ❓ (daftarda ikkalasi ham uchraydi — ish rejangizdan tekshiring) |
+| 0800 | Kapital qo'yilmalar (0810 tugallanmagan qurilish, 0820 AV sotib olish, 0830 NMA sotib olish) ⚠️ |
+| 0900 | Uzoq muddatli hisob-kitob / debitorlik qarzi ⚠️ |
+
+**Asosiy vositaning yo'li:**
+```
+0820  →  0800  →  0100
+sotib   ombordan  ekspluatatsiyaga
+olindi  o'tkazildi  chiqarilganda
+```
 
 ## 1 — Materiallar
 
 | Schyot | Nomi |
 |--------|------|
-| 1010 | Xom ashyo va materiallar |
-| 1020 | Sotib olingan yarim tayyor mahsulot va butlovchi buyumlar |
-| 1030 | Yoqilg'i (benzin, dizel, gaz) |
-| 1040 | Ehtiyot qismlar |
-| 1050 | Qurilish materiallari |
-| 1060 | Idish va idish materiallari |
-| 1090 | Boshqa materiallar (kanstovar, xo'jalik mollari) |
-| 1500 | Inventar va xo'jalik jihozlari ⚠️ (1510 inventar, 1520 maxsus kiyim) |
+| **1010** | Xom ashyo va materiallar — ishlab chiqarishdagi asosiy xom ashyo ✅ |
+| **1020** | Sotib olingan yarim tayyor mahsulot va butlovchi qismlar ✅ |
+| **1030** | Yoqilg'i — benzin, gaz, ko'mir ✅ |
+| **1040** | **Tara va tara materiallari** — saqlash/tashish uchun qutilar ✅ |
+| **1050** | **Ehtiyot qismlar** — texnika va uskunalarni ta'mirlash uchun ✅ |
+| **1060** | Boshqa materiallar ✅ |
+| **1070** | Qayta ishlashga berilgan materiallar (tashqi tashkilotga) ✅ |
+| **1080** | Qurilish materiallari ✅ |
+| **1090** | **Inventar va xo'jalik jihozlari** — kichik inventarlar ✅ |
+| 1500 | Materiallarni tayyorlash va sotib olish ⚠️ |
+
+> ⚠️ **Diqqat:** `1040` va `1050` korxona daftarida standart tartibdan farq qiladi
+> (1040 = tara, 1050 = ehtiyot qismlar). Ish rejangizdagi variant ustun.
 
 TMZ sotib olish provodkasi manbadan tasdiqlangan: **`Dt 1010–1090 — Kt 6010`** ✅
 
@@ -181,10 +233,13 @@ Tavsiya etilgan `6410` subschyotlari:
 
 | Schyot | Nomi |
 |--------|------|
-| 8310 | Ustav kapitali ⚠️ |
-| 8400 | Qo'shilgan kapital ⚠️ |
-| 8500 | Rezerv kapital ⚠️ |
-| **8710** | Hisobot davrining taqsimlanmagan foydasi (qoplanmagan zarari) ⚠️ |
+| **8310** | Oddiy aksiyalar ✅ · **8311** foydadan zaxira fondiga taqsimlash · **8320** imtiyozli aksiyalar · **8330** paylar va badallar |
+| **8410** | Emissiya daromadi ✅ · **8420** ustav kapitalini shakllantirishdagi valyuta kurs farqi |
+| **8510** | Mulkni qayta baholash bo'yicha tuzatish ✅ · **8520** zaxira kapitali · **8530** **bepul (tekinga) olingan mulk** |
+| **8610 / 8620** | Sotib olingan xususiy oddiy / imtiyozli aksiyalar ✅ |
+| **8710** | Hisobot davrining taqsimlanmagan foydasi (qoplanmagan zarari) ✅ · **8720** to'plangan foyda |
+| **8810** | **Grantlar** ✅ · **8820** subsidiyalar · **8830** a'zolik badallari · **8840** maqsadli soliq imtiyozlari · **8890** boshqa maqsadli tushumlar |
+| **8910** | Kelgusi xarajat va to'lovlar zaxirasi ✅ |
 
 ---
 
@@ -197,7 +252,8 @@ Tavsiya etilgan `6410` subschyotlari:
 | **9010** | Tayyor mahsulot sotishdan daromad |
 | **9020** | Tovarlar sotishdan daromad ✅ (`Dt 4010 — Kt 9020` manbadan tasdiqlangan) |
 | **9030** | Ishlar bajarish va xizmatlar ko'rsatishdan daromad |
-| 9040 | Sotishdan chegirmalar, qaytarilgan tovarlar — **kontr-daromad** ⚠️ |
+| **9040** | **Sotilgan tovarlarni qaytarish** — kontr-daromad ✅ |
+| **9050** | **Xaridorlar va buyurtmachilarga berilgan chegirmalar** — kontr-daromad ✅ |
 | 9210 | Asosiy vositalarning chiqib ketishi |
 | 9220 | Boshqa aktivlarning chiqib ketishi ⚠️ |
 | 9390 | Boshqa operatsion daromadlar (jarima, undirilgan zarar, hisobdan chiqarilgan qarz) |
@@ -213,15 +269,36 @@ Tavsiya etilgan `6410` subschyotlari:
 | **9110** | Sotilgan tayyor mahsulot tannarxi |
 | **9120** | Sotilgan tovarlar tannarxi |
 | **9130** | Bajarilgan ishlar va ko'rsatilgan xizmatlar tannarxi |
+| **9140** | Davriy hisobda TMZ sotib olish ✅ |
+| **9150** | Davriy hisobda TMZ bo'yicha tuzatishlar ✅ |
 | **9410** | Sotish xarajatlari (reklama, yetkazib berish, savdo xodimlari ish haqi) |
 | **9420** | Ma'muriy xarajatlar (boshqaruv ish haqi, ofis ijarasi, aloqa, audit) |
-| **9430** | Boshqa operatsion xarajatlar (bank komissiyasi, jarima, penya) |
+| **9430** | Boshqa operatsion xarajatlar — 🔴 **korxonada asosan BANK XIZMAT HAQLARI**, davlat boji, SWIFT kurs/komissiya farqi ✅ |
+
+> **`9400` = davr xarajatlari, uchta subschyotga bo'linadi: `9410` / `9420` / `9430`** ✅
+> - `9410` — reklama, ijtimoiy tarmoq targetlari, bosmaxona/tanishtiruv materiallari, sotuv xodimlari oyligi
+> - `9420` — ma'muriyat xarajatlari, **direktor oyligi**, uning ofisidagi mebel va texnika
+> - `9430` — bank xizmatlari, davlat boji, boshqa majburiy to'lovlar
 | **9610** | Foizlar ko'rinishidagi xarajatlar (kredit foizi) |
 | **9690** | Valyuta kursi farqi bo'yicha zarar |
 | 9710 | Favqulodda foyda va zararlar ⚠️ |
 | **9810** | Foyda solig'i bo'yicha xarajat |
 | **9820** | Foydadan boshqa soliqlar va yig'imlar |
 | **9910** | Yakuniy moliyaviy natija — yil oxirida 9-bo'lim shu yerga yopiladi |
+
+---
+
+## 4 ↔ 6 juftlik sxemasi ✅ (korxona daftaridan)
+
+| Debitor (4) | ↔ | Kreditor (6) | Kim bilan hisob-kitob |
+|---|---|---|---|
+| **4300** | ↔ | **6000** | Mol yetkazib beruvchi va xizmat ko'rsatuvchilar |
+| **4000** | ↔ | **6300** | Xaridorlar |
+| **4400** | ↔ | **6400** | Byudjet (soliqlar) |
+| **4500** | ↔ | **6500** | Ijtimoiy (pul) fondlar |
+| **0900** | | | Uzoq muddatli hisob-kitob |
+
+**Mantiq:** 4-bo'lim — biz oldindan berdik yoki bizga qarzdor; 6-bo'lim — biz qarzdormiz.
 
 ---
 
@@ -239,6 +316,8 @@ Tavsiya etilgan `6410` subschyotlari:
 ---
 
 ## Manbalar
+
+- **`memory/DAFTAR.md`** — korxona buxgalterining ish daftari (79 sahifa): 0100–0199, 0200–0299, 0400–0490, 0500–0590, 1000–1090, 8300–8910, 9000–9150 subschyotlari shu yerdan tasdiqlangan
 
 - [lex.uz — yangi NSBU № 21 (3593-son, 27.12.2024)](https://lex.uz/ru/docs/7282759)
 - [lex.uz — eski NSBU № 21 (1181-son, 23.10.2002)](https://lex.uz/acts/417624)
