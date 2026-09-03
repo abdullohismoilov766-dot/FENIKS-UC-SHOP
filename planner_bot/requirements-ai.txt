@@ -1,0 +1,8 @@
+# Ixtiyoriy: erkin matnni tushunish ("ertaga soat 3 da stomatolog").
+# Faqat ANTHROPIC_API_KEY ishlatmoqchi bo'lsangiz kerak.
+#   pip install -r planner_bot/requirements-ai.txt
+#
+# Diqqat: bu paket Rust'da yozilgan qismlarni o'z ichiga oladi. Serverda
+# muammosiz o'rnatiladi, Android (Termux) da esa kompilyatsiya kerak bo'lishi
+# va uzoq davom etishi mumkin.
+anthropic>=0.40.0
