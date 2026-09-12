@@ -5,10 +5,13 @@ va o'sha kungi kalendarga yozilgan **hamma narsa** bo'yicha so'raydi — 5 vaqt
 namoz, ish, uchrashuv, dars, safar — nima bo'lsa hammasi. Javoblar shu
 papkadagi `kundalik.csv` fayliga yozib boriladi.
 
-> ⚠️ **Texnik cheklov:** 22:30 dagi so'rov sessiyasi Google Calendar'ga
-> to'g'ridan-to'g'ri kira olmaydi (avtomatik ishga tushadigan sessiyalarga
-> konnektor biriktirilmaydi). Shuning uchun kalendarni o'zi o'qib
-> tekshirolmaydi — foydalanuvchidan so'rab, aytganini yozib boradi.
+> ⚠️ **Texnik cheklov:** avtomatik ishga tushadigan sessiyalarga konnektor
+> (Google Calendar) kafolatlangan holda biriktirilmaydi. Eslatma **shu
+> KUNDALIK suhbatining o'ziga** kelishi uchun sozlangan (avvalgi versiyada
+> alohida yopiq sessiyaga kelardi va javoblar o'sha yerda ko'rinmay
+> qolardi — endi tuzatildi). Shu suhbatda Calendar ulangan bo'lsa, savol
+> kalendarni o'qib beradi; ulanmagan yoki mavjud bo'lmasa, oddiy so'rov
+> rejimiga o'tadi — ikkala holatda ham ishlayveradi.
 
 ## Fayl formati
 
@@ -36,15 +39,17 @@ Hisob shu fayldan olinadi.
 
 Har kuni 5 vaqt namoz doimiy so'raladi. Bulardan tashqari, o'sha kuni
 kalendaringizga yozgan boshqa har qanday ish/uchrashuv/reja bo'lsa, ularni
-ham aytishingiz so'raladi — ro'yxat qattiq belgilanmagan, chunki bot
-kalendarni o'zi o'qiy olmaydi (yuqoridagi cheklovga qarang).
+ham so'raydi — Calendar ulangan bo'lsa ro'yxatni o'qib chiqadi, bo'lmasa
+sizdan aytishingizni so'raydi.
 
 ## Namoz vaqtlari
 
-Namoz vaqtlari har hafta payshanba kuni soat 21:00 da alohida so'raladi va
-Google Calendar'ga takrorlanuvchi hodisa sifatida yoziladi ("Namoz
-vaqtlarini yangilash (haftalik)" nomli Routine). Bu — kunlik hisobotdan
-mustaqil, alohida jarayon.
+Namoz vaqtlari har hafta payshanba kuni soat 21:00 da shu suhbatning o'zida
+so'raladi va Google Calendar'ga takrorlanuvchi hodisa sifatida yoziladi
+("Namoz vaqtlarini yangilash (haftalik)" nomli Routine, shu KUNDALIK
+suhbatiga bog'langan). Bu — kunlik hisobotdan mustaqil, alohida jarayon.
+Javob berish shart emas — kechiksangiz ham, keyingi safar kirganingizda
+davom ettirsangiz bo'ladi.
 
 ## Sozlamalarni o'zgartirish
 
