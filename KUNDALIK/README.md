@@ -13,6 +13,23 @@ papkadagi `kundalik.csv` fayliga yozib boriladi.
 > kalendarni o'qib beradi; ulanmagan yoki mavjud bo'lmasa, oddiy so'rov
 > rejimiga o'tadi — ikkala holatda ham ishlayveradi.
 
+## Qanday yoziladi
+
+Savol Claude orqali erkin matn ko'rinishida so'raladi, lekin **javobni
+faylga yozish endi erkin ko'rsatmaga tayanmaydi** — bu avval ishlamay,
+`kundalik.csv` oylab bo'sh qolib ketishiga sabab bo'lgan. Endi yozish
+faqat bitta qat'iy skript orqali bo'ladi:
+
+```bash
+python3 KUNDALIK/kayd_qil.py 2026-09-13 "Bomdod:bajarildi" "Peshin:bajarilmadi"
+```
+
+Skript faylni yangilaydi, commit qiladi, GitHub'ga push qiladi va aniq
+natija chiqaradi — muvaffaqiyat (`✅ N ta band yozildi`) yoki aniq xato
+(`✖ XATO: ...`). Claude bu skriptni ishlatadi, uning ishini qo'lda
+takrorlamaydi. Sinash uchun `--dry-run` bilan chaqirsa bo'ladi — u holda
+git bosqichi bajarilmaydi.
+
 ## Fayl formati
 
 ```
