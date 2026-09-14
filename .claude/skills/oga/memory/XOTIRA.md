@@ -14,9 +14,9 @@
 
 | Maydon | Qiymat |
 |--------|--------|
-| Korxona nomi | _to'ldirilmagan_ |
-| Tashkiliy-huquqiy shakl (MChJ / YaTT / AJ) | _to'ldirilmagan_ |
-| STIR (INN) | _to'ldirilmagan_ |
+| Korxona nomi | **RBC GROUP SOLUTIONS** ✅ (2026-09-14, bank vipiskasidan) |
+| Tashkiliy-huquqiy shakl (MChJ / YaTT / AJ) | **MChJ (ООО)** ✅ (2026-09-14) |
+| STIR (INN) | **305448102** ✅ (2026-09-14, bank vipiskasidan) |
 | Yuridik manzil | _to'ldirilmagan_ |
 | Asosiy faoliyat turi | _to'ldirilmagan_ |
 | **Soliq rejimi** (umumbelgilangan / aylanmadan soliq) | _to'ldirilmagan_ |
@@ -28,7 +28,8 @@
 
 | Bank | MFO | Hisob raqami | Valyuta | 1C dagi schyot |
 |------|-----|-------------|---------|----------------|
-| _to'ldirilmagan_ | | | so'm | 5110 |
+| **"Uzsanoatqurilishbank" ATB** (Bosh ofis, Toshkent) | _to'ldirilmagan_ | **20208000200866252001** | so'm | **5110** (asosiy hisob) ✅ (2026-09-14) |
+| **"Uzsanoatqurilishbank" ATB** | _to'ldirilmagan_ | **23106000900866252504** | so'm | **5530** ❓ — ish haqini plastik kartalarga o'tkazish uchun maxsus (loyihaviy) hisob ko'rinadi; 5110 subschyoti sifatida ham yuritilishi mumkin — tasdiqlang (2026-09-14) |
 | | | | USD | 5210 |
 
 ## 3. Korxonaning ish schyotlar rejasi — o'zgachaliklar
