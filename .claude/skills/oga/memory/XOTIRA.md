@@ -128,6 +128,39 @@ javobgarlik, ruscha–o'zbekcha lug'at.
 ⏳ **13 ta ochiq savol** — `DAFTAR.md → 13-bo'lim`. Ular hal qilinmaguncha OGA
 o'sha mavzularda ikkala variantni ko'rsatadi.
 
+## 9b. Soliq to'lovlari nazorat jadvali (onlayn sheets) ✅ (2026-09-14)
+
+Korxonada soliq to'lovlarini kuzatish uchun **onlayn jadval (Google/Excel Sheets)**
+ishlatiladi. Ustunlar: `отчет` (hisobot topshirildimi) va `оплата` (to'landimi),
+har bir soliq turi uchun alohida.
+
+> 🔴 **Belgilash qoidasi:** soliq **to'langan** bo'lsa — `+` qo'yiladi.
+> **To'lanmagan / navbatda turgan** bo'lsa — `-` qoladi.
+
+### Jadvaldagi soliqlar va qayerdan to'lanadi
+
+| Soliq | Muddat | Qayerdan | Ishonch |
+|---|---|---|---|
+| JShDS (НДФЛ) | 15-sana | `my.soliq.uz` → Лицевой счёт/Задолженность | ✅ |
+| ИНПС | 15-sana | `my.soliq.uz` — JShDS bilan bitta hisobotda | ✅ |
+| Ijara (Аренда) | 15-sana | `my.soliq.uz` | ✅ |
+| Aylanmadan soliq | 15-sana | `my.soliq.uz` | ✅ |
+| QQS (НДС) | 20-sana | `my.soliq.uz` | ✅ |
+| Norezident daromad solig'i | 20-sana | `my.soliq.uz` | ✅ |
+| Dividend | 20-sana | `my.soliq.uz` | ✅ |
+| Foyda solig'i | 20-sana, kvartallik | `my.soliq.uz` | ✅ |
+| suvhisobi.uz | 10-sana | **Alohida sayt** `suvhisobi.uz` — o'z login/parol | ⚠️ tasdiqlanishi kerak |
+| QQS import (НДС импорт) | 20-sana | Bojxona (GTD) orqali, yoki xizmat importi bo'lsa `my.soliq.uz` | ⚠️ aniqlanmagan — qaysi holat tegishli ekanini tekshirish kerak |
+| ИТ парк | — | `itpark.uz` shaxsiy kabineti (agar rezident bo'lsa) | ⚠️ tasdiqlanishi kerak |
+| Statistika | — | `stat.uz` — bu to'lov emas, hisobot | ⚠️ tasdiqlanishi kerak |
+
+**Umumiy tartib (my.soliq.uz orqali to'lanadigan 8 ta soliq uchun):**
+1. `my.soliq.uz` ga ERI yoki login/parol bilan kirish
+2. `Лицевой счёт` / `Задолженность` bo'limiga o'tish
+3. Soliq turini tanlash — tizim to'lov rekvizitlarini (byudjet hisob raqami, MFO) chiqaradi
+4. Shu rekvizitlar bilan bank-klient orqali to'lov qilish
+5. Qarz yangilangach (bir necha soat/kun) — sheets jadvalida `+` qo'yish
+
 ## 10. Suhbatlardan yozib olingan qo'shimcha qoidalar
 
 > OGA yangi doimiy qoidalarni shu yerga sana bilan qo'shadi.
