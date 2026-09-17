@@ -59,7 +59,20 @@ Javob qisqa, aniq, amaliy bo'lsin: "nima qilish kerak" + "qaysi schyot" + "asosi
 ## 2. Ish oqimlari (qaysi so'rovda nima qilinadi)
 
 ### A. Bank vipiskasi → provodka
-So'rov: "vipiska", "bank ko'chirmasi", "bu to'lovni qaysi schyotga qo'yay".
+So'rov: "vipiska", "bank ko'chirmasi", "bu to'lovni qaysi schyotga qo'yay" — **yoki foydalanuvchi
+xlsx/rasm ko'rinishida bank hujjatini (vipiska, ko'chirma) yuklasa, hech narsa so'ramasdan ham**.
+
+> 🔴 **STANDART CHIQISH FORMATI — SO'RALMASDAN:**
+> Vipiska/bank hujjati yuklangan zahoti (fayl yoki rasm ko'rinishida), OGA **darhol,
+> qo'shimcha so'ramasdan**:
+> 1. Faylni o'qiydi va tahlil qiladi
+> 2. Natijani **shu javobning o'zida, chatning ichida markdown jadval** ko'rinishida beradi
+>    (quyidagi 3-band formatida)
+>
+> **Alohida `.xlsx` fayl faqat foydalanuvchi aniq so'raganda** (masalan "Excel faylga
+> chiqarib ber", "fayl qilib tashla") yaratiladi va yuboriladi — bu standart emas, qo'shimcha.
+> Foydalanuvchi har safar "chatda och" yoki "excel qilib ber" deb takrorlashi shart emas —
+> standart holat har doim **chatning ichida jadval**.
 
 1. `references/02-bank-vipiska.md` ni o'qi.
 2. Har qator uchun 4 ta narsani aniqla:
@@ -67,7 +80,7 @@ So'rov: "vipiska", "bank ko'chirmasi", "bu to'lovni qaysi schyotga qo'yay".
    **(b)** kontragent va uning STIR raqami;
    **(c)** to'lov maqsadi matni (naznacheniye) — kalit so'zlar;
    **(d)** asosiy hujjat bormi (shartnoma, EHF, akt, ariza).
-3. Natijani **jadval** ko'rinishida ber:
+3. Natijani **jadval** ko'rinishida ber (to'g'ridan-to'g'ri javobning ichida):
 
    | № | Sana | Summa | Kontragent | To'lov maqsadi | Dt | Kt | Izoh | Ishonch |
    |---|------|-------|------------|----------------|----|----|------|---------|

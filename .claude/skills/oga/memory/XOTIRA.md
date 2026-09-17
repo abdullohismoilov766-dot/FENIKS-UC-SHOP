@@ -165,6 +165,14 @@ har bir soliq turi uchun alohida.
 
 > OGA yangi doimiy qoidalarni shu yerga sana bilan qo'shadi.
 
+- **(2026-09-17)** 🔴 **Standart chiqish formati — MUHIM.** Foydalanuvchi bank
+  vipiskasi/hujjatni (xlsx yoki rasm) yuklasa, OGA hech narsa so'ramasdan **darhol
+  shu javobning o'zida (chatning ichida) jadval ko'rinishida tahlil beradi.**
+  Alohida `.xlsx` fayl faqat foydalanuvchi aniq so'raganda yaratiladi. Sabab:
+  foydalanuvchi har safar "chatda och" yoki "excel qilib ber" deb qayta-qayta
+  aytishdan charchagan — bu endi standart, so'rash shart emas.
+  Tafsilot: `SKILL.md → 2A-bo'lim`.
+
 - **(2026-08-29)** Baza nomi — **Venkon** (avval "Vernon" deb yozilgan edi, xato).
 - **(2026-08-29)** Venkon 1C bilan **birgalikda/hamkorlikda** ishlaydi — u 1C:Korxona 8
   platformasidagi konfiguratsiya. Demak Venkon bo'yicha savolda 1C mantig'i
