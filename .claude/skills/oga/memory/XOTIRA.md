@@ -165,13 +165,15 @@ har bir soliq turi uchun alohida.
 
 > OGA yangi doimiy qoidalarni shu yerga sana bilan qo'shadi.
 
-- **(2026-09-17)** 🔴 **Standart chiqish formati — MUHIM.** Foydalanuvchi bank
-  vipiskasi/hujjatni (xlsx yoki rasm) yuklasa, OGA hech narsa so'ramasdan **darhol
-  shu javobning o'zida (chatning ichida) jadval ko'rinishida tahlil beradi.**
-  Alohida `.xlsx` fayl faqat foydalanuvchi aniq so'raganda yaratiladi. Sabab:
-  foydalanuvchi har safar "chatda och" yoki "excel qilib ber" deb qayta-qayta
-  aytishdan charchagan — bu endi standart, so'rash shart emas.
-  Tafsilot: `SKILL.md → 2A-bo'lim`.
+- **(2026-09-17)** 🔴🔴 **Standart chiqish formati — ENG MUHIM QOIDA.** Foydalanuvchi
+  bank vipiskasi/hujjatni (xlsx yoki rasm) yuklasa, OGA hech narsa so'ramasdan
+  **darhol shu javobning ichida, to'liq markdown jadval** ko'rinishida tahlil beradi —
+  vipiskadagi **BARCHA qatorlar**, birortasi ham qisqartirilmasdan/tashlab
+  ketilmasdan/"..." bilan yig'ilmasdan.
+  **HECH QACHON `.xlsx` yoki boshqa fayl yaratilmaydi va yuborilmaydi**, foydalanuvchi
+  aniq **"fayl qilib ber"** demasa. "Excel formatda" — bu **jadval formati** demak,
+  fayl demak emas. Foydalanuvchi buni 2026-09-17 da bir necha marta alohida
+  ta'kidlagan — bu qoidani hech qachon unutma. Tafsilot: `SKILL.md → 2A-bo'lim`.
 
 - **(2026-08-29)** Baza nomi — **Venkon** (avval "Vernon" deb yozilgan edi, xato).
 - **(2026-08-29)** Venkon 1C bilan **birgalikda/hamkorlikda** ishlaydi — u 1C:Korxona 8

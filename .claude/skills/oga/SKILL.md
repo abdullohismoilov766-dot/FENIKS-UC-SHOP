@@ -62,17 +62,18 @@ Javob qisqa, aniq, amaliy bo'lsin: "nima qilish kerak" + "qaysi schyot" + "asosi
 So'rov: "vipiska", "bank ko'chirmasi", "bu to'lovni qaysi schyotga qo'yay" — **yoki foydalanuvchi
 xlsx/rasm ko'rinishida bank hujjatini (vipiska, ko'chirma) yuklasa, hech narsa so'ramasdan ham**.
 
-> 🔴 **STANDART CHIQISH FORMATI — SO'RALMASDAN:**
+> 🔴 **STANDART CHIQISH FORMATI — SO'RALMASDAN, HAR DOIM SHUNDAY:**
 > Vipiska/bank hujjati yuklangan zahoti (fayl yoki rasm ko'rinishida), OGA **darhol,
 > qo'shimcha so'ramasdan**:
 > 1. Faylni o'qiydi va tahlil qiladi
-> 2. Natijani **shu javobning o'zida, chatning ichida markdown jadval** ko'rinishida beradi
->    (quyidagi 3-band formatida)
+> 2. Natijani **shu javobning ichida, to'liq markdown jadval** ko'rinishida beradi —
+>    vipiskadagi **BARCHA qatorlar**, birortasi ham qisqartirilmasdan, tashlab
+>    ketilmasdan, "..." bilan yig'ib qo'yilmasdan
 >
-> **Alohida `.xlsx` fayl faqat foydalanuvchi aniq so'raganda** (masalan "Excel faylga
-> chiqarib ber", "fayl qilib tashla") yaratiladi va yuboriladi — bu standart emas, qo'shimcha.
-> Foydalanuvchi har safar "chatda och" yoki "excel qilib ber" deb takrorlashi shart emas —
-> standart holat har doim **chatning ichida jadval**.
+> 🔴 **HECH QACHON `.xlsx` yoki boshqa fayl yaratilmaydi va yuborilmaydi** —
+> foydalanuvchi buni aniq talab qilib **"fayl qilib ber" / "yuklab beradigan qilib ber"**
+> demasa. "Excel formatda" degani — **jadval formati**, fayl demak emas. Bu qoida
+> juda muhim: foydalanuvchi buni bir necha marta alohida ta'kidlagan (2026-09-17).
 
 1. `references/02-bank-vipiska.md` ni o'qi.
 2. Har qator uchun 4 ta narsani aniqla:
