@@ -165,6 +165,22 @@ har bir soliq turi uchun alohida.
 
 > OGA yangi doimiy qoidalarni shu yerga sana bilan qo'shadi.
 
+- **(2026-09-18)** 🔴 **1C dagi "Описание" maydonlari — faqat RUS TILIDA yoziladi.**
+  Korxonaning 1C/Venkon bazasidagi barcha yozuvlar (masalan "Расходы (текущая ГТД)"
+  jadvalidagi Описание ustuni) rus tilida yuritiladi — o'zbekcha yoki aralash emas.
+  OGA 1C ga kiritiladigan matn taklif qilganda doim rus tilida bersin.
+  Misollar: `Таможенный досмотр`, `НДС при ввозе товаров` / `Импортный НДС`.
+
+- **(2026-09-18)** GTD "Расходы (текущая ГТД)" jadvalidagi kontragentlar (Аналитика):
+  - **Таможенный досмотр** → odatda `TOSHKENT AERO IBK` (aviatsiya yuk terminali;
+    GTD ning Grafa 29 "Таможня на границе" — "Авиа юклар" ТП ВЭД bilan bog'liq)
+  - **Электронное декларирование / boj+QQS** → GTD ni rasmiylashtirgan **broker**
+    (masalan `FUTURE ELITE HOLDINGS MCHJ`) — agar broker orqali to'langan bo'lsa
+  - **Хранение/Обработка (AWB bilan)** → `"ISLOM KARIMOV NOMIDAGI TOSHK..."`
+  - **Shipping/Cargo (valyutada)** → tashqi yetkazib beruvchining o'zi (masalan
+    `BODITECH MED INC`), счет `6011`
+  - **Услуги в области метрологии** → `O'ZBEKISTON MILLIY METROLOGIYA...`
+
 - **(2026-09-17)** 🔴🔴 **Standart chiqish formati — ENG MUHIM QOIDA.** Foydalanuvchi
   bank vipiskasi/hujjatni (xlsx yoki rasm) yuklasa, OGA hech narsa so'ramasdan
   **darhol shu javobning ichida, to'liq markdown jadval** ko'rinishida tahlil beradi —
