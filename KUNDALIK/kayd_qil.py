@@ -5,20 +5,21 @@ KUNDALIK — bir kunlik javoblarni kundalik.csv ga yozadigan qat'iy skript.
 Bu fayl mavjud bo'lishining sababi: savol Claude orqali erkin matn
 ko'rinishida so'raladi, lekin JAVOBNI YOZIB QO'YISH endi erkin
 "shunday-shunday qatorlarni fayliga qo'sh, keyin git bilan yubor" tarzidagi
-ko'rsatmaga tayanmaydi — chunki amalda bu hech qachon ishlamadi (fayl
-oylab bo'sh qolib ketdi). Buning o'rniga bitta skript bor: yoki muvaffaqiyatli
-yozadi va push qiladi, yoki aniq xato bilan to'xtaydi. Claude bu skriptni
-ISHLATADI, uning ishini o'zi qaytadan qilishga urinmaydi.
+ko'rsatmaga tayanmaydi — chunki amalda bu hech qachon ishonchli ishlamaydi.
+Buning o'rniga bitta skript bor: yoki muvaffaqiyatli yozadi va push qiladi,
+yoki aniq xato bilan to'xtaydi. Claude bu skriptni ISHLATADI, uning ishini
+o'zi qaytadan qilishga urinmaydi.
 
 Ishlatish:
     python3 KUNDALIK/kayd_qil.py 2026-09-13 "Bomdod:bajarildi" "Peshin:bajarilmadi" "Ish:bajarildi"
 
-    --dry-run bilan git'ga tegmasdan, faqat nima yozilishini ko'rsatadi:
+    --dry-run bilan git'ga va faylga umuman tegmasdan, faqat natija nima
+    bo'lishini ko'rsatadi (hech narsa yozilmaydi, hech narsa commit qilinmaydi):
     python3 KUNDALIK/kayd_qil.py --dry-run 2026-09-13 "Bomdod:bajarildi"
 
 Har bir yozuv "Vazifa:holat" ko'rinishida, holat faqat "bajarildi" yoki
-"bajarilmadi" bo'lishi mumkin. Shu sana uchun mavjud vazifa qayta
-yuborilsa — eskisi yangilanadi (takrorlanmaydi).
+"bajarilmadi" bo'lishi mumkin (katta-kichik harf farq qilmaydi). Shu sana
+uchun mavjud vazifa qayta yuborilsa — eskisi yangilanadi (takrorlanmaydi).
 """
 
 from __future__ import annotations
@@ -31,9 +32,14 @@ from pathlib import Path
 
 VALID_STATUSES = {"bajarildi", "bajarilmadi"}
 BRANCH = "claude/daily-plan-tracker-bot-069e57"
+COMMIT_TRAILER = (
+    "Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>\n"
+    "Claude-Session: https://claude.ai/code/session_01Spb4p33DEcCk6sY9e86Q2H"
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CSV_PATH = REPO_ROOT / "KUNDALIK" / "kundalik.csv"
+FIELDNAMES = ["sana", "vazifa", "holat"]
 
 
 def die(message: str) -> None:
@@ -60,7 +66,7 @@ def parse_entries(raw_entries: list[str]) -> list[tuple[str, str]]:
             die(f"noto'g'ri format: {raw!r} — kutilgan ko'rinish 'Vazifa:holat'")
         task, _, status = raw.partition(":")
         task = task.strip()
-        status = status.strip()
+        status = status.strip().lower()
         if not task:
             die(f"vazifa nomi bo'sh: {raw!r}")
         if status not in VALID_STATUSES:
@@ -82,7 +88,7 @@ def read_rows() -> list[dict[str, str]]:
 def write_rows(rows: list[dict[str, str]]) -> None:
     CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     with CSV_PATH.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["sana", "vazifa", "holat"])
+        writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
         writer.writeheader()
         writer.writerows(rows)
 
@@ -97,6 +103,7 @@ def upsert(rows: list[dict[str, str]], target_date: str, entries: list[tuple[str
             rows[index[key]] = row
         else:
             rows.append(row)
+            index[key] = len(rows) - 1
         changed += 1
     return changed
 
@@ -118,11 +125,10 @@ def summarize(rows: list[dict[str, str]], target_date: str) -> str:
     return "\n".join(lines)
 
 
-def git_sync_and_push(dry_run: bool) -> None:
-    if dry_run:
-        print("(--dry-run: git bosqichi o'tkazib yuborildi)")
-        return
-
+def git_prepare() -> None:
+    """Repo'ni BRANCH'ning eng so'nggi holatiga keltiradi — fayl o'qilishidan OLDIN
+    chaqiriladi, aks holda eski/boshqa branch holatidagi fayl ustiga yozib yuborish
+    xavfi bor."""
     run(["git", "fetch", "origin", BRANCH])
 
     current = run(["git", "rev-parse", "--abbrev-ref", "HEAD"], check=False).stdout.strip()
@@ -132,6 +138,9 @@ def git_sync_and_push(dry_run: bool) -> None:
             run(["git", "checkout", "-b", BRANCH, f"origin/{BRANCH}"])
 
     run(["git", "pull", "--ff-only", "origin", BRANCH])
+
+
+def git_commit_and_push() -> None:
     run(["git", "add", "KUNDALIK/kundalik.csv"])
 
     status = run(["git", "status", "--porcelain", "KUNDALIK/kundalik.csv"], check=False)
@@ -139,15 +148,7 @@ def git_sync_and_push(dry_run: bool) -> None:
         print("(o'zgarish yo'q — fayl allaqachon shu holatda edi)")
         return
 
-    run(
-        [
-            "git",
-            "commit",
-            "-m",
-            "KUNDALIK: kunlik javoblarni qayd qilish\n\n"
-            "Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>",
-        ]
-    )
+    run(["git", "commit", "-m", f"KUNDALIK: kunlik javoblarni qayd qilish\n\n{COMMIT_TRAILER}"])
 
     push = run(["git", "push", "-u", "origin", BRANCH], check=False)
     if push.returncode != 0:
@@ -173,11 +174,17 @@ def main() -> None:
 
     entries = parse_entries(raw_entries)
 
+    if not dry_run:
+        git_prepare()
+
     rows = read_rows()
     changed = upsert(rows, target_date, entries)
-    write_rows(rows)
 
-    git_sync_and_push(dry_run)
+    if dry_run:
+        print("(--dry-run: fayl yozilmadi, hech narsa commit qilinmadi — faqat natija)")
+    else:
+        write_rows(rows)
+        git_commit_and_push()
 
     print(f"✅ {changed} ta band yozildi ({target_date}).")
     print(summarize(rows, target_date))

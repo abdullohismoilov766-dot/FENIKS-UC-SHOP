@@ -28,7 +28,15 @@ Skript faylni yangilaydi, commit qiladi, GitHub'ga push qiladi va aniq
 natija chiqaradi — muvaffaqiyat (`✅ N ta band yozildi`) yoki aniq xato
 (`✖ XATO: ...`). Claude bu skriptni ishlatadi, uning ishini qo'lda
 takrorlamaydi. Sinash uchun `--dry-run` bilan chaqirsa bo'ladi — u holda
-git bosqichi bajarilmaydi.
+hech narsa yozilmaydi va hech narsa commit qilinmaydi, faqat natija
+ko'rsatiladi.
+
+> 🔧 **2026-10-06 tuzatish:** skriptning oldingi versiyasida ikki xato bor
+> edi — (1) fayl avval yozilib, keyin git repo yangilanardi, bu eski
+> branch holati ustiga yozib yuborish xavfini tug'dirardi; (2) `--dry-run`
+> baribir faylni diskka yozib qo'yardi, faqat git bosqichi o'tkazilardi.
+> Ikkisi ham tuzatildi: endi git avval sinxronlanadi, fayl keyin yoziladi,
+> va `--dry-run` hech qachon diskka tegmaydi.
 
 ## Fayl formati
 
@@ -58,6 +66,44 @@ Har kuni 5 vaqt namoz doimiy so'raladi. Bulardan tashqari, o'sha kuni
 kalendaringizga yozgan boshqa har qanday ish/uchrashuv/reja bo'lsa, ularni
 ham so'raydi — Calendar ulangan bo'lsa ro'yxatni o'qib chiqadi, bo'lmasa
 sizdan aytishingizni so'raydi.
+
+## Reja yozish (vazifa/uchrashuvni kalendarga yozish)
+
+Suhbatda erkin matn bilan reja aytsangiz ("13-oktyabrga soat 10:00ga
+dentist yoz", "ertaga 18:00da do'stim bilan uchrashuv"), Claude buni shu
+tartibda bajaradi:
+
+1. Sana/soat/tavsifni matndan ajratib oladi (noaniq bo'lsa so'raydi).
+2. O'sha kun/soatda kalendarda to'qnashuv bor-yo'qligini tekshiradi
+   (`list_events`).
+3. Google Calendar'ga hodisa yaratadi (`create_event`) — bu qadam FAQAT
+   shu suhbat ichida bo'ladi, chunki Calendar ulanishi skriptga emas,
+   shu sessiyaga tegishli (skriptda kalendar kredentiali yo'q va bo'lishi
+   ham mumkin emas).
+4. Shu rejani `KUNDALIK/rejalar.csv` fayliga qat'iy qayd qiladi:
+
+```bash
+python3 KUNDALIK/reja_qil.py 2026-10-13 10:00 "Dentist bilan uchrashuv" <calendar_event_id>
+```
+
+Bu skript ham `kayd_qil.py` bilan bir xil qat'iy mantiqqa ega — yoki
+muvaffaqiyatli yozadi va push qiladi (`✅ Reja qayd qilindi: ...`), yoki
+aniq xato bilan to'xtaydi (`✖ XATO: ...`). `--dry-run` bilan sinab
+ko'rish mumkin — hech narsa yozilmaydi.
+
+Demak: kalendarga yozishni Claude suhbat ichida qiladi, `reja_qil.py` esa
+shu yozuvni `rejalar.csv` da ishonchli saqlaydi (tarix/audit uchun) —
+ikkisi birga reja yozish botini hosil qiladi.
+
+### `rejalar.csv` formati
+
+```
+sana,soat,tavsif,event_id,yozilgan_vaqt
+2026-10-13,10:00,Dentist bilan uchrashuv,f7l4mnc1ud9fl31lutv5deo138,2026-10-06T12:00:00Z
+```
+
+Bu fayl — log (tarix), har bir qo'shilgan reja alohida qator, eskisi
+o'chirilmaydi yoki ustiga yozilmaydi.
 
 ## Namoz vaqtlari
 
