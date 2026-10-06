@@ -2,7 +2,7 @@
 "Ertaga nechidan nechigacha bo'sh vaqtim bor?" savoliga javob tayyorlash.
 
 Band vaqtlar ikki manbadan yig'iladi:
-  1. Notion kalendaridagi aniq vaqtli yozuvlar (kun bo'yi bo'lganlari alohida eslatiladi)
+  1. Google Calendar'dagi aniq vaqtli yozuvlar (kun bo'yi bo'lganlari alohida eslatiladi)
   2. Botdagi kundalik rejalar (shu kunga tushadiganlari)
 
 Ular foydalanuvchining faol kun oralig'idan ayriladi va qolgani bo'sh vaqt bo'ladi.
@@ -15,8 +15,8 @@ from dataclasses import dataclass
 from datetime import date, datetime, time, timedelta
 
 from planner_bot import db
-from planner_bot.config import MIN_FREE_SLOT_MIN, notion_enabled
-from planner_bot.notion import Event, NotionError, list_events
+from planner_bot.config import MIN_FREE_SLOT_MIN, google_calendar_enabled
+from planner_bot.google_calendar import Event, GoogleCalendarError, list_events
 from planner_bot.timeutil import (
     combine,
     fmt_date,
@@ -36,7 +36,7 @@ class DayPlan:
     busy: list[tuple[datetime, datetime, str]]
     all_day_events: list[Event]
     free: list[tuple[datetime, datetime]]
-    notion_error: str = ""
+    calendar_error: str = ""
 
 
 async def build_day_plan(user, day: date) -> DayPlan:
@@ -44,7 +44,7 @@ async def build_day_plan(user, day: date) -> DayPlan:
     tz_name = user["tz"]
     busy: list[tuple[datetime, datetime, str]] = []
     all_day: list[Event] = []
-    notion_error = ""
+    calendar_error = ""
 
     # 1. Botdagi kundalik rejalar
     for task in db.get_tasks(user["user_id"]):
@@ -57,8 +57,8 @@ async def build_day_plan(user, day: date) -> DayPlan:
         start_dt, end_dt = task_window(day, start, end, tz_name)
         busy.append((start_dt, end_dt, task["title"]))
 
-    # 2. Notion kalendari
-    if notion_enabled():
+    # 2. Google Calendar
+    if google_calendar_enabled():
         try:
             for event in await list_events(day, day, tz_name):
                 if event.all_day or not event.start:
@@ -68,11 +68,11 @@ async def build_day_plan(user, day: date) -> DayPlan:
                 else:
                     # Tugash vaqti ko'rsatilmagan — 1 soat deb hisoblaymiz
                     busy.append((event.start, event.start + timedelta(hours=1), event.title))
-        except NotionError as exc:
-            notion_error = str(exc)
+        except GoogleCalendarError as exc:
+            calendar_error = str(exc)
         except Exception:
-            logger.exception("Notion yozuvlarini olishda kutilmagan xatolik")
-            notion_error = "Notion bilan bog'lanib bo'lmadi."
+            logger.exception("Google Calendar yozuvlarini olishda kutilmagan xatolik")
+            calendar_error = "Google Calendar bilan bog'lanib bo'lmadi."
 
     window_start = combine(day, parse_hhmm(user["day_start"]) or time(9, 0), tz_name)
     window_end = combine(day, parse_hhmm(user["day_end"]) or time(22, 0), tz_name)
@@ -84,7 +84,7 @@ async def build_day_plan(user, day: date) -> DayPlan:
         MIN_FREE_SLOT_MIN,
     )
     busy.sort(key=lambda item: item[0])
-    return DayPlan(day=day, busy=busy, all_day_events=all_day, free=free, notion_error=notion_error)
+    return DayPlan(day=day, busy=busy, all_day_events=all_day, free=free, calendar_error=calendar_error)
 
 
 def render_day_plan(plan: DayPlan) -> str:
@@ -114,7 +114,7 @@ def render_day_plan(plan: DayPlan) -> str:
     else:
         lines.append("<b>Bo'sh vaqtlaringiz:</b> bu kuni bo'sh oraliq qolmadi 😅")
 
-    if plan.notion_error:
-        lines += ["", f"⚠️ {plan.notion_error}"]
+    if plan.calendar_error:
+        lines += ["", f"⚠️ {plan.calendar_error}"]
 
     return "\n".join(lines)

@@ -1,12 +1,12 @@
 """
-FENIKS PLANNER — kundalik rejalar, eslatmalar, statistika va Notion kalendar boti.
+FENIKS PLANNER — kundalik rejalar, eslatmalar, statistika va Google Calendar boti.
 
 Nima qiladi:
   1. Kundalik rejalar ro'yxati — har biri "nechidan nechigacha" vaqt oynasi bilan.
   2. Reja boshlanganda eslatma yuboradi.
   3. Muddat tugagach "Bu rejangizni bajardingizmi?" deb so'raydi — ✅ Ha / ❌ Yo'q.
   4. Javoblarni yig'ib, statistika chiqaradi (bugun / 7 kun / 30 kun / butun davr).
-  5. Matn yoki ovozli xabarni tushunib, Notion kalendariga yozib qo'yadi.
+  5. Matn yoki ovozli xabarni tushunib, Google Calendar'ga yozib qo'yadi.
   6. "Ertaga nechida bo'sh vaqtim bor?" savoliga bo'sh oraliqlar bilan javob beradi.
 
 Ishga tushirish: `python -m planner_bot.bot` (README.md ga qarang).
@@ -31,13 +31,13 @@ from aiogram.filters import Command, CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.types import BotCommand, CallbackQuery, Message
 
-from planner_bot import db, notion, stats
+from planner_bot import db, google_calendar, stats
 from planner_bot.config import (
     BOT_TOKEN,
     DEFAULT_TZ,
     PORT,
     claude_enabled,
-    notion_enabled,
+    google_calendar_enabled,
     stt_enabled,
 )
 from planner_bot.freetime import build_day_plan, render_day_plan
@@ -88,13 +88,13 @@ HELP_TEXT = (
     "«Bajardingizmi?» deb so'rayman.\n\n"
     "<b>2. Statistika</b>\n"
     f"«{BTN_STATS}» — nechta reja bajarildi, nechtasi yo'q, necha foiz.\n\n"
-    "<b>3. Kalendar (Notion)</b>\n"
+    "<b>3. Kalendar (Google Calendar)</b>\n"
     "Menga oddiy qilib yozing yoki ayting:\n"
     "<i>«Ertaga soat 3 da stomatologga boraman, kalendarga yozib qo'y»</i>\n"
-    "— men uni Notion kalendaringizga qo'shaman.\n\n"
+    "— men uni Google Calendar'ingizga qo'shaman.\n\n"
     "<b>4. Bo'sh vaqt</b>\n"
-    "<i>«Ertaga nechida bo'sh vaqtim bor?»</i> — kundalik rejalaringiz va Notion "
-    "kalendaringizni solishtirib, bo'sh oraliqlarni chiqaraman.\n\n"
+    "<i>«Ertaga nechida bo'sh vaqtim bor?»</i> — kundalik rejalaringiz va Google "
+    "Calendar'ingizni solishtirib, bo'sh oraliqlarni chiqaraman.\n\n"
     "<b>Buyruqlar:</b>\n"
     "/add — yangi reja\n"
     "/today — bugungi rejalar\n"
@@ -352,16 +352,16 @@ async def free_for_day(callback: CallbackQuery) -> None:
     await callback.message.answer(render_day_plan(plan))
 
 
-# ---------------------------------------------------- Kalendar (Notion) ---
+# -------------------------------------------- Kalendar (Google Calendar) ---
 @dp.message(Command("calendar"))
 @dp.message(F.text == BTN_CALENDAR)
 async def show_calendar_menu(message: Message) -> None:
     _user(message)
-    if not notion_enabled():
+    if not google_calendar_enabled():
         await message.answer(
-            "🗓 Notion hali ulanmagan.\n\n"
-            "<code>.env</code> faylida <code>NOTION_TOKEN</code> va "
-            "<code>NOTION_DATABASE_ID</code> ni to'ldiring — shundan keyin "
+            "🗓 Google Calendar hali ulanmagan.\n\n"
+            "<code>.env</code> faylida <code>GOOGLE_SERVICE_ACCOUNT_JSON</code> va "
+            "<code>GOOGLE_CALENDAR_ID</code> ni to'ldiring — shundan keyin "
             "«ertaga soat 3 da uchrashuv» deb yozsangiz, kalendarga yozib qo'yaman."
         )
         return
@@ -376,10 +376,10 @@ async def show_calendar(callback: CallbackQuery) -> None:
     day_from = today if span != 1 else today + timedelta(days=1)
     day_to = today + timedelta(days=span) if span > 1 else day_from
 
-    await callback.answer("Notion'dan olyapman…")
+    await callback.answer("Google Calendar'dan olyapman…")
     try:
-        events = await notion.list_events(day_from, day_to, user["tz"])
-    except notion.NotionError as exc:
+        events = await google_calendar.list_events(day_from, day_to, user["tz"])
+    except google_calendar.GoogleCalendarError as exc:
         await callback.message.answer(f"⚠️ {exc}")
         return
 
@@ -412,7 +412,7 @@ async def show_settings(message: Message) -> None:
     user = _user(message)
     on_off = "yoqilgan" if user["remind_on_start"] else "o'chirilgan"
     claude_state = "ulangan" if claude_enabled() else "ulanmagan"
-    notion_state = "ulangan" if notion_enabled() else "ulanmagan"
+    calendar_state = "ulangan" if google_calendar_enabled() else "ulanmagan"
     voice_state = "yoqilgan" if stt_enabled() else "o'chirilgan"
     await message.answer(
         "⚙️ <b>Sozlamalar</b>\n\n"
@@ -420,7 +420,7 @@ async def show_settings(message: Message) -> None:
         f"🕘 Faol kun oralig'i: <b>{user['day_start']}–{user['day_end']}</b>\n"
         f"🔔 Boshlanish eslatmasi: <b>{on_off}</b>\n\n"
         f"🤖 Claude (matn/ovoz tushunish): <b>{claude_state}</b>\n"
-        f"🗓 Notion kalendar: <b>{notion_state}</b>\n"
+        f"🗓 Google Calendar: <b>{calendar_state}</b>\n"
         f"🎙 Ovozli xabar: <b>{voice_state}</b>",
         reply_markup=settings_kb(),
     )
@@ -593,11 +593,11 @@ async def route_free_text(message: Message, state: FSMContext, text: str) -> Non
                 "<i>«Ertaga soat 15:00 da stomatolog»</i>"
             )
             return
-        if not notion_enabled():
+        if not google_calendar_enabled():
             await thinking.edit_text(
-                "🗓 Notion ulanmagani uchun kalendarga yoza olmayman.\n"
-                "<code>.env</code> da <code>NOTION_TOKEN</code> va "
-                "<code>NOTION_DATABASE_ID</code> ni to'ldiring."
+                "🗓 Google Calendar ulanmagani uchun kalendarga yoza olmayman.\n"
+                "<code>.env</code> da <code>GOOGLE_SERVICE_ACCOUNT_JSON</code> va "
+                "<code>GOOGLE_CALENDAR_ID</code> ni to'ldiring."
             )
             return
 
@@ -618,7 +618,7 @@ async def route_free_text(message: Message, state: FSMContext, text: str) -> Non
         )
         note_line = f"\n📝 {parsed['notes']}" if parsed["notes"] else ""
         await thinking.edit_text(
-            "🗓 <b>Notion kalendariga yozaymi?</b>\n\n"
+            "🗓 <b>Google Calendar'ga yozaymi?</b>\n\n"
             f"📌 {parsed['title']}\n"
             f"📅 {fmt_date(day)}\n"
             f"🕐 {when}{note_line}",
@@ -666,7 +666,7 @@ async def confirm_pending(callback: CallbackQuery, state: FSMContext) -> None:
 
     day = parse_date(pending["date"])
     try:
-        url = await notion.create_event(
+        url = await google_calendar.create_event(
             title=pending["title"],
             day=day,
             start_time=pending["start_time"] or None,
@@ -674,17 +674,17 @@ async def confirm_pending(callback: CallbackQuery, state: FSMContext) -> None:
             tz_name=user["tz"],
             notes=pending.get("notes", ""),
         )
-    except notion.NotionError as exc:
+    except google_calendar.GoogleCalendarError as exc:
         await callback.message.edit_text(f"⚠️ {exc}")
         await callback.answer()
         return
     except Exception:
-        logger.exception("Notion yozuvini yaratishda xatolik")
-        await callback.message.edit_text("⚠️ Notion'ga yozib bo'lmadi. Keyinroq urinib ko'ring.")
+        logger.exception("Google Calendar yozuvini yaratishda xatolik")
+        await callback.message.edit_text("⚠️ Google Calendar'ga yozib bo'lmadi. Keyinroq urinib ko'ring.")
         await callback.answer()
         return
 
-    link = f'\n\n<a href="{url}">Notion\'da ochish</a>' if url else ""
+    link = f'\n\n<a href="{url}">Google Calendar\'da ochish</a>' if url else ""
     await callback.message.edit_text(
         f"✅ Kalendarga yozib qo'ydim!\n\n"
         f"📌 <b>{pending['title']}</b>\n"
@@ -718,7 +718,7 @@ def _startup_report() -> str:
     rows = [
         ("Kundalik rejalar, eslatmalar, statistika", True),
         ("Erkin matnni tushunish (Claude)", claude_enabled()),
-        ("Notion kalendar", notion_enabled()),
+        ("Google Calendar", google_calendar_enabled()),
         ("Ovozli xabarlar", stt_enabled()),
     ]
     lines = ["", "  FENIKS PLANNER ishga tushdi", "  " + "-" * 40]

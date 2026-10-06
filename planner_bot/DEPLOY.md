@@ -10,7 +10,8 @@ Bu yerda ikkita savolga javob bor:
 
 > ⚠️ **Bu kalitlarni hech kimga yubormang** — na chatga, na skrinshotga, na
 > GitHub'ga. Kalit qo'lga tushsa, uni bilgan har kim sizning botingizni va
-> Notion'ingizni boshqara oladi. Hammasi faqat `.env` faylida yashaydi, u esa
+> Google Calendar'ingizni boshqara oladi. Hammasi faqat `.env` faylida
+> yashaydi (yoki hosting saytining Variables bo'limida), u esa
 > `.gitignore` da — GitHub'ga hech qachon tushmaydi.
 
 ### 🔴 Majburiy — bittasi
@@ -29,13 +30,16 @@ Shu bittasi bilan bot **allaqachon ishlaydi**: kundalik rejalar, eslatmalar,
 | Nima | Nima beradi | Qayerdan olinadi |
 |---|---|---|
 | **Anthropic API kaliti** | «Ertaga soat 3 da stomatolog» kabi erkin gaplarni tushunish | [console.anthropic.com](https://console.anthropic.com) → ro'yxatdan o'ting → Settings → API Keys → **Create Key**. Balansga pul tashlash kerak (bir necha dollar uzoqqa yetadi) |
-| **Notion kaliti** | Kalendarga yozish va o'qish | [notion.so/my-integrations](https://www.notion.so/my-integrations) → **New integration** → nom bering → **Internal Integration Secret** ni nusxalang |
-| **Notion baza ID si** | Qaysi kalendarga yozilsin | Kalendar bazangizni Notion'da oching → havoladagi 32 belgili qism:<br>`notion.so/ish/`**`a1b2c3d4e5f67890abcdef1234567890`**`?v=...` |
+| **Google service account JSON** | Kalendarga yozish va o'qish | [console.cloud.google.com](https://console.cloud.google.com) → loyiha → Calendar API'ni yoqing → Credentials → **Create Credentials → Service account** → **Keys → Add Key → JSON** |
+| **Google Calendar ID** | Qaysi kalendarga yozilsin | Odatda Gmail manzilingiz (masalan `abdullohismoilov767@gmail.com`) |
 | **Ovoz kaliti** | Ovozli xabarlarni tushunish | Whisper'ga mos xizmat, masalan [platform.openai.com/api-keys](https://platform.openai.com/api-keys) |
 
-**Notion uchun yana bitta muhim qadam:** kalitni olganingizdan keyin kalendar
-bazangizni oching → yuqori o'ngdagi `•••` → **Connections** → yaratgan
-integratsiyangizni tanlang. Busiz bot bazani **ko'rmaydi** (404 xatosi beradi).
+**Google Calendar uchun yana bitta muhim qadam:** service account JSON
+ichidagi `client_email` qatorini toping → haqiqiy Google Calendar'ingizni
+(calendar.google.com) oching → sozlamalar → **Share with specific people**
+→ shu email'ni **Make changes to events** huquqi bilan qo'shing. Busiz bot
+kalendaringizni **ko'rmaydi** (403 xatosi beradi) — service account faqat
+o'ziga ulashilgan kalendarlarni ko'radi.
 
 Bazada kamida ikkita ustun bo'lsin: **title** turidagi (odatda `Name`) va
 **date** turidagi (odatda `Date`). Nomlari boshqacha bo'lsa, sozlashda aytasiz.
@@ -249,10 +253,16 @@ qo'shilgan: hosting `PORT` o'zgaruvchisini qo'yishi bilan u avtomatik yonadi.
    manzilini har 5 daqiqada tekshirib turishga qo'ying
 
 > 🔴 **Jiddiy kamchilik:** tekin tariflarda disk vaqtinchalik. Servis qayta
-> ishga tushganda (bu tez-tez bo'ladi) **`planner.db` o'chib ketadi — butun
-> statistikangiz bilan birga.** Rejalaringizni qaytadan kiritishga to'g'ri
-> keladi. Shuning uchun bu variantni faqat sinash uchun tavsiya qilaman;
-> uzoq muddatga A yoki B ni tanlang.
+> ishga tushganda (bu tez-tez bo'ladi) **`planner.db` o'chib ketadi — botning
+> o'z kundalik rejalar ro'yxati va statistikasi bilan birga.** Rejalaringizni
+> qaytadan kiritishga to'g'ri keladi.
+>
+> **Google Calendar'ga yozilgan hodisalar bunga tegmaydi** — ular Google'da
+> saqlanadi, bot qayta tiklansa ham yo'qolmaydi. Faqat botning o'z ichidagi
+> «kundalik reja + bajardim/yo'q statistikasi» xususiyati xavf ostida.
+> Shuning uchun bu variantni Google Calendar'ga yozish uchun ishlatsa
+> bo'ladi, lekin uzoq muddatli statistika kerak bo'lsa A, B yoki Render'ning
+> pullik ($7/oy) "persistent disk" tarifini tanlang.
 
 ---
 
@@ -285,7 +295,7 @@ shu yerdan ko'rasiz:
   ----------------------------------------
   [+] Kundalik rejalar, eslatmalar, statistika
   [+] Erkin matnni tushunish (Claude)
-  [ ] Notion kalendar
+  [ ] Google Calendar
   [ ] Ovozli xabarlar
   ----------------------------------------
 ```
@@ -312,8 +322,8 @@ Keyin Telegramda:
 | Tekin hostingda servis uxlab qoladi | UptimeRobot / cron-job.org bilan har 5 daqiqada `/health` manzilini tekshirib turing |
 | `Unauthorized` xatosi | Token noto'g'ri yoki BotFather'da bekor qilingan → `/revoke` bilan yangisini oling |
 | Eslatmalar noto'g'ri vaqtda keladi | Vaqt mintaqasi xato → botda `/settings` → 🌍 Vaqt mintaqasi |
-| Notion: `Could not find database` | Bazani integratsiyaga ulamagansiz → baza → `•••` → **Connections** |
-| Notion: `property does not exist` | Ustun nomlari boshqacha → `NOTION_TITLE_PROP` / `NOTION_DATE_PROP` ni moslang |
+| Google Calendar: `403 Forbidden` | Service account email kalendaringizga ulanmagan → calendar.google.com → Share with specific people → shu email, **Make changes to events** huquqi bilan |
+| Google Calendar: `GOOGLE_SERVICE_ACCOUNT_JSON noto'g'ri JSON` | JSON faylning qismi tushib qolgan yoki qo'shtirnoqlar buzilgan — faylni qayta ochib, **butun matnini** nusxalang |
 | Qayta ishga tushgach statistika yo'q | Disk vaqtinchalik → pullik tarifda volume ulang, tekin tarifda esa Variant A yoki B ga o'ting (u yerda baza yo'qolmaydi) |
 | Ovozli xabar ishlamayapti | `STT_API_KEY` qo'yilmagan yoki balans tugagan |
 

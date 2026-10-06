@@ -50,7 +50,16 @@ DB_PATH = os.getenv(
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 CLAUDE_MODEL = os.getenv("CLAUDE_MODEL", "claude-opus-5")
 
+# --------------------------------------------------------- Google Calendar --
+# Asosiy kalendar backend — KUNDALIK (Claude chat) yozayotgan haqiqiy Google
+# Calendar bilan bir xil. Service account JSON kalitining BUTUN matni (fayl
+# emas, uning ichidagi matn) shu yerga qo'yiladi.
+GOOGLE_SERVICE_ACCOUNT_JSON = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "")
+GOOGLE_CALENDAR_ID = os.getenv("GOOGLE_CALENDAR_ID", "")
+
 # ----------------------------------------------------------------- Notion ---
+# Eski backend — endi standart emas, lekin kerak bo'lsa ishlatish uchun
+# qoldirilgan (notion.py hali mavjud).
 NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
 NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID", "")
 # Notion bazangizdagi ustun (property) nomlari — o'zingiznikiga moslang.
@@ -76,6 +85,10 @@ def claude_enabled() -> bool:
 
 def notion_enabled() -> bool:
     return bool(NOTION_TOKEN and NOTION_DATABASE_ID)
+
+
+def google_calendar_enabled() -> bool:
+    return bool(GOOGLE_SERVICE_ACCOUNT_JSON and GOOGLE_CALENDAR_ID)
 
 
 def stt_enabled() -> bool:

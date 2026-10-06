@@ -2,8 +2,13 @@
 
 Telegram bot: kundalik rejalaringizni eslatib turadi, muddat tugagach
 «bajardingizmi?» deb so'raydi, javoblaringizdan statistika yig'adi,
-aytganingizni Notion kalendariga yozib qo'yadi va «ertaga nechida bo'sh
+aytganingizni Google Calendar'ga yozib qo'yadi va «ertaga nechida bo'sh
 vaqtim bor?» degan savolga javob beradi.
+
+> 🗓 **Bitta kalendar, ikkita eshik.** Bot shu foydalanuvchining haqiqiy
+> Google Calendar'iga yozadi — xuddi shu kalendarga Claude chat (KUNDALIK
+> tizimi) namoz vaqtlarini va boshqa rejalarni yozadi. Demak Telegram'dan
+> qo'shsangiz ham, Claude'ga aytsangiz ham — bitta kalendarda ko'rinadi.
 
 > Bu bot repozitoriydagi UC-shop botidan **mustaqil** — o'z papkasi, o'z
 > tokeni va o'z bazasi bilan ishlaydi. Ikkalasini bir vaqtda ishlatsa bo'ladi.
@@ -47,15 +52,15 @@ Rejalar bo'yicha:
 ⚠️ Eng ko'p qoldirilgan reja: Ingliz tili (3 marta)
 ```
 
-### 4. Notion kalendarga yozish — matn yoki ovoz orqali
+### 4. Google Calendar'ga yozish — matn yoki ovoz orqali
 Botga shunchaki yozing yoki **ovozli xabar** yuboring:
 
 > «Ertaga soat 3 da stomatologga boraman, kalendarga yozib qo'y»
 
-Bot tushunadi, tasdiqlash so'raydi va Notion kalendaringizga qo'shadi:
+Bot tushunadi, tasdiqlash so'raydi va Google Calendar'ingizga qo'shadi:
 
 ```
-🗓 Notion kalendariga yozaymi?
+🗓 Google Calendar'ga yozaymi?
 
 📌 Stomatolog
 📅 29.08.2026 (Shanba)
@@ -65,7 +70,7 @@ Bot tushunadi, tasdiqlash so'raydi va Notion kalendaringizga qo'shadi:
 ```
 
 ### 5. «Ertaga nechida bo'sh vaqtlarim bor?»
-Bot **kundalik rejalaringiz** va **Notion kalendaringizni** birlashtirib,
+Bot **kundalik rejalaringiz** va **Google Calendar'ingizni** birlashtirib,
 faol kun oralig'ingizdan bo'sh oraliqlarni ajratib beradi:
 
 ```
@@ -114,20 +119,32 @@ Qolganlari ixtiyoriy — har biri bitta imkoniyatni yoqadi:
 | O'zgaruvchi | Yoqadigan imkoniyat | Bo'sh bo'lsa |
 |---|---|---|
 | `ANTHROPIC_API_KEY` + `pip install -r planner_bot/requirements-ai.txt` | Erkin matnni tushunish («ertaga soat 3 da…») | Oddiy regex rejimi — kamroq tushunadi, tugmalar ishlayveradi |
-| `NOTION_TOKEN` + `NOTION_DATABASE_ID` | Kalendarga yozish va o'qish | Kalendar bo'limi o'chiq, bo'sh vaqt faqat bot rejalaridan hisoblanadi |
+| `GOOGLE_SERVICE_ACCOUNT_JSON` + `GOOGLE_CALENDAR_ID` | Kalendarga yozish va o'qish | Kalendar bo'limi o'chiq, bo'sh vaqt faqat bot rejalaridan hisoblanadi |
 | `STT_API_KEY` | Ovozli xabarlar | Bot matn yozishni so'raydi |
 
-### Notion bazasini tayyorlash
+### Google Calendar'ni ulash (service account)
 
-1. [notion.so/my-integrations](https://www.notion.so/my-integrations) da yangi
-   **internal integration** yarating → **Internal Integration Secret** ni
-   `NOTION_TOKEN` ga qo'ying.
-2. Kalendar bazangizni Notion'da oching → yuqori o'ngdagi `•••` → **Connections**
-   → yaratgan integratsiyangizni ulang.
-3. Baza havolasidan 32 belgili ID ni oling:
-   `notion.so/<workspace>/`**`a1b2c3d4e5f6...`**`?v=...` → `NOTION_DATABASE_ID`.
-4. Bazada **title** (matn) va **date** (sana) ustunlari bo'lsin. Nomlari
-   boshqacha bo'lsa, `NOTION_TITLE_PROP` / `NOTION_DATE_PROP` ni moslang.
+1. [console.cloud.google.com](https://console.cloud.google.com) da yangi loyiha
+   oching (yoki mavjudini tanlang) → **APIs & Services → Library** → "Google
+   Calendar API" ni toping → **Enable**.
+2. **APIs & Services → Credentials → Create Credentials → Service account**
+   → nom bering (masalan `kundalik-bot`) → yaratilgandan keyin uni oching →
+   **Keys → Add Key → Create new key → JSON** → fayl kompyuteringizga tushadi.
+3. Shu JSON faylni ochib, **butun matnini** nusxalang — `GOOGLE_SERVICE_ACCOUNT_JSON`
+   shu bo'ladi (bitta uzun qator sifatida, hosting saytining Variables
+   bo'limiga qo'ysangiz bo'ladi — JSON ichidagi qator ko'chirishlar muammo
+   qilmaydi).
+4. JSON faylda `"client_email": "...@...gserviceaccount.com"` qatorini toping.
+   Google Calendar'ingizni (calendar.google.com) oching → sozlamalar →
+   **Share with specific people** → shu email'ni qo'shing → huquq:
+   **Make changes to events**.
+5. `GOOGLE_CALENDAR_ID` — odatda shu Gmail manzilingiz
+   (`abdullohismoilov767@gmail.com`), Calendar sozlamalaridagi **Calendar ID**
+   qatoridan ham olish mumkin.
+
+> ⚠️ Service account "o'zining" kalendariga yozmaydi — siz uni *sizning*
+> kalendaringizga nazoratchi sifatida qo'shasiz (4-qadam), shundan keyingina
+> sizning kalendaringizga yoza oladi.
 
 > 📘 Kalitlarni qayerdan olish va botni doimiy ishlatish (Railway / VPS)
 > bo'yicha to'liq qo'llanma: **[DEPLOY.md](DEPLOY.md)**
@@ -185,7 +202,7 @@ sudo systemctl enable --now feniks-planner
 | `/tasks` | Barcha rejalar (to'xtatish / o'chirish tugmalari bilan) |
 | `/stats` | Statistika |
 | `/free` | Bo'sh vaqtlarim (bugun / ertaga / indinga) |
-| `/calendar` | Notion kalendar yozuvlari |
+| `/calendar` | Google Calendar yozuvlari |
 | `/settings` | Vaqt mintaqasi, faol kun oralig'i, eslatmalar |
 | `/cancel` | Joriy amalni bekor qilish |
 
@@ -201,7 +218,8 @@ planner_bot/
 ├── db.py            # SQLite: users / tasks / task_logs
 ├── stats.py         # Statistika hisob-kitobi va matni
 ├── freetime.py      # Bo'sh vaqt oraliqlarini hisoblash
-├── notion.py        # Notion kalendariga yozish va o'qish
+├── google_calendar.py  # Google Calendar'ga yozish va o'qish (asosiy backend)
+├── notion.py        # eski backend, standart emas (kerak bo'lsa qolgan)
 ├── nlp.py           # Erkin matnni Claude orqali tushunish
 ├── stt.py           # Ovozni matnga o'girish
 ├── timeutil.py      # Vaqt/sana yordamchilari
@@ -242,5 +260,6 @@ bot qayta ishga tushsa ham eslatma ikki marta yuborilmaydi.
 
 - Haftalik hisobotni har dushanba avtomatik yuborish
 - Reja bajarilmagan kunlar uchun sabab so'rash va uni statistikaga qo'shish
-- Google Calendar'ni Notion'ga muqobil sifatida qo'shish
+- KUNDALIK'ning `kundalik.csv` / `rejalar.csv` statistikasini botning o'z
+  SQLite bazasi bilan birlashtirish (hozircha ikkisi alohida)
 - Bir nechta til (o'zbek / rus / ingliz)
