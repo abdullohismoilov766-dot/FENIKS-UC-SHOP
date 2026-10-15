@@ -108,11 +108,16 @@ o'chirilmaydi yoki ustiga yozilmaydi.
 ## Namoz vaqtlari
 
 Namoz vaqtlari har hafta payshanba kuni soat 21:00 da shu suhbatning o'zida
-so'raladi va Google Calendar'ga takrorlanuvchi hodisa sifatida yoziladi
+tekshiriladi va Google Calendar'ga takrorlanuvchi hodisa sifatida yoziladi
 ("Namoz vaqtlarini yangilash (haftalik)" nomli Routine, shu KUNDALIK
 suhbatiga bog'langan). Bu — kunlik hisobotdan mustaqil, alohida jarayon.
-Javob berish shart emas — kechiksangiz ham, keyingi safar kirganingizda
-davom ettirsangiz bo'ladi.
+
+> 🔄 **2026-10-15 dan: avtomatik davom ettirish.** Har hafta javob yozish
+> shart emas — javob kelmasa, Claude **oxirgi ma'lum vaqtlarni o'zi
+> keyingi haftaga yozadi** va shuni xabar qiladi (savol emas). Yangi vaqt
+> kerak bo'lganda istalgan vaqt yuborsangiz bo'ladi — shu kundan boshlab
+> o'sha haftaning qolgan kunlari yangi vaqtga o'zgartiriladi (allaqachon
+> yozilgan hodisalar o'chirilmaydi, faqat vaqti yangilanadi).
 
 ## Sozlamalarni o'zgartirish
 
